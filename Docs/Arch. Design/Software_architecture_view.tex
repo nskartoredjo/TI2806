@@ -1,5 +1,3 @@
-\usepackage{graphicx}
-
 \label{Software architecture views}
 \section{Software architecture views}
 
@@ -9,7 +7,7 @@ The component diagram at \textbf{figure~\ref{fig:comp_diag}} shows the relations
 
 \begin{figure}[h]
 	  \centering
-	  \includegraphics[width=0.5\textwidth]{"Component diagram".pdf}
+	  \includegraphics[width=0.7\textwidth]{"Component diagram".pdf}
 	  \caption{The component diagram}
 	  \label{fig:comp_diag}
 \end{figure}
@@ -17,7 +15,12 @@ The component diagram at \textbf{figure~\ref{fig:comp_diag}} shows the relations
 \subsection{Hardware/software mapping}
 The software uses a different connection approach to the server than a regular user. When a session is created via the server, a user connects through its own client to that session. Our virtual human will connect to the session using a connector and the Tygron SDK. Visualisation of the actions performed by the virtual human are visible through a seperate instance of the Tygron Engine.
 
-\includegraphics{Hardware_software_mapping}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{Hardware_software_mapping}
+	\caption{Hardware software mapping}
+	\label{fig:Hard_soft_map}
+\end{figure}
 
 \subsection{Persistent data management}
 Our GOAL agent is not responsible for storing persistent data, so it does not have external files or databases. Everything is stored on the database of the Tygron server.
