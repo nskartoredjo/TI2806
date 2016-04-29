@@ -4,6 +4,16 @@
 \section{Software architecture views}
 
 \subsection{Subsystem decomposition}
+
+The component diagram at \textbf{figure~\ref{fig:comp_diag}} shows the relations between the Tygron API, the connector and the GOAL agent. The GOAL agent has not been implemented yet. 
+
+\begin{figure}[h]
+	  \centering
+	  \includegraphics[width=0.5\textwidth]{"Component diagram".pdf}
+	  \caption{The component diagram}
+	  \label{fig:comp_diag}
+\end{figure}
+
 \subsection{Hardware/software mapping}
 The software uses a different connection approach to the server than a regular user. When a session is created via the server, a user connects through its own client to that session. Our virtual human will connect to the session using a connector and the Tygron SDK. Visualisation of the actions performed by the virtual human are visible through a seperate instance of the Tygron Engine.
 
