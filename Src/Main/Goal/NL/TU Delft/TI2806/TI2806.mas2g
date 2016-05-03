@@ -1,0 +1,9 @@
+use "..\..\..\..\..\Sdk\NL\Tygron\tygron-sdk.jar" as environment.
+
+define Services as agent {
+	use Services as main module.
+} 
+
+launchpolicy{
+	when * launch Services.
+}

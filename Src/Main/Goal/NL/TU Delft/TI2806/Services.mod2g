@@ -1,0 +1,7 @@
+use Services as knowledge.
+use Services as actionspec.
+exit = nogoals.
+
+module Services {
+	%TODO
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry excluding="Deliverables/|Docs/|Src/" kind="src" path=""/>
+	<buildpathentry excluding="Sdk/" kind="src" path="Src"/>
+</buildpath>
