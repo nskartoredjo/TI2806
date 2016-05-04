@@ -1,5 +1,0 @@
-use Services as knowledge.
-
-define Services with
-	pre{ true }
-	post{ true }
