@@ -1,13 +1,8 @@
 use "../../../../../main/goal/nl/tudelft/ti2806/Tygron.mas2g" as mas.
 use "../../../../../main/goal/nl/tudelft/ti2806/dummy.pl" as knowledge.
-use "../../../../../main/goal/nl/tudelft/ti2806/Tygron.mod2g" as module.
+use "../../../../../main/goal/nl/tudelft/ti2806/tygron.mod2g" as module.
 timeout = 5.
 
-test tygron with
-	pre{ }
-	in{ }
-	post{ }
-	
-	tygronagent {
-		do helloWorld.
-	}
+tygronagent {
+	do helloWorld.
+}
