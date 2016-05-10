@@ -4,7 +4,7 @@
 language: java
 
 before_install:
-- git clone https://github.com/eishub/levilime/contextvh.git
+- git clone https://git@github.com/levilime/contextvh.git
 - cd tygron
 
 install:
