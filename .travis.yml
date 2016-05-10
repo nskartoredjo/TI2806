@@ -1,10 +1,10 @@
 # THIS IS A ADJUSTMENT OF https://github.com/levilime/ContextProject-Danshal/blob/master/.travis.yml
-# ALL HONORS GO TO THE ORIGINAL CREATOR https://github.com/levilime
+# ALL CREDDITS GO TO THE ORIGINAL CREATOR https://github.com/levilime
 
 language: java
 
 before_install:
-- git clone https://git@github.com/levilime/contextvh.git
+- git clone https://git@github.com/levilime/contextvh.git tygron
 - cd tygron
 
 install:
