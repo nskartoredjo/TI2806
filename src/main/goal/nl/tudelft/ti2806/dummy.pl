@@ -6,3 +6,4 @@
 
 % we have a building if the building list has at least 1 element.
 havebuilding :- buildings([X|Y]).
+have2buildings :- buildings([K|[L|M]]).

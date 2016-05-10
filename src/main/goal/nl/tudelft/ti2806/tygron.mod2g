@@ -6,7 +6,10 @@ exit=nogoals.
 
 module helloWorld {
 	% find a function to build a road (always 1 floor)
-	if bel(functions(FS), member([Name,Id,L],FS), Name == terrace) 
-		then building_plan_construction(Id, 1, square(50,50,200,200)).
+	if goal(havebuilding), bel(functions(FS), member([Name,Id,L],FS), Name == terrace) 
+		then building_plan_construction(Id, 1, square(50,50,100,100)).
+		
+	if goal(have2buildings), bel(functions(FS), member([Name,Id,L],FS), Name == terrace)
+		then building_plan_construction(Id, 1, square(60,155,30,30)).
 
 }
