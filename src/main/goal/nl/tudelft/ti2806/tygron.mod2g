@@ -9,4 +9,7 @@ module helloWorld {
 	if bel(functions(FS), member([Name,Id,L],FS), member('ROAD',L)) 
 		then building_plan_construction(Id, 1, square(10,10,200,10)).
 
+
+	if bel(functions(FS), member([Name,Id,L],FS), buildings(BS), member([BId, BName,BL, S],BS)) 
+		then building_plan_demolish(Id, BId).
 }
