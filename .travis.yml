@@ -17,11 +17,11 @@ language: java
 # make app.properties through travis before script start, needed for user validation
 before_script:
 # omit tygron version in env name and mas2g env location name
-# - sed 's tygronenv-*-jar-with-dependencies.jar tygronenv-jar-with-dependencies.jar' src/main/goal/nl/tudelft/ti2806/Tygron.mas2g
+# - sed -i 's tygronenv-*-jar-with-dependencies.jar tygronenv-jar-with-dependencies.jar' src/main/goal/nl/tudelft/ti2806/Tygron.mas2g
 - mv src/test/goal/nl/tudelft/ti2806/test.test2g src/main/goal/nl/tudelft/ti2806/test.test2g
-- sed 's|../../../../../main/goal/nl/tudelft/ti2806/Tygron.mas2g|Tygron.mas2g|g' src/main/goal/nl/tudelft/ti2806/test.test2g
-- sed 's|../../../../../main/goal/nl/tudelft/ti2806/dummy.pl|dummy.pl|g' src/main/goal/nl/tudelft/ti2806/test.test2g
-- sed 's|../../../../../main/goal/nl/tudelft/ti2806/Tygron.mod2g|Tygron.mod2g|g' src/main/goal/nl/tudelft/ti2806/test.test2g
+- sed -i 's|../../../../../main/goal/nl/tudelft/ti2806/Tygron.mas2g|Tygron.mas2g|g' src/main/goal/nl/tudelft/ti2806/test.test2g
+- sed -i 's|../../../../../main/goal/nl/tudelft/ti2806/dummy.pl|dummy.pl|g' src/main/goal/nl/tudelft/ti2806/test.test2g
+- sed -i 's|../../../../../main/goal/nl/tudelft/ti2806/Tygron.mod2g|Tygron.mod2g|g' src/main/goal/nl/tudelft/ti2806/test.test2g
 
 script:
 # run the Goal Test with a 60s timeout
