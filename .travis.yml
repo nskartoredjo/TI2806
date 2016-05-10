@@ -2,7 +2,8 @@
 # ALL HONORS GO TO THE ORIGINAL CREATOR https://github.com/levilime
 
 language: java
-# before_install:
+
+before_install:
 - git clone https://github.com/eishub/tygron.git
 - cd tygron
 
