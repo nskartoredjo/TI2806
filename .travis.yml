@@ -3,21 +3,18 @@
 
 language: java
 before_install:
-- git clone https://git@github.com/levilime/contextvh.git
+- git clone https://github.com/eishub/tygron.git
 - cd tygron
 install:
 # build the connector, testing of the connector is done in the tygron repo CI.
 - mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- java -cp environment/target/tygronenv-*-jar-with-dependencies.jar login.Login $email $password
 - cd ..
 # move generated env jar to the same folder as the test file(s)
-- mv tygron/environment/target/tygronenv-*-jar-with-dependencies.jar .
+- mv src/main/goal/nl/tudelft/ti2806/tygronenv-*-jar-with-dependencies.jar .
 
 # make app.properties through travis before script start, needed for user validation
 before_script:
-- mkdir target
-- cd target
-- (echo user="$email" & echo pwd="$password" ) > app.properties
-- cd ..
 # omit tygron version in env name and mas2g env location name
 - mv tygronenv-*-jar-with-dependencies.jar tygronenv-jar-with-dependencies.jar
 - sed -i s/tygronenv-.*-jar-with-dependencies.jar/tygronenv-jar-with-dependencies.jar/g src/main/goal/nl/tudelft/ti2806/Tygron.mas2g
