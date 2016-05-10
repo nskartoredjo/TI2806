@@ -5,6 +5,7 @@ language: java
 before_install:
 - git clone https://github.com/eishub/tygron.git
 - cd tygron
+
 install:
 # build the connector, testing of the connector is done in the tygron repo CI.
 - mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
@@ -16,7 +17,8 @@ install:
 # make app.properties through travis before script start, needed for user validation
 before_script:
 # omit tygron version in env name and mas2g env location name
-- sed -i s/tygronenv-.*-jar-with-dependencies.jar/tygronenv-jar-with-dependencies.jar/g src/main/goal/nl/tudelft/ti2806/Tygron.mas2g
+# - sed -i s/tygronenv-.*-jar-with-dependencies.jar/tygronenv-jar-with-dependencies.jar/g src/main/goal/nl/tudelft/ti2806/Tygron.mas2g
+
 script:
 # run the Goal Test with a 60s timeout
 - timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_2.0.2.20160418123535.jar goal.tools.Run src/test/goal/nl/tudelft/ti2806/test.test2g -v > log.txt || echo 0
@@ -26,5 +28,6 @@ script:
 - grep "test failed:" log.txt && $? || echo 0
 # check that the tests actually passed otherwise the build still fails
 - grep "test passed:" log.txt && echo 0 || $?
+
 jdk:
 - oraclejdk8
