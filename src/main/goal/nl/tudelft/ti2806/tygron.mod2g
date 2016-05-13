@@ -2,14 +2,14 @@ use dummy as knowledge.
 use tygron as actionspec.
 use somegoal as goals.
 
-exit=nogoals.
+exit=never.
 
 module helloWorld {
 	% find a function to build a road (always 1 floor)
-	if bel(functions(FS), member([Name,Id,L],FS), member('ROAD',L)) 
+	if goal(havebuilding), bel(functions(FS), member([Name,Id,L],FS), member('ROAD',L)) 
 		then building_plan_construction(Id, 1, square(10,10,200,10)).
 
 
-	if bel(functions(FS), member([Name,Id,L],FS), buildings(BS), member([BId, BName,BL, S],BS)) 
+	if bel(havebuilding, functions(FS), member([Name,Id,L],FS), buildings(BS), member([BId, BName,BL, S],BS)) 
 		then building_plan_demolish(Id, BId).
 }
