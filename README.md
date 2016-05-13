@@ -21,7 +21,7 @@ Computer Science
 | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | [#1](https://github.com/nskartoredjo/TI2806/blob/master/Deliverables/Backlog%20-%20Sprint%20Backlog%20%231.pdf) | [#1](https://github.com/nskartoredjo/TI2806/blob/master/Deliverables/Sprint%20Retrospective%20%231.pdf) |
 | [#2](https://github.com/nskartoredjo/TI2806/blob/master/Deliverables/Backlog%20-%20Sprint%20Backlog%20%232.pdf) | [#2](https://github.com/nskartoredjo/TI2806/blob/master/Deliverables/Sprint%20Retrospective%20%232.pdf) |
-| [#3](https://github.com/nskartoredjo/TI2806/blob/master/Deliverables/Backlog%20-%20Sprint%20Backlog%20%233.pdf) | - |
-
+| [#3](https://github.com/nskartoredjo/TI2806/blob/master/Deliverables/Backlog%20-%20Sprint%20Backlog%20%233.pdf) | [#3](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Sprint%20Retrospective%20%233.pdf) |
+| [#4](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Backlog%20-%20Sprint%20Backlog%20%234.pdf) | - |
 ## Documentation
 Additional files will be published at [Google Drive](https://drive.google.com/drive/folders/0B_mzqGuX8rLPTFlwd1dPREo3cGM).
