@@ -1,10 +1,11 @@
 use serviceKnowledge as knowledge.
 use serviceBeliefs as beliefs.
-use serviceGoals as goals.
+% use serviceGoals as goals.
 use service as actionspec.
 
 exit = always.
 
 module buildSportsCenter {
-	
+	if goal(have3buildings), bel(functions(FS), member([Name,Id,L],FS), (Name == 'sports center'; Name ='sportcentrum')  ) 
+		then building_plan_construction(Id, 1, square(155,50,40,60)).
 }
