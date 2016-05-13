@@ -1,3 +1,13 @@
+use serviceKnowledge as knowledge.
+use service as actionspec.
+use serviceGoals as goals.
+
 module demolish {
-	
+		% find a function to build a road (always 1 floor)
+	if goal(havebuilding), bel(functions(FS), member([Name,Id,L],FS), member('ROAD',L)) 
+		then building_plan_construction(Id, 1, square(10,10,200,10)).
+
+
+	if bel(havebuilding, buildings(BS) , member(building(BId, BName,BL, S),BS)) 
+		then building_plan_demolish(BId).
 }
