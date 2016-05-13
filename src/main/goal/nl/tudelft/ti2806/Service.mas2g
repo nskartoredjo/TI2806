@@ -1,0 +1,12 @@
+use "tygronenv-1.0.7-jar-with-dependencies.jar" as environment 
+	with map = "testgoalmap" .
+
+define serviceAgent as agent {
+	use service as main module.
+	use tygronEvents as event module.
+	use tygronInit as init module.
+}
+
+launchpolicy {
+	when name=Municipality launch serviceAgent.
+}

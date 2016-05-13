@@ -1,0 +1,10 @@
+use "../../../../../main/goal/nl/tudelft/ti2806/Service.mas2g" as mas.
+use "../../../../../main/goal/nl/tudelft/ti2806/serviceKnowledge.pl" as knowledge.
+use "../../../../../main/goal/nl/tudelft/ti2806/serviceBeliefs.pl" as beliefs.
+use "../../../../../main/goal/nl/tudelft/ti2806/serviceGoals.pl" as goals.
+use "../../../../../main/goal/nl/tudelft/ti2806/service.mod2g" as module.
+timeout = 5.
+
+serviceAgent {
+	do buildroad.
+}
