@@ -6,5 +6,5 @@ use "../../../../../main/goal/nl/tudelft/ti2806/service.mod2g" as module.
 timeout = 5.
 
 serviceAgent {
-	do buildroad.
+	do main.
 }

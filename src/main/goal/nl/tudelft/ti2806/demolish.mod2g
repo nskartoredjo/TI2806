@@ -6,9 +6,8 @@ use service as actionspec.
 
 exit = always.
 
-
+% find a function to build a road (always 1 floor)
 module demolish {
-		% find a function to build a road (always 1 floor)
 	if bel(buildings(BS) , member(building(BId, BName,BL, S),BS)) 
 		then building_plan_demolish(BId).
 }
