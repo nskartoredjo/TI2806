@@ -4,6 +4,6 @@ define	building_plan_construction(Id, Level, MultiPolygon) with
    pre{ true }
    post{ true }
 
-   define	building_plan_demolish(StakeId, BuildId) with
+   define	building_plan_demolish(BuildId) with
    pre{ true }
    post{ true }

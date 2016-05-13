@@ -10,6 +10,6 @@ module helloWorld {
 		then building_plan_construction(Id, 1, square(10,10,200,10)).
 
 
-	if bel(havebuilding, functions(FS), member([Name,Id,L],FS), member('ROAD',L), buildings(BS) , member(building(BId, BName,BL, S),BS), member('ROAD', BL)) 
-		then building_plan_demolish(Id, BId).
+	if bel(havebuilding, buildings(BS) , member(building(BId, BName,BL, S),BS)) 
+		then building_plan_demolish(BId).
 }
