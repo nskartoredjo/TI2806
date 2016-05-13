@@ -17,7 +17,7 @@ install:
 
 before_script:
 # substitute the Tygron environment directory in the Tygron.mas2g with the new Tygron environment
-- sed -i 's|tygronenv-*-jar-with-dependencies.jar|tygronenv-jar-with-dependencies.jar|g' src/main/goal/nl/tudelft/ti2806/Tygron.mas2g
+- sed -i 's|tygronenv-*-jar-with-dependencies.jar|tygronenv-jar-with-dependencies.jar|g' src/main/goal/nl/tudelft/ti2806/Service.mas2g
 
 script:
 # run the Goal Test with a 60s timeout

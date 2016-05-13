@@ -1,5 +1,5 @@
-use dummy as knowledge.
+use serviceKnowledge as knowledge.
 
 define	building_plan_construction(Id, Level, MultiPolygon) with
-   pre{ true }
-   post{ true }
+	pre{ true }
+	post{ true }
