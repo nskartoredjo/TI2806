@@ -1,0 +1,8 @@
+use "../../../../../main/goal/nl/tudelft/ti2806/Tygron.mas2g" as mas.
+use "../../../../../main/goal/nl/tudelft/ti2806/dummy.pl" as knowledge.
+use "../../../../../main/goal/nl/tudelft/ti2806/tygron.mod2g" as module.
+timeout = 5.
+
+tygronagent {
+	do helloWorld.
+}
