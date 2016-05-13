@@ -29,7 +29,13 @@ to contact the team, aproach [nskartoredjo](https://github.com/nskartoredjo).
 The Tygron Environment used by the agent can be found at the [tygron fork](https://github.com/nskartoredjo/tygron)
 
 ## Releases
-At the end of every sprint there will be new [releases](https://github.com/nskartoredjo/TI2806/releases) published, including pre-releases.
+At the end of every sprint there will be new [releases](https://github.com/nskartoredjo/TI2806/releases) published.
+There will be two releases every week: A stable Service Agent release, and a unstable Development Build pre-release.
+
+## Branch structure
+Branches will consist out of three levels: features >> development >> master.
+
+Every new feature will be implemented in its own branch. When done the feature will be merged with the development branch. The development branchs purpose is to combine the diferent features to create a stable tested program with clean code. When stable and clean the development branch will be merged with the master.
 
 ## Documentation
 Additional files will be published at [Google Drive](https://drive.google.com/drive/folders/0B_mzqGuX8rLPTFlwd1dPREo3cGM).
