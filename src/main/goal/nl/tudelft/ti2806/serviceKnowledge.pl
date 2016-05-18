@@ -5,3 +5,7 @@
 
 % we have a building if the building list has at least 1 element.
 havebuilding :- buildings([X|Y]).
+
+emptymap :- buildings([]).
+
+haveStore :- buildings(BS), member([buurtwinkel,_,_], BS).

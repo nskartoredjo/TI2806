@@ -3,11 +3,11 @@ use serviceBeliefs as beliefs.
 use serviceGoals as goals.
 use service as actionspec.
 
-% use buildConvenienceStore as module.
+ use buildConvenienceStore as module.
 % use buildSportsCenter as module.
 % use buildTerrace as module.
 % use buyLand as module.
-% use demolish as module.
+ use demolish as module.
 % use sellLand as module.
 
 exit=nogoals.
@@ -17,6 +17,6 @@ exit=nogoals.
 
 % find a function to build a road (always 1 floor)
 module buildroad {
-	if bel(functions(FS), member([Name,Id,L],FS), member('ROAD',L)) 
-		then building_plan_construction(Id, 1, square(10,10,200,10)).
+	if goal(emptymap) then demolish.
+	if goal(haveStore) then buildConvenienceStore.
 }
