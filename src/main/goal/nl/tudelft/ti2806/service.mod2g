@@ -17,6 +17,6 @@ exit=nogoals.
 
 % find a function to build a road (always 1 floor)
 module buildroad {
-	if goal(emptymap) then demolish.
-	if goal(haveStore) then buildConvenienceStore.
+	if goal(demolishBuilding(ID)) then demolish(ID).
+	if goal(buildStore) then buildConvenienceStore.
 }

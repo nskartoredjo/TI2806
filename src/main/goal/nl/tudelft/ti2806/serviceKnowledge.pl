@@ -2,10 +2,12 @@
 :- dynamic settings/1.
 :- dynamic functions/1.
 :- dynamic buildings/1.
+:- dynamic demolished/1.
+:- dynamic constructed/1.
 
 % we have a building if the building list has at least 1 element.
 havebuilding :- buildings([X|Y]).
 
-emptymap :- buildings([]).
+demolishBuilding(ID) :- demolished(ID).
 
-haveStore :- buildings(BS), member([buurtwinkel,_,_], BS).
+buildStore :- constructed(365).

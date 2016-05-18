@@ -6,6 +6,6 @@ use service as actionspec.
 exit = always.
 
 module buildConvenienceStore {
-	if bel(functions(FS), member([Name, ID,_], FS), Name = buurtwinkel)
+	if bel(functions(FS), member(['buurtwinkel',ID,_], FS))
 		then building_plan_construction(ID, 1, square(10,10,100,100)).
 }

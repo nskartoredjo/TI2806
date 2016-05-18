@@ -1,3 +1,3 @@
 % we want to have built something.
-emptymap.
-haveStore.
+demolishBuilding(2).
+buildStore.

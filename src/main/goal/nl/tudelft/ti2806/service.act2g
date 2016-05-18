@@ -2,8 +2,8 @@ use serviceKnowledge as knowledge.
 
 define	building_plan_construction(Id, Level, MultiPolygon) with
 	pre{ true }
-	post{ true }
+	post{ constructed(Id) }
 	
 define building_plan_demolish(Id) with
 	pre{ true }
-	post{ true }
+	post{ demolished(Id) }
