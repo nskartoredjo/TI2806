@@ -1,10 +1,12 @@
 use serviceKnowledge as knowledge.
-use serviceBeliefs as beliefs.
-use serviceGoals as goals.
+%use serviceBeliefs as beliefs.
+%use serviceGoals as goals.
 use service as actionspec.
 
 exit = always.
 
 module buyLand {
-	
+	% Calls the method to buy a piece of land for one euro per meter squared.
+	if bel(havebuilding)
+		then map_buy_land(square(0,200,85,55), 1).
 }

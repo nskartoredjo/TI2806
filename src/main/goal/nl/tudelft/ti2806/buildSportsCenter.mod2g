@@ -6,6 +6,7 @@ use service as actionspec.
 exit = always.
 
 module buildSportsCenter {
+	%Receives the function id from the function list using a member/2 call where the name is 'sports center'.
 	if goal(have3buildings), bel(functions(FS), member([Name,Id,L],FS), (Name == 'sports center'; Name ='sportcentrum')  ) 
 		then building_plan_construction(Id, 1, square(155,50,40,60)).
 }
