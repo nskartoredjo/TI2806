@@ -1,5 +1,4 @@
 use serviceKnowledge as knowledge.
-use serviceBeliefs as beliefs.
 use service as actionspec.
 
 exit = always.

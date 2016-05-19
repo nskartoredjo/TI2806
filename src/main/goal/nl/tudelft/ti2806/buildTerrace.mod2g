@@ -4,22 +4,31 @@ use service as actionspec.
 exit = always.
 order = linearall.
 
+% buildTerrace:
+% - states: 2
+% - discription: Should build a terrace if possible. 
 module buildTerrace {
-	% Build first building in the map
+	% discription: Build first building in the map
+	% if:
+	% - there is a goal to build a building
+	% - there has been no ground occupied
+	% - there is a building type 'terrace'
+	% then:
+	% - Build the terrace on a fixed polygon square
+	% - insert the square as occupied
+	% - delete the old occupied belief
 	if 
 		goal(havebuilding), 
-		bel(constructed(none)), 
+		bel(occupied(none)), 
 		bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras)) 
 	then 
 		building_plan_construction(Id, 1, square(50,50,100,100)) + 
-		insert(constructed(square(50,50,100,100))) + 
-		delete(constructed(none)).
+		insert(occupied(square(50,50,100,100))) + 
+		delete(occupied(none)).
 		
-	% Build buildings in the map
-%	if 
-%		goal(have3buildings),
-%		bel(constructed(square(X,Y,Z1,Z2))), 
-%		bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras))
-%	then 
-%		building_plan_construction(Id, 1, square(60,155,30,30)).
+	% discription: should build n+1 buildings if n buildings are build
+	% if:
+	% - TODO
+	% then:
+	% - TODO
 }
