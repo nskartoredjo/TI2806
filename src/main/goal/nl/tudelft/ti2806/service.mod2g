@@ -1,18 +1,16 @@
 use serviceKnowledge as knowledge.
-use serviceBeliefs as beliefs.
-use serviceGoals as goals.
 use service as actionspec.
-use buildSportsCenter as module.
 use buildTerrace as module.
+% use buildSportsCenter as module.
 % use buildConvenienceStore as module.
 % use buyLand as module.
 % use demolish as module.
 % use sellLand as module.
 
 exit = nogoals.
+order = linearall.
 
 %main as main module
 module main{
-	if goal(have2buildings) then buildTerrace.
-	if goal(have3buildings) then buildSportsCenter.
+	if true then buildTerrace.
 }

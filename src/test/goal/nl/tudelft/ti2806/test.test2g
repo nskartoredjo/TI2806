@@ -5,6 +5,13 @@ use "../../../../../main/goal/nl/tudelft/ti2806/serviceGoals.pl" as goals.
 use "../../../../../main/goal/nl/tudelft/ti2806/service.mod2g" as module.
 timeout = 5.
 
+test serviceAgent with 
+	in{ 
+		never done(building_plan_construction(X, Y, Z)). 
+		never bel(constructed(square(X, Y, Z1, Z2))).
+		never bel(buildings([X])).
+	}
+
 serviceAgent {
 	do main.
 }

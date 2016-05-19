@@ -1,18 +1,25 @@
 use serviceKnowledge as knowledge.
-use serviceBeliefs as beliefs.
-use serviceGoals as goals.
 use service as actionspec.
 
 exit = always.
+order = linearall.
 
 module buildTerrace {
-	if goal(havebuilding), bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras)) 
-		then building_plan_construction(Id, 1, square(50,50,100,100)).
+	% Build first building in the map
+	if 
+		goal(havebuilding), 
+		bel(constructed(none)), 
+		bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras)) 
+	then 
+		building_plan_construction(Id, 1, square(50,50,100,100)) + 
+		insert(constructed(square(50,50,100,100))) + 
+		delete(constructed(none)).
 		
-	if goal(have2buildings), bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras))
-		then building_plan_construction(Id, 1, square(60,155,30,30)).
-		
-%	if goal(have3buildings), bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras))
-%		then building_plan_construction(Id, 1, square(95,155,30,30)).
-	
+	% Build buildings in the map
+%	if 
+%		goal(have3buildings),
+%		bel(constructed(square(X,Y,Z1,Z2))), 
+%		bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras))
+%	then 
+%		building_plan_construction(Id, 1, square(60,155,30,30)).
 }
