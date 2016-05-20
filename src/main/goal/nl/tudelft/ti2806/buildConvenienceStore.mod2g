@@ -1,8 +1,21 @@
-use serviceKnowledge as knowledge.
 use service as actionspec.
+use serviceKnowledge as knowledge.
 
 exit = always.
 
-module buildConvenienceStore{
-	
+% buildConvenienceStore:
+% - states: 1
+% - description: Builds a Convenience Store if possible
+module buildConvenienceStore {
+	% description: Build a convenience store on a specified MultiPolygon.
+	% if:
+	% - there is a building type 'convenience store' or 'buurtwinkel'
+	% then:
+	% - Build the convenience store on a fixed polygon square
+	% - insert constructed(FunctionId, Name)
+	if 
+		bel(functions(FS), member([Name,ID,_], FS), (Name =='buurtwinkel'; Name == 'convenience store'))
+	then 
+		building_plan_construction(ID, 1, square(10,10,50,50)) + 
+		insert(constructed(ID, Name)).
 }

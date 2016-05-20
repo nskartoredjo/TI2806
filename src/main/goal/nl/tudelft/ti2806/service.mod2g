@@ -1,6 +1,11 @@
 use serviceKnowledge as knowledge.
 use service as actionspec.
 use buildTerrace as module.
+use demolish as module.
+use buildConvenienceStore as module.
+use buildSportsCenter as module.
+use buyLand as module.
+use demolish as module.
 
 exit = nogoals.
 order = linearall.
@@ -14,4 +19,7 @@ module main{
 	% if true then: 
 	% - go to BuildTerrace module.
 	if true then buildTerrace.
+	if true then buildConvenienceStore.
+	if true then buildSportsCenter.
+	if true then demolish.
 }
