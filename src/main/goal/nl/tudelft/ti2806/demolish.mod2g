@@ -1,13 +1,14 @@
 use serviceKnowledge as knowledge.
 
 use serviceBeliefs as beliefs.
-use serviceGoals as goals.
+%use serviceGoals as goals.
 use service as actionspec.
 
 exit = always.
 
-% find a function to build a road (always 1 floor)
-module demolish {
-	if bel(buildings(BS) , member(building(BId, BName,BL, S),BS)) 
-		then building_plan_demolish(BId).
+module demolish(ID) {
+	
+	if bel(buildings(BS), member(building(ID,_,_,_), BS))
+		then building_plan_demolish(ID).
+		
 }
