@@ -1,18 +1,24 @@
 use serviceKnowledge as knowledge.
-use serviceBeliefs as beliefs.
-use serviceGoals as goals.
 use service as actionspec.
-
+use buildTerrace as module.
 use demolish as module.
 use buildConvenienceStore as module.
 use buildSportsCenter as module.
 use buyLand as module.
 use demolish as module.
 
-exit=nogoals.
+exit = nogoals.
+order = linearall.
 
-%main as main module
+% main:
+% - states: 1
+% - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
+	% discription: 
+	% - Should build a terrace if possible. 
+	% if true then: 
+	% - go to BuildTerrace module.
+	if true then buildTerrace.
 	if true then buildConvenienceStore.
 	if true then buildSportsCenter.
 	if true then demolish.

@@ -1,6 +1,10 @@
 use serviceKnowledge as knowledge.
 use serviceBeliefs as beliefs.
+use serviceGoals as goals.
 
+% tygronInit:
+% - states: 4
+% - description: init module
 module tygronInit {
 		if true then insert(settings([])).
 		if true then insert(functions([])).

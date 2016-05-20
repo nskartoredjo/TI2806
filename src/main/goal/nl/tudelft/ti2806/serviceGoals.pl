@@ -1,2 +1,3 @@
+haveTerrace.
 buildStore.
 buildSportsCenter.
