@@ -6,12 +6,14 @@ use service as actionspec.
 use demolish as module.
 use buildConvenienceStore as module.
 use buildSportsCenter as module.
+use buyLand as module.
+use demolish as module.
 
-exit=never.
+exit=nogoals.
 
 %main as main module
 module main{
-	if goal(buildStore) then buildConvenienceStore.
-	if goal(buildSportsCenter) then buildSportsCenter.
-	if goal(demolishBuilding(ID)) then demolish.
+	if true then buildConvenienceStore.
+	if true then buildSportsCenter.
+	if true then demolish.
 }
