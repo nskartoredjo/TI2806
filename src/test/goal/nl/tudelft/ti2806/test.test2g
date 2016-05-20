@@ -11,12 +11,12 @@ use "../../../../../main/goal/nl/tudelft/ti2806/buildSportsCentre.mod2g" as modu
 timeout = 5.
 test buildSportsCentre with
 	in {
-		done(building_plan_construction(X,Y,Z)) leadsto contructed(X, Name).
+		done(building_plan_construction(X,Y,Z)) leadsto contructed(X, Name), (Name == 'sportcentrum'; Name = 'sports center').
 	}
 
 test buildConvenienceStore with
 	in {
-		done(building_plan_construction(X,Y,Z)) leadsto contructed(X, Name).
+		done(building_plan_construction(X,Y,Z)) leadsto contructed(X, Name), (Name == 'buurtwinkel'; Name = 'convenience store')).
 	}	
 	
 	
