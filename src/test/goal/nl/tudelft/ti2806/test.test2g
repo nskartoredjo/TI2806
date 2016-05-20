@@ -14,5 +14,5 @@ test serviceAgent with
 	}
 
 serviceAgent {
-	do main.
+	do buildTerrace.
 }
