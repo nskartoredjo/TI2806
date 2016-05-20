@@ -19,7 +19,7 @@ test buildConvenienceStore with
 	in {
 		done(building_plan_construction(X,Y,Z)) leadsto bel(contructed(X, Name), (Name == 'buurtwinkel'; Name == 'convenience store')).
 	}	
-test demolish(ID) with
+test demolish with
 	in {
 		eventually done(building_plan_demolish(ID)).
 	}	
