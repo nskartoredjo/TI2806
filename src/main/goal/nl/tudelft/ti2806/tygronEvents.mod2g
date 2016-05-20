@@ -10,7 +10,6 @@ module tygronEvents {
 	if percept(buildings(X)), bel(buildings(Y)) then delete(buildings(Y)) + insert(buildings(X)).
 	
 	if goal(achieveStoreIndicator) then adopt(buildStore).
-	if goal(achieveTerraceIndicator) then adopt(buildTerrace).
-	if goal(achieveSportIndicator) then adopt(buildSportCentre).
+	if goal(achieveSportIndicator) then adopt(buildSportsCentre).
 }
 

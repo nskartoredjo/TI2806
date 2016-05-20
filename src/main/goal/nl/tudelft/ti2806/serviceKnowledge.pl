@@ -14,5 +14,8 @@ have3buildings :- buildings([X|[Y|[Z|[]]]]).
 demolishBuilding(ID) :- demolished(ID).
 
 buildStore :- constructed(365).
-
+buildSportsCentre :- constructed(835).
 buildTerrace :- constructed(874).
+
+achieveStoreIndicator :- false.
+achieveSportIndicator :- false.

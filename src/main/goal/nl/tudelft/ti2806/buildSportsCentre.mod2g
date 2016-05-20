@@ -1,0 +1,8 @@
+use service as actionspec.
+
+exit = always.
+
+module buildSportsCentre {
+	if bel(functions(FS), member(['sportcentrum',Id,L],FS) ) 
+		then building_plan_construction(Id, 1, square(155,50,40,60)).
+}
