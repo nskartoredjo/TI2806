@@ -8,5 +8,5 @@ module tygronEvent {
 	if percept(functions(X)), bel(functions(Y)) then insert(functions(X)) + delete(functions(Y)).
 	if percept(buildings(X)), bel(buildings(Y)) then insert(buildings(X)) + delete(buildings(Y)).
 	
-	if bel(constructed(Id)) then delete(constructed(Id)).
+	if bel(constructed(874)) then adopt(demolishBuilding(5)).
 }

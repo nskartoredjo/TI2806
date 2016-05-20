@@ -11,3 +11,5 @@ havebuilding :- buildings([X|Y]).
 demolishBuilding(ID) :- demolished(ID).
 
 buildStore :- constructed(365).
+
+buildTerrace :- constructed(874).
