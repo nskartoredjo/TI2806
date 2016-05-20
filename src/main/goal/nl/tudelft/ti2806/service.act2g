@@ -1,14 +1,22 @@
 use serviceKnowledge as knowledge.
 
 define	building_plan_construction(Id, Level, MultiPolygon) with
+	pre{ true }
+	post{ true }
 
-   pre{ true }
-   post{ true }
+% description:
+% - demolish a building
+% parameters:
+% - BuildId: The building id
+define	building_plan_demolish(BuildId) with
+	pre{ true }
+	post{ true }
 
-   define	building_plan_demolish(BuildId) with
-   pre{ true }
-   post{ true }
-
-	define	map_buy_land(MultiPolygon, Price) with
+% description:
+% - buy a piece of land for a specified price
+% parameters:
+% - MultiPolygon: Polygon (like square) which should be bought
+% - Price: The amount of euros per m^2
+define	map_buy_land(MultiPolygon, Price) with
 	pre{ true }
 	post{ true}
