@@ -1,0 +1,21 @@
+use service as actionspec.
+use serviceKnowledge as knowledge.
+
+exit = always.
+
+% buildSportsCenter:
+% - states: 1
+% - description: Builds a Sports Center if possible
+module buildSportsCenter {
+	% description: Build a sports center on a specified MultiPolygon.
+	% if:
+	% - there is a building type 'sports center' or 'sportcentrum'
+	% then:
+	% - Build the sports center on a fixed polygon square
+	% - insert constructed(FunctionId, Name) 
+	if 
+		bel(functions(FS), member([Name,ID,L],FS), (Name =='sportcentrum'; Name == 'sports center') ) 
+	then 
+		building_plan_construction(ID, 1, square(155,50,40,60)) + 
+		insert(constructed(ID, Name)).
+}

@@ -1,2 +1,2 @@
 buildStore.
-buildSportsCentre.
+buildSportsCenter.

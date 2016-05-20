@@ -7,4 +7,4 @@
 
 demolishBuilding(ID) :- demolished(ID).
 buildStore :- constructed(ID, Name), (Name =='buurtwinkel'; Name == 'convenience store').
-buildSportsCentre :- constructed(ID, Name), (Name =='sportcentrum'; Name == 'sports center').
+buildSportsCenter :- constructed(ID, Name), (Name =='sportcentrum'; Name == 'sports center').
