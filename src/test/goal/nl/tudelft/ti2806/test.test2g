@@ -3,13 +3,14 @@ use "../../../../../main/goal/nl/tudelft/ti2806/serviceKnowledge.pl" as knowledg
 use "../../../../../main/goal/nl/tudelft/ti2806/serviceBeliefs.pl" as beliefs.
 use "../../../../../main/goal/nl/tudelft/ti2806/serviceGoals.pl" as goals.
 use "../../../../../main/goal/nl/tudelft/ti2806/service.mod2g" as module.
-timeout = 5.
+timeout = 1.
 
 test serviceAgent with 
 	in{ 
-		never done(building_plan_construction(X, Y, Z)). 
-		never bel(occupied(square(X, Y, Z1, Z2))).
-		never bel(buildings([X])).
+		eventually done(building_plan_construction(X, Y, Z)). 
+		eventually bel(occupied(square(X, Y, Z1, Z2))).
+		eventually bel(buildings([X])).
+		eventually bel(havebuilding).
 	}
 
 serviceAgent {
