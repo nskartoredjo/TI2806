@@ -12,20 +12,18 @@ module buildTerrace {
 	% - Build first building in the map
 	% if:
 	% - there is a goal to build a building
-	% - there has been no ground occupied
+	% - there hasn't been build any terrace
 	% - there is a building type 'terrace'
 	% then:
 	% - Build the terrace on a fixed polygon square
-	% - insert the square as occupied
-	% - delete the old occupied belief
+	% - insert the belief 'constructed terrace'
 	if 
-		goal(havebuilding), 
-		bel(occupied(none)), 
+		goal(haveTerrace), 
+		not(bel(constructed(Id, Name), (Name == terrace; Name = terras))),
 		bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras)) 
 	then 
-		building_plan_construction(Id, 1, square(50,50,100,100)) + 
-		insert(occupied(square(50,50,100,100))) + 
-		delete(occupied(none)).
+		building_plan_construction(Id, 1, square(0,0,50,50)) + 
+		insert(constructed(Id, Name)).
 		
 	% description: 
 	% - should build n+1 buildings if n buildings are build

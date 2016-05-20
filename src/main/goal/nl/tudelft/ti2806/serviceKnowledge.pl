@@ -3,9 +3,7 @@
 :- dynamic settings/1.
 :- dynamic functions/1.
 :- dynamic buildings/1.
-
-% internal percepts:
-:- dynamic occupied/1.
+:- dynamic constructed/2.
 
 % knowledge:
-havebuilding :- buildings([X]).
+haveTerrace :- constructed(Id, Name), (Name == terrace; Name = terras).

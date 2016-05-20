@@ -1,10 +1,10 @@
 use serviceKnowledge as knowledge.
 use serviceBeliefs as beliefs.
 
+% Tygron Event:
+% - states: 4
+% - discription: Percept Processing
 module tygronEvents {
-% Percept Processing
-	
-	
 	if percept(stakeholders(X)), bel(stakeholders(Y))  then  delete( stakeholders(Y) ) + insert(stakeholders(X)).
 	if percept(settings(X)), bel(settings(Y)) then delete(settings(Y)) + insert(settings(X)).
 	if percept(functions(X)), bel(functions(Y)) then delete(functions(Y)) + insert(functions(X)).
