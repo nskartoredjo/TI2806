@@ -1,21 +1,11 @@
 use serviceKnowledge as knowledge.
+use serviceBeliefs as beliefs.
+% use serviceGoals as goals.
 use service as actionspec.
 
 exit = always.
 
-% buildSportsCenter:
-% - states: 1
-% - description: Builds a Sports Center if possible
 module buildSportsCenter {
-	% description: Build a sports center on a specified MultiPolygon.
-	% if:
-	% - there is a building type 'sports center' or 'sportcentrum'
-	% then:
-	% - Build the sports center on a fixed polygon square
-	% - insert the square as occupied
-	% - delete old occupied belief 
-	if 
-		bel(functions(FS), member([Name,Id,L],FS), (Name == 'sports center'; Name ='sportcentrum')  ) 
-	then 
-		building_plan_construction(Id, 1, square(155,50,40,60)).
+	if goal(have3buildings), bel(functions(FS), member([Name,Id,L],FS), (Name == 'sports center'; Name ='sportcentrum')  ) 
+		then building_plan_construction(Id, 1, square(155,50,40,60)).
 }

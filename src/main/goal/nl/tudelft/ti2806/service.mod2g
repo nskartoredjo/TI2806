@@ -5,24 +5,20 @@ use service as actionspec.
 
 use buildSportsCenter as module.
 use buildTerrace as module.
-use buildConvenienceStore as module.
+% use buildConvenienceStore as module.
 use buyLand as module.
 use demolish as module.
 % use sellLand as module.
 
-exit=always.
-order = linearall.
+exit=never.
 
 %main as main module
 module main{
-	% Buys land of of municipality. This includes a building.
-	if true then buyLand.
+	if goal(have2buildings) then buildTerrace.
 	
-	% Builds a convenience store in the recently bought land.
-	if true then buildConvenienceStore.
+	if goal(have3buildings) then buildSportsCenter.
 	
-	% Demolishes the already owned building and the recently bought building.	
-	if true then demolish.
+	if bel(havebuilding) then demolish.
 }
 
 

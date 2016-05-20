@@ -1,24 +1,13 @@
 use serviceKnowledge as knowledge.
+
+use serviceBeliefs as beliefs.
+use serviceGoals as goals.
 use service as actionspec.
 
 exit = always.
-order = linearall.
 
-% buildDemolish:
-% - states: 2
-% - description: Demolish buildings as specified if possible.
+% find a function to build a road (always 1 floor)
 module demolish {
-	% description: Demolish a specified building.
-	% if:
-	% - true
-	% then:
-	% - Demolish the building with buildingID 0.
-	if true then building_plan_demolish(0).
-	
-	% description: Demolish a specified building.
-	% if:
-	% - true
-	% then:
-	% - Demolish the building with buildingID 1.
-	if true then building_plan_demolish(1).
+	if bel(buildings(BS) , member(building(BId, BName,BL, S),BS)) 
+		then building_plan_demolish(BId).
 }

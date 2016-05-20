@@ -1,21 +1,10 @@
 use serviceKnowledge as knowledge.
+use serviceBeliefs as beliefs.
+use serviceGoals as goals.
 use service as actionspec.
 
 exit = always.
 
-% buildConvenienceStore:
-% - states: 1
-% - description: Builds a Convenience Store if possible
 module buildConvenienceStore{
-	% description: Build a convenience store on a specified MultiPolygon.
-	% if:
-	% - there is a building type 'convenience store' or 'buurtwinkel'
-	% then:
-	% - Build the convenience store on a fixed polygon square
-	% - insert the square as occupied
-	% - delete old occupied belief 
-	if 
-		bel(functions(FS), member([Name,Id,L],FS), (Name == 'convenience store'; Name ='buurtwinkel')  ) 
-	then 
-		building_plan_construction(Id, 1, square(10,220,30,15)).
+	
 }
