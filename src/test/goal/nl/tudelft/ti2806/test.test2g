@@ -3,6 +3,10 @@ use "../../../../../main/goal/nl/tudelft/ti2806/serviceKnowledge.pl" as knowledg
 use "../../../../../main/goal/nl/tudelft/ti2806/serviceBeliefs.pl" as beliefs.
 use "../../../../../main/goal/nl/tudelft/ti2806/serviceGoals.pl" as goals.
 use "../../../../../main/goal/nl/tudelft/ti2806/service.mod2g" as module.
+use "../../../../../main/goal/nl/tudelft/ti2806/buildConvenienceStore.mod2g" as module.
+use "../../../../../main/goal/nl/tudelft/ti2806/buildSportsCentre.mod2g" as module.
+
+
 timeout = 5.
 
 serviceAgent {

@@ -1,4 +1,5 @@
 use service as actionspec.
+use serviceKnowledge as knowledge.
 
 exit = always.
 
