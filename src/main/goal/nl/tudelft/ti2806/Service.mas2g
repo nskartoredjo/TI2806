@@ -1,5 +1,5 @@
-use "tygronenv-1.0.7-jar-with-dependencies.jar" as environment 
-	with map = "testgoalmap" .
+use "tygronenv-1.0.8-jar-with-dependencies.jar" as environment 
+	with project = "basictestmap", stakeholder = "COMPANY".
 
 define serviceAgent as agent {
 	use service as main module.
@@ -8,5 +8,5 @@ define serviceAgent as agent {
 }
 
 launchpolicy {
-	when name=Municipality launch serviceAgent.
+	when * launch serviceAgent.
 }
