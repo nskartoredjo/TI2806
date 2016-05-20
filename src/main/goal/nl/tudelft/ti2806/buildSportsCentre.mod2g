@@ -4,6 +4,6 @@ use serviceKnowledge as knowledge.
 exit = always.
 
 module buildSportsCentre {
-	if bel(functions(FS), member(['sportcentrum',Id,L],FS) ) 
-		then building_plan_construction(Id, 1, square(155,50,40,60)).
+	if bel(functions(FS), member([Name,ID,L],FS), (Name =='sportcentrum'; Name == 'sports center') ) 
+		then building_plan_construction(ID, 1, square(155,50,40,60)) + insert(constructed(ID, Name)).
 }

@@ -3,7 +3,7 @@
 :- dynamic functions/1.
 :- dynamic buildings/1.
 :- dynamic demolished/1.
-:- dynamic constructed/1.
+:- dynamic constructed/2.
 
 
 % we have a building if the building list has at least 1 element.
@@ -13,9 +13,8 @@ have3buildings :- buildings([X|[Y|[Z|[]]]]).
 
 demolishBuilding(ID) :- demolished(ID).
 
-buildStore :- constructed(365).
-buildSportsCentre :- constructed(835).
-buildTerrace :- constructed(874).
+buildStore :- constructed(ID, Name), (Name =='buurtwinkel'; Name == 'convenience store').
+buildSportsCentre :- constructed(ID, Name), (Name =='sportcentrum'; Name == 'sports center').
 
 achieveStoreIndicator :- false.
 achieveSportIndicator :- false.
