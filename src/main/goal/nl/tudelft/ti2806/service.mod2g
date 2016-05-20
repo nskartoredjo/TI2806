@@ -13,5 +13,6 @@ exit=never.
 module main{
 	if goal(buildStore) then buildConvenienceStore.
 	if goal(buildSportsCentre) then buildSportsCentre.
+	if goal(demolishBuilding(ID)) then demolish(ID).
 }
 
