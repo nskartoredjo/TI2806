@@ -6,9 +6,10 @@ order = linearall.
 
 % buildTerrace:
 % - states: 2
-% - discription: Should build a terrace if possible. 
+% - description: Should build a terrace if possible. 
 module buildTerrace {
-	% discription: Build first building in the map
+	% description: 
+	% - Build first building in the map
 	% if:
 	% - there is a goal to build a building
 	% - there has been no ground occupied
@@ -26,7 +27,8 @@ module buildTerrace {
 		insert(occupied(square(50,50,100,100))) + 
 		delete(occupied(none)).
 		
-	% discription: should build n+1 buildings if n buildings are build
+	% description: 
+	% - should build n+1 buildings if n buildings are build
 	% if:
 	% - TODO
 	% then:

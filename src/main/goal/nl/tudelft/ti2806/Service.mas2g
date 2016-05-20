@@ -1,3 +1,8 @@
+% description: 
+% - This agent will cooperate as the munivipality with other agents in 
+%   the Tygron Environment. At the moment it should build a terrace.
+% - The agent uses the 1.0.8. of the environment.
+
 use "tygronenv-1.0.8-jar-with-dependencies.jar" as environment 
 	with project = "testgoalmap",
 	stakeholder = "MUNICIPALITY".

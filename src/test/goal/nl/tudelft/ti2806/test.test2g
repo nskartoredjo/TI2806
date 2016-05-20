@@ -8,7 +8,7 @@ timeout = 5.
 test serviceAgent with 
 	in{ 
 		never done(building_plan_construction(X, Y, Z)). 
-		never bel(constructed(square(X, Y, Z1, Z2))).
+		never bel(occupied(square(X, Y, Z1, Z2))).
 		never bel(buildings([X])).
 	}
 

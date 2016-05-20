@@ -7,9 +7,11 @@ order = linearall.
 
 % main:
 % - states: 1
-% - discription: The main module. Should run every module in a linear mather, until there ar no goals.
+% - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
-	% discription: Should build a terrace if possible. 
-	% if true then: go to BuildTerrace module.
+	% discription: 
+	% - Should build a terrace if possible. 
+	% if true then: 
+	% - go to BuildTerrace module.
 	if true then buildTerrace.
 }
