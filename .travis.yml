@@ -13,6 +13,8 @@ language: java
 before_install:
  - git clone https://github.com/eishub/tygron
  - cd tygron
+ - git checkout context
+ - git pull origin context
 
 install:
  # build the connector, testing if the connector is done in the tygron repo CI.
