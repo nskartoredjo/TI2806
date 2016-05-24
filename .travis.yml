@@ -18,7 +18,7 @@ before_install:
 
 install:
  # build the connector, testing if the connector is done in the tygron repo CI.
- - mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+ - mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -Dcobertura.skip -B -V
  - java -cp environment/target/tygronenv-*-jar-with-dependencies.jar login.Login $email $password
  - cd ..
  # move the generated Tygron environment .jar to the same folder as the .mas2g file
