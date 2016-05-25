@@ -15,22 +15,22 @@ timeout = 5.
 test buildTerrace with 
 	in{ 
 		eventually done(building_plan_construction(X, Y, Z)). 
-		eventually bel(buildings([X])).
+%		eventually bel(buildings([X])).
 	}
-test buildSportsCenter with
-	in {
-		done(building_plan_construction(X,Y,Z)) leadsto bel(contructed(X, Name) , (Name == 'sportcentrum'; Name == 'sports center')).
-	}
+%test buildSportsCenter with
+%	in {
+%		done(building_plan_construction(X,Y,Z)) leadsto bel(contructed(X, Name) , (Name == 'sportcentrum'; Name == 'sports center')).
+%	}
 
-test buildConvenienceStore with
-	in {
-		done(building_plan_construction(X,Y,Z)) leadsto bel(contructed(X, Name), (Name == 'buurtwinkel'; Name == 'convenience store')).
-	}	
+%test buildConvenienceStore with
+%	in {
+%		done(building_plan_construction(X,Y,Z)) leadsto bel(contructed(X, Name), (Name == 'buurtwinkel'; Name == 'convenience store')).
+%	}	
 
-test demolish with
-	in {
-		eventually done(building_plan_demolish(ID)).
-	}	
+%test demolish with
+%	in {
+%		eventually done(building_plan_demolish(ID)).
+%	}	
 
 test buyLand with
 	in {
