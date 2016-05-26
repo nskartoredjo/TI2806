@@ -1,33 +1,42 @@
 # THIS IS A ADJUSTMENT OF https://github.com/levilime/ContextProject-Danshal/blob/master/.travis.yml
 # ALL CREDDITS GO TO THE ORIGINAL CREATOR https://github.com/levilime
 
+notifications:
+ slack: tud-contextproject-16:AfNBwAAvnAJEeptKiBmnnhlc
+
+# blacklist
+# branches:
+#  except:
+
 language: java
 
 before_install:
-- git clone https://github.com/eishub/tygron
-- cd tygron
+ - git clone https://github.com/eishub/tygron
+ - cd tygron
+ - git checkout context
+ - git pull origin context
 
 install:
-# build the connector, testing if the connector is done in the tygron repo CI.
-- mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-- java -cp environment/target/tygronenv-*-jar-with-dependencies.jar login.Login $email $password
-- cd ..
-# move the generated Tygron environment .jar to the same folder as the .mas2g file
-- mv tygron/environment/target/tygronenv-*-jar-with-dependencies.jar src/main/goal/nl/tudelft/ti2806/tygronenv-jar-with-dependencies.jar
+ # build the connector, testing if the connector is done in the tygron repo CI.
+ - mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -Dcobertura.skip -B -V
+ - java -cp environment/target/tygronenv-*-jar-with-dependencies.jar login.Login $email $password
+ - cd ..
+ # move the generated Tygron environment .jar to the same folder as the .mas2g file
+ - mv tygron/environment/target/tygronenv-*-jar-with-dependencies.jar src/main/goal/nl/tudelft/ti2806/tygronenv-jar-with-dependencies.jar
 
 before_script:
-# substitute the Tygron environment directory in the Tygron.mas2g with the new Tygron environment
-- sed -i 's|tygronenv-*-jar-with-dependencies.jar|tygronenv-jar-with-dependencies.jar|g' src/main/goal/nl/tudelft/ti2806/Service.mas2g
+ # substitute the Tygron environment directory in the Tygron.mas2g with the new Tygron environment
+ - sed -i 's|tygronenv-*-jar-with-dependencies.jar|tygronenv-jar-with-dependencies.jar|g' src/main/goal/nl/tudelft/ti2806/Service.mas2g
 
 script:
-# run the Goal Test with a 60s timeout
-- timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_2.0.2.20160418123535.jar goal.tools.Run src/test/goal/nl/tudelft/ti2806/test.test2g -v > log.txt || echo 0
-# print the test output
-- cat log.txt
-# if there is a test failed then the build fails
-- grep "test failed:" log.txt && $? || echo 0
-# check that the tests actually passed otherwise the build still fails
-- grep "test passed:" log.txt && echo 0 || $?
+ # run the Goal Test with a 60s timeout
+ - timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_*.jar goal.tools.Run src/test/goal/nl/tudelft/ti2806/test.test2g -v > log.txt || echo 0
+ # print the test output
+ - cat log.txt
+ # if there is a test failed then the build fails
+ - grep "test failed:" log.txt && $? || echo 0
+ # check that the tests actually passed otherwise the build still fails
+ - grep "test passed:" log.txt && echo 0 || $?
 
 jdk:
-- oraclejdk8
+ - oraclejdk8

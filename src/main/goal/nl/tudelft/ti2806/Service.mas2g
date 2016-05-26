@@ -1,5 +1,5 @@
-use "tygronenv-1.0.7-jar-with-dependencies.jar" as environment 
-	with map = "testgoalmap" .
+use "tygronenv-1.0.8-C-jar-with-dependencies.jar" as environment 
+	with project = "testgoalmap" .
 
 define serviceAgent as agent {
 	use service as main module.
