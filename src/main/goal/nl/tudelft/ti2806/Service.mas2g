@@ -1,6 +1,12 @@
-use "tygronenv-1.0.8-C-jar-with-dependencies.jar" as environment 
-	with project = "testgoalmap" .
+% description: 
+% - This agent will cooperate as the service company with other agents in 
+%   the Tygron Environment. At the moment it should build and demolish.
+% - The agent uses the 1.0.8/context version of the environment.
 
+use "tygronenv-1.0.8-C-jar-with-dependencies.jar" as environment with
+	project = "emptytestmap",
+	stakeholder = "MUNICIPALITY" .
+ 
 define serviceAgent as agent {
 	use service as main module.
 	use tygronEvents as event module.
@@ -8,5 +14,5 @@ define serviceAgent as agent {
 }
 
 launchpolicy {
-	when name=Municipality launch serviceAgent.
+	when * launch serviceAgent.
 }

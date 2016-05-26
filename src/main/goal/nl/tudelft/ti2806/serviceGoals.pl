@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 % we want to have built something.
 havebuilding.
 
@@ -11,3 +12,7 @@ buyLand.
 demolishBuilding. 
 %This goal will be made after buyLand has been completed if there are still buildings on the land, you need translators: 
 %stakeholder for budget, land for land, buildings for buildings on the land.
+
+haveTerrace.
+buildStore.
+buildSportsCenter.
