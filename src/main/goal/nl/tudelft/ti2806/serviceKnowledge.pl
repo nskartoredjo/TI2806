@@ -5,3 +5,8 @@
 
 % we have a building if the building list has at least 1 element.
 havebuilding :- buildings([X|Y]).
+
+%How to achieve our goals:
+%buildBuilding :- 
+%buyLand :- 
+%demolishBuilding :- 
