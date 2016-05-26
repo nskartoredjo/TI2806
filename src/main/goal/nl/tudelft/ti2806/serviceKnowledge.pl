@@ -12,3 +12,4 @@ demolishBuilding(ID) :- demolished(ID).
 haveTerrace :- constructed(Id, Name), (Name == terrace; Name = terras).
 buildStore :- constructed(ID, Name), (Name =='buurtwinkel'; Name == 'convenience store').
 buildSportsCenter :- constructed(ID, Name), (Name =='sportcentrum'; Name == 'sports center').
+buyLand :- 
