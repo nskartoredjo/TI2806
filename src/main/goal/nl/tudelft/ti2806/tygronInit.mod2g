@@ -15,5 +15,7 @@ module tygronInit {
 		if true then insert(settings([])).
 		forall percept(stakeholders(CombinedList)), bel(member(StakeholderList, CombinedList), member(stakeholder(StakeholderId, Name, Income, StartBudget), StakeholderList)) 
 			do insert(stakeholder(StakeholderId, Name, Income, StartBudget)).
+		forall percept(stakeholders(CombinedList)), bel(member(IndicatorList, CombinedList), member(indicatorLink(StakeholderId, IndicatorWeights), IndicatorList))
+			do insert(indicatorLink(StakeholderId, IndicatorWeights)).
 		if true then insert(zones([])).
 }

@@ -9,6 +9,7 @@
 :- dynamic requests/1.
 :- dynamic zones/1.
 :- dynamic stakeholder/4.
+:- dynamic indicatorLink/2.
 
 % knowledge:
 :- dynamic demolished/1.
