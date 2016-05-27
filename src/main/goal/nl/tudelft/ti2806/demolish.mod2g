@@ -1,10 +1,20 @@
-use serviceKnowledge as knowledge.
-use serviceBeliefs as beliefs.
-use serviceGoals as goals.
 use service as actionspec.
+use serviceKnowledge as knowledge.
 
 exit = always.
 
+% buildDemolish:
+% - states: 2
+% - description: Demolish buildings as specified if possible.
 module demolish {
-	
+	% description: Demolish a specified building.
+	% if:
+	% - There exist a building with buildingID.
+	% then:
+	% - Demolish the building with buildingID.
+	if 
+		goal(demolishBuilding(ID)),
+		bel(buildings(BS), member(building(ID,_,_,_), BS))
+	then 
+		building_plan_demolish(ID).
 }

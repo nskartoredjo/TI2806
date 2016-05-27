@@ -1,10 +1,19 @@
 use serviceKnowledge as knowledge.
-use serviceBeliefs as beliefs.
-use serviceGoals as goals.
 use service as actionspec.
 
 exit = always.
 
+% sellLand:
+% - states: 1
+% - description: Prompts a stakeholder that the agent wants to sell the specified MultiPolygon square to that proposed buyer.
 module sellLand {
-	
+	% description: Sells the specified MultiPolygon square if possible.
+	% if:
+	% - true
+	% then:
+	% - Sells the specified MultiPolygon square for the specified price.
+	if 
+		true
+	then 
+		map_sell_land(0,square(100,200,85,55), 1).
 }

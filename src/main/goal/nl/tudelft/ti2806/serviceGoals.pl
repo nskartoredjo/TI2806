@@ -1,2 +1,3 @@
-% we want to have built something.
-havebuilding.
+haveTerrace.
+buildStore.
+buildSportsCenter.
