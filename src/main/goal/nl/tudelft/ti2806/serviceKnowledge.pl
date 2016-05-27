@@ -8,6 +8,7 @@
 :- dynamic lands/1.
 :- dynamic requests/1.
 :- dynamic zones/1.
+:- dynamic stakeholder/4.
 
 % knowledge:
 :- dynamic demolished/1.
