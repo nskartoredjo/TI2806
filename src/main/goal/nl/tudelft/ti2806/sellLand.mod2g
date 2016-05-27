@@ -3,6 +3,17 @@ use service as actionspec.
 
 exit = always.
 
+% sellLand:
+% - states: 1
+% - description: Prompts the owner of the specified MultiPolygon square the agent wants to buy that land.
 module sellLand {
-	
+	% description: Sells the specified MultiPolygon square if possible.
+	% if:
+	% - true
+	% then:
+	% - Buys the specified MultiPolygon square for the specified price.
+	if 
+		true
+	then 
+		map_sell_land(0,square(100,200,85,55), 1).
 }
