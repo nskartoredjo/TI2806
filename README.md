@@ -6,7 +6,7 @@ Computer Science
 ## Team: Test Crash Dummies
 | Contributor	  | Github 													|
 | --------------- | ------------------------------------------------------- |
-| ~~J. vanTilburg~~  | ~~[JaspervanTilburg](https://github.com/JaspervanTilburg)	~~	|
+| ~~J. vanTilburg~~  | [~~JaspervanTilburg~~](https://github.com/JaspervanTilburg)	|
 | H.M. Kroon 	  | [HarmenKroon](https://github.com/HarmenKroon)			|
 | J. de vries	  | [jannelie](https://github.com/jannelie)					|
 | T. Bunner		  | [ardwennem2](https://github.com/ardwennem2)				|
