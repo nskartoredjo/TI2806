@@ -5,6 +5,7 @@ use demolish as module.
 use buildConvenienceStore as module.
 use buildSportsCenter as module.
 use buyLand as module.
+use sellLand as module.
 use demolish as module.
 
 exit = nogoals.
