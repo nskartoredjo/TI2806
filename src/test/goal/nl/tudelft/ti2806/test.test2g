@@ -1,0 +1,43 @@
+use "../../../../../main/goal/nl/tudelft/ti2806/Service.mas2g" as mas.
+use "../../../../../main/goal/nl/tudelft/ti2806/serviceKnowledge.pl" as knowledge.
+use "../../../../../main/goal/nl/tudelft/ti2806/serviceBeliefs.pl" as beliefs.
+use "../../../../../main/goal/nl/tudelft/ti2806/serviceGoals.pl" as goals.
+use "../../../../../main/goal/nl/tudelft/ti2806/service.act2g" as actionspec.
+use "../../../../../main/goal/nl/tudelft/ti2806/service.mod2g" as module.
+use "../../../../../main/goal/nl/tudelft/ti2806/buildConvenienceStore.mod2g" as module.
+use "../../../../../main/goal/nl/tudelft/ti2806/buildSportsCenter.mod2g" as module.
+use "../../../../../main/goal/nl/tudelft/ti2806/demolish.mod2g" as module.
+use "../../../../../main/goal/nl/tudelft/ti2806/buyLand.mod2g" as module.
+use "../../../../../main/goal/nl/tudelft/ti2806/buildTerrace.mod2g" as module.
+
+timeout = 5.
+
+%test buildTerrace with 
+%	in{ 
+%		eventually done(building_plan_construction(X, Y, Z)). 
+%		eventually bel(buildings([X])).
+%	}
+%test buildSportsCenter with
+%	in {
+%		done(building_plan_construction(X,Y,Z)) leadsto bel(contructed(X, Name) , (Name == 'sportcentrum'; Name == 'sports center')).
+%	}
+
+%test buildConvenienceStore with
+%	in {
+%		done(building_plan_construction(X,Y,Z)) leadsto bel(contructed(X, Name), (Name == 'buurtwinkel'; Name == 'convenience store')).
+%	}	
+
+%test demolish with
+%	in {
+%		eventually done(building_plan_demolish(ID)).
+%	}	
+
+%test buyLand with
+%	in {
+%		eventually done(map_buy_land(X,Y)).
+
+%	}
+
+%serviceAgent {
+%	do main.
+%}
