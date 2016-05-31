@@ -15,8 +15,8 @@ order = linearall.
 % - states: 1
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
-	if true then buildTerrace.
-	if true then buildConvenienceStore.
-	if true then buildSportsCenter.
+	if goal (buildTerrace) then buildTerrace.
+	if goal (buildStore) then buildConvenienceStore.
+	if goal (buildSportsCenter) then buildSportsCenter.
 	if true then demolish.
 }
