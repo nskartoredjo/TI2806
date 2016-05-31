@@ -14,4 +14,5 @@ module tygronEvents {
 	if percept(zones(X)), bel(zones(Y)) then delete(zones(Y)) + insert(zones(X)).
 	if percept(stakeholders(X)), bel(stakeholders(Y)) then delete(stakeholders(Y)) + insert(stakeholders(X)).
 	if goal(haveTerrace), bel(stakeholder(StakeholderID, StakeholderName, _, _), StakeholderName=="Voorzieningen", buildings(X), member((BuildingID,_,StakeholderID,_,_,FunctionID,_), X), functions(Y), member((Name, FunctionID, _), Y), Name=\="terrace", Name=\="terras", Name=\="sportcentrum", Name=\="sports center", Name=\="buurtwinkel", Name=\="convenience store") then adopt(demolishBuilding(BuildingID)).
+	if percept(indicators(X)), bel(indicators(Y)) then delete(indicators(Y)) + insert(indicators(X)).
 }
