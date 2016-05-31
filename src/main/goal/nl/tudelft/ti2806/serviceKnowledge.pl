@@ -19,6 +19,27 @@
 :- dynamic demolished/1.
 :- dynamic constructed/2.
 
+buurtwinkelIndicator(CurrentValue, TargetValue) :- 
+	my_stakeholder_id(StakeholderId), 
+	indicatorLink(StakeholderId, IndicatorWeights), 
+	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
+	(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
+	indicator(IndicatorId, CurrentValue, TargetValue).
+	
+terrasIndicator(CurrentValue, TargetValue) :- 
+	my_stakeholder_id(StakeholderId), 
+	indicatorLink(StakeholderId, IndicatorWeights), 
+	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
+	(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'), 
+	indicator(IndicatorId, CurrentValue, TargetValue).
+	
+sportcentrumIndicator(CurrentValue, TargetValue) :- 
+	my_stakeholder_id(StakeholderId), 
+	indicatorLink(StakeholderId, IndicatorWeights), 
+	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
+	(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
+	indicator(IndicatorId, CurrentValue, TargetValue).
+
 demolishBuilding(ID) :- demolished(ID).
 haveTerrace :- constructed(Id, Name), (Name == terrace; Name = terras).
 buildStore :- constructed(ID, Name), (Name =='buurtwinkel'; Name == 'convenience store').
