@@ -10,6 +10,10 @@
 :- dynamic zones/1.
 :- dynamic stakeholder/4.
 :- dynamic indicatorLink/2.
+:- dynamic indicator/3.
+:- dynamic my_stakeholder_id/1.
+:- dynamic zone/5.
+:- dynamic building/7.
 
 % knowledge:
 :- dynamic demolished/1.

@@ -8,14 +8,19 @@ use serviceGoals as goals.
 module tygronInit {
 		if true then insert(actions([])).
 		if true then insert(action_logs([])).
-		if true then insert(buildings(none)).
+		forall percept(buildings(BuildingList)), bel(member(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors), BuildingList))
+			do insert(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors)).
 		if true then insert(functions([])).
+		forall percept(indicators(IndicatorList)), bel(member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList))
+			do insert(indicator(IndicatorId, CurrentValue, TargetValue)).
 		if true then insert(lands([])).
+		if percept(my_stakeholder_id(StakeholderId)) then insert(my_stakeholder_id(StakeholderId)).
 		if true then insert(requests([])).
 		if true then insert(settings([])).
 		forall percept(stakeholders(CombinedList)), bel(member(StakeholderList, CombinedList), member(stakeholder(StakeholderId, Name, Income, StartBudget), StakeholderList)) 
 			do insert(stakeholder(StakeholderId, Name, Income, StartBudget)).
 		forall percept(stakeholders(CombinedList)), bel(member(IndicatorList, CombinedList), member(indicatorLink(StakeholderId, IndicatorWeights), IndicatorList))
 			do insert(indicatorLink(StakeholderId, IndicatorWeights)).
-		if true then insert(zones([])).
+		forall percept(zones(ZoneList)), bel(member(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories), ZoneList))
+			do insert(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories)).
 }
