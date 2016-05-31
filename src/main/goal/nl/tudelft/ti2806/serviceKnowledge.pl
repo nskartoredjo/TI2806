@@ -11,12 +11,13 @@
 :- dynamic constructed/2.
 
 % description:
-% - TODO
+% - demolish building will be automaticly comleted after demolished is done.
 demolishBuilding(ID) :- 
 	demolished(ID).
 
 % description: 
-% - TODO
+% The buildStore goal will be completed when the value of the indicator is larger or equal to target of the indicator.
+% For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
 buildStore :- 
 	stakeholders(L), 
 	member((stakeholder(ID, Name, Budget, Income), 
@@ -29,7 +30,8 @@ buildStore :-
 	Value >= Target.
 
 % description:
-% - TODO
+% The buildSportsCenter goal will be completed when the value of the indicator is larger or equal to target of the indicator.
+% For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
 buildSportsCenter :- 
 	stakeholders(L), 
 	member((stakeholder(ID, Name, Budget, Income), 
@@ -41,7 +43,8 @@ buildSportsCenter :-
 	Value >= Target.
 
 % description:
-% - TODO	
+% The buildTerrace goal will be completed when the value of the indicator is larger or equal to target of the indicator.
+% For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.	
 buildTerrace :- 
 	stakeholders(L), 
 	member((stakeholder(ID, Name, Budget, Income), 
