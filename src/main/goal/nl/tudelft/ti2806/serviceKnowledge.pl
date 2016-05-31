@@ -10,6 +10,7 @@
 :- dynamic zones/1.
 :- dynamic stakeholder/4.
 :- dynamic indicatorLink/2.
+:- dynamic building/4
 
 % knowledge:
 :- dynamic demolished/1.
