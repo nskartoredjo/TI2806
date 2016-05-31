@@ -1,7 +1,7 @@
 %%% goals from indicators %%%
-haveTerrace.
+buildTerrace.
 buildStore.
-%buildSportsCenter.
+buildSportsCenter.
 
 %%% NOTES %%%
 % - translators needed: stakeholder for budget, buildings for current amount of buildings, indicators for the indicator, 
