@@ -2,22 +2,46 @@ use serviceKnowledge as knowledge.
 use serviceBeliefs as beliefs.
 
 % Tygron Event:
-% - states: 4
+% - states: 10
 % - discription: Percept Processing
 module tygronEvents {
+	%% Whenever actions are percepted old actions will be deleted and new actions will be inserted.
 	if percept(actions(X)), bel(actions(Y)) then delete(actions(Y)) + insert(actions(X)).
+	
+	%% Whenever logs of actions are percepted old action_logs will be deleted and new action_logs will be inserted.
 	if percept(action_logs(X)), bel(action_logs(Y)) then delete(action_logs(Y)) + insert(action_logs(X)).
+	
+	%% Whenever the list of buildings is updated all building/7 beliefs will be updated accordingly.
+	% for all the building/7 beliefs it is checked if that building still exist in the list of buildings
+	% if not then that building/7 belief is deleted.
 	forall percept(buildings(BuildingList)), bel(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors), not(member(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors), BuildingList)))
 		do delete(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors)).
+	
+	% for all the buildings in the percepted building list it is checked if that building/7 is already in the belief base.
+	% if not then that building/7 belief is inserted.
 	forall percept(buildings(BuildingList)), bel(member(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors), BuildingList), not(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors)))
 		do insert(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors)).
+	
+	%% Whenever functions are percepted old functions will be deleted and new functions will be inserted.
 	if percept(functions(X)), bel(functions(Y)) then delete(functions(Y)) + insert(functions(X)).
+	
+	%% Whenever the list of indicators is updated all indicator/3 beliefs will be updated accordingly.
 	forall percept(indicators(IndicatorList)), bel(member(indicator(IndicatorId, NewCurrentValue, TargetValue), IndicatorList), indicator(IndicatorId, OldCurrentValue, TargetValue), not(NewCurrentValue == OldCurrentValue))
-			do delete(indicator(IndicatorId, OldCurrentValue, TargetValue)) + insert(indicator(IndicatorId, NewCurrentValue, TargetValue)).
+		do delete(indicator(IndicatorId, OldCurrentValue, TargetValue)) + insert(indicator(IndicatorId, NewCurrentValue, TargetValue)).
+	
+	%% Whenever lands are percepted old lands will be deleted and new lands will be inserted.
 	if percept(lands(X)), bel(lands(Y)) then delete(lands(Y)) + insert(lands(X)).
+	
+	%% Whenever settings are percepted old settings will be deleted and new settings will be inserted.
 	if percept(settings(X)), bel(settings(Y)) then delete(settings(Y)) + insert(settings(X)).
+	
+	%% Whenever the list of stakeholders is updated all stakeholder/4 beliefs will be updated accordingly.
+	% if the Income of a stakeholder changes then the stakeholder/4 belief has to be updated.
 	forall percept(stakeholders(CombinedList)), bel(stakeholder(StakeholderId, Name, OldIncome, StartBudget), member(StakeholderList, CombinedList), member(stakeholder(StakeholderId, Name, NewIncome, StartBudget), StakeholderList), not(NewIncome == OldIncome)) 
 			do delete(stakeholder(StakeholderId, Name, OldIncome, StartBudget)) + insert(stakeholder(StakeholderId, Name, NewIncome, StartBudget)).
+	
+	%% Whenever the list of zones is updated all zone/5 beliefs will be updated accordingly.
+	% if either the MaxFloors or Allowed_Categories changes then the zone/5 belief has to be updated.
 	forall percept(zones(ZoneList)), bel(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories), member(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories), ZoneList), (not(NewMaxFloors == OldMaxFloors); not(NewAllowed_Categories == OldAllowed_Categories)))
 			do delete(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories)) + insert(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories)).
 }
