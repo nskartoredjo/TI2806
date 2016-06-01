@@ -3,17 +3,28 @@
 :- dynamic settings/1.
 :- dynamic functions/1.
 :- dynamic buildings/1.
+:- dynamic action_logs/1.
+:- dynamic actions/1.
+:- dynamic lands/1.
+:- dynamic requests/1.
+:- dynamic zones/1.
+:- dynamic stakeholder/4.
+:- dynamic indicatorLink/2.
 :- dynamic indicators/1.
 :- dynamic stakeholders/1.
 
 %%% knowledge %%%
 :- dynamic demolished/1.
+:- dynamic bought/0.
 :- dynamic constructed/2.
 
 % description:
 % - demolish building will be automaticly comleted after demolished is done.
 demolishBuilding(ID) :- 
 	demolished(ID).
+	
+buyLand :-
+	bought.
 
 % description: 
 % The buildStore goal will be completed when the value of the indicator is larger or equal to target of the indicator.

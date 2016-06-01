@@ -2,12 +2,20 @@ use serviceKnowledge as knowledge.
 use serviceBeliefs as beliefs.
 
 % Tygron Event:
-% - states: 4
+% - states: 10
 % - discription: Percept Processing
 module tygronEvents {
-	if percept(stakeholders(X)), bel(stakeholders(Y))  then  delete( stakeholders(Y) ) + insert(stakeholders(X)).
-	if percept(settings(X)), bel(settings(Y)) then delete(settings(Y)) + insert(settings(X)).
-	if percept(functions(X)), bel(functions(Y)) then delete(functions(Y)) + insert(functions(X)).
+	if percept(actions(X)), bel(actions(Y)) then delete(actions(Y)) + insert(actions(X)).
+	if percept(action_logs(X)), bel(action_logs(Y)) then delete(action_logs(Y)) + insert(action_logs(X)).
 	if percept(buildings(X)), bel(buildings(Y)) then delete(buildings(Y)) + insert(buildings(X)).
+	if percept(functions(X)), bel(functions(Y)) then delete(functions(Y)) + insert(functions(X)).
+	if percept(lands(X)), bel(lands(Y)) then delete(lands(Y)) + insert(lands(X)).
+	if percept(settings(X)), bel(settings(Y)) then delete(settings(Y)) + insert(settings(X)).
+	if percept(zones(X)), bel(zones(Y)) then delete(zones(Y)) + insert(zones(X)).
+	if percept(stakeholders(X)), bel(stakeholders(Y)) then delete(stakeholders(Y)) + insert(stakeholders(X)).
 	if percept(indicators(X)), bel(indicators(Y)) then delete(indicators(Y)) + insert(indicators(X)).
+	if percept(stakeholders(CombinedList)), bel(stakeholder(StakeholderIdOld, NameOld, IncomeOld, StartBudgetOld), member(StakeholderList, CombinedList), member(stakeholder(StakeholderId, Name, Income, StartBudget), StakeholderList)) 
+			then delete(stakeholder(StakeholderIdOld, NameOld, IncomeOld, StartBudgetOld)) + insert(stakeholder(StakeholderId, Name, Income, StartBudget)).
+	if percept(stakeholders(CombinedList)), bel(indicatorLink(StakeholderIdOld, IndicatorWeightsOld), member(IndicatorList, CombinedList), member(indicatorLink(StakeholderId, IndicatorWeights), IndicatorList))
+			then delete(indicatorLink(StakeholderIdOld, IndicatorWeightsOld)) + insert(indicatorLink(StakeholderId, IndicatorWeights)).
 }
