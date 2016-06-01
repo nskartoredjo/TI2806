@@ -34,6 +34,10 @@
 :- dynamic demolished/1.
 :- dynamic constructed/2.
 
+% description:
+% The indicator for our convenience store/buurtwinkel is stored in here.
+% my_stakeholder_id gives our Stakeholder ID with which we can get our indicator through the indicatorLink.
+% Then the correct indicator is found by matching the IndicatorName.
 buurtwinkelIndicator(CurrentValue, TargetValue) :- 
 	my_stakeholder_id(StakeholderId), 
 	indicatorLink(StakeholderId, IndicatorWeights), 
@@ -41,7 +45,11 @@ buurtwinkelIndicator(CurrentValue, TargetValue) :-
 	(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
 	indicators(IndicatorList),
 	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
-	
+
+% description:
+% The indicator for our terrace/terras is stored in here.
+% my_stakeholder_id gives our Stakeholder ID with which we can get our indicator through the indicatorLink.
+% Then the correct indicator is found by matching the IndicatorName.
 terrasIndicator(CurrentValue, TargetValue) :- 
 	my_stakeholder_id(StakeholderId), 
 	indicatorLink(StakeholderId, IndicatorWeights), 
@@ -49,7 +57,11 @@ terrasIndicator(CurrentValue, TargetValue) :-
 	(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'), 
 	indicators(IndicatorList),
 	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
-	
+
+% description:
+% The indicator for our sports center/sportcentrum is stored in here.
+% my_stakeholder_id gives our Stakeholder ID with which we can get our indicator through the indicatorLink.
+% Then the correct indicator is found by matching the IndicatorName.
 sportcentrumIndicator(CurrentValue, TargetValue) :- 
 	my_stakeholder_id(StakeholderId), 
 	indicatorLink(StakeholderId, IndicatorWeights), 
