@@ -12,4 +12,3 @@ buildSportsCenter.
 
 % - demolishBuilding: This goal will be made after buyLand has been completed if there are still buildings on the land, you need translators: 
 % stakeholder for budget, land for land, buildings for buildings on the land.
->>>>>>> refs/remotes/origin/development
