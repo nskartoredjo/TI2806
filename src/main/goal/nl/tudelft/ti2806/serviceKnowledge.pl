@@ -47,18 +47,6 @@ buurtwinkelIndicator(CurrentValue, TargetValue) :-
 	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
 
 % description:
-% The indicator for our terrace/terras is stored in here.
-% my_stakeholder_id gives our Stakeholder ID with which we can get our indicator through the indicatorLink.
-% Then the correct indicator is found by matching the IndicatorName.
-terrasIndicator(CurrentValue, TargetValue) :- 
-	my_stakeholder_id(StakeholderId), 
-	indicatorLink(StakeholderId, IndicatorWeights), 
-	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
-	(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'), 
-	indicators(IndicatorList),
-	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
-
-% description:
 % The indicator for our sports center/sportcentrum is stored in here.
 % my_stakeholder_id gives our Stakeholder ID with which we can get our indicator through the indicatorLink.
 % Then the correct indicator is found by matching the IndicatorName.
@@ -71,7 +59,19 @@ sportcentrumIndicator(CurrentValue, TargetValue) :-
 	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
 
 % description:
-% - demolish building will be automaticly comleted after demolished is done.
+% The indicator for our terrace/terras is stored in here.
+% my_stakeholder_id gives our Stakeholder ID with which we can get our indicator through the indicatorLink.
+% Then the correct indicator is found by matching the IndicatorName.
+terrasIndicator(CurrentValue, TargetValue) :- 
+	my_stakeholder_id(StakeholderId), 
+	indicatorLink(StakeholderId, IndicatorWeights), 
+	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
+	(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'), 
+	indicators(IndicatorList),
+	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
+
+% description:
+% - demolish building will be automatically completed after demolished is done.
 demolishBuilding(ID) :- 
 	demolished(ID).
 
@@ -79,41 +79,21 @@ demolishBuilding(ID) :-
 % The buildStore goal will be completed when the value of the indicator is larger or equal to target of the indicator.
 % For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
 buildStore :- 
-	stakeholders(L), 
-	member((stakeholder(ID, Name, Budget, Income), 
-	indictorLink(ID, IndicatorL)), L), 
-	member(indicatorWeights(IndID, IndName,Weight), IndicatorL), 
-	IndName == 'Buurtwinkel Indicator', 
-	Name == 'Voorzieningen', 
-	indicators(Indicators), 
-	member(indicator(IndID, Value, Target),Indicators), 
+	buurtwinkelIndicator(Value, Target), 
 	Value >= Target.
 
 % description:
 % The buildSportsCenter goal will be completed when the value of the indicator is larger or equal to target of the indicator.
 % For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
 buildSportsCenter :- 
-	stakeholders(L), 
-	member((stakeholder(ID, Name, Budget, Income), 
-	indictorLink(ID, IndicatorL)), L), 
-	member(indicatorWeights(IndID, IndName,Weight), IndicatorL), 
-	IndName == 'Sportcentrum Indicator', 
-	Name == 'Voorzieningen', indicators(Indicators), 
-	member(indicator(IndID, Value, Target),Indicators), 
+	sportcentrumIndicator(Value, Target), 
 	Value >= Target.
 
 % description:
 % The buildTerrace goal will be completed when the value of the indicator is larger or equal to target of the indicator.
 % For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.	
 buildTerrace :- 
-	stakeholders(L), 
-	member((stakeholder(ID, Name, Budget, Income), 
-	indictorLink(ID, IndicatorL)), L), 
-	member(indicatorWeights(IndID, IndName,Weight), IndicatorL), 
-	IndName == 'Terras Indicator', 
-	Name == 'Voorzieningen', 
-	indicators(Indicators), 
-	member(indicator(IndID, Value, Target),Indicators), 
+	terrasIndicator(Value, Target), 
 	Value >= Target.
 
 %%% NOTES %%% 
