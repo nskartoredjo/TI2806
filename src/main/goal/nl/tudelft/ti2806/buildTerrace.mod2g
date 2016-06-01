@@ -23,7 +23,7 @@ module buildTerrace {
 		not(bel(constructed(Id, Name), (Name == terrace; Name = terras))),
 		bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras)) 
 	then 
-		building_plan_construction(Id, 1, square(0,0,50,50)) + 
+		building_plan_construction(Id, 1, multipolygon("square(0,0,50,50)")) + 
 		insert(constructed(Id, Name)).
 		
 	% description: 

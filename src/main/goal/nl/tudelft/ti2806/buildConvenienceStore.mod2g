@@ -16,7 +16,7 @@ module buildConvenienceStore {
 	if 
 		bel(functions(FS), member([Name,ID,_], FS), (Name =='buurtwinkel'; Name == 'convenience store'))
 	then 
-		building_plan_construction(ID, 1, square(10,10,50,50)) + 
-		building_plan_construction(ID, 1, square(60,60,60,60)) + 
+		building_plan_construction(ID, 1, multipolygon("square(10,10,50,50)")) + 
+		building_plan_construction(ID, 1, multipolygon("square(60,60,60,60)")) + 
 		insert(constructed(ID, Name)).
 }

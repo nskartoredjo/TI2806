@@ -3,9 +3,10 @@
 %   the Tygron Environment. At the moment it should build and demolish.
 % - The agent uses the 1.0.8/context version of the environment.
 
+
 use "tygronenv-1.0.9-C-jar-with-dependencies.jar" as environment with
-	project = "basictestmap",
-	stakeholders = ["Voorzieningen"],
+	project = "dummies_demo",
+	stakeholders = ["Voorzieningen"] ,
 	domain = "tudelft".
  
 define serviceAgent as agent {
