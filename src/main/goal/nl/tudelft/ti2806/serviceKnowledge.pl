@@ -15,12 +15,16 @@
 
 %%% knowledge %%%
 :- dynamic demolished/1.
+:- dynamic bought/0.
 :- dynamic constructed/2.
 
 % description:
 % - demolish building will be automaticly comleted after demolished is done.
 demolishBuilding(ID) :- 
 	demolished(ID).
+	
+buyLand :-
+	bought.
 
 % description: 
 % The buildStore goal will be completed when the value of the indicator is larger or equal to target of the indicator.
