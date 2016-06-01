@@ -16,6 +16,6 @@ module buildSportsCenter {
 	if 
 		bel(functions(FS), member([Name,ID,L],FS), (Name =='sportcentrum'; Name == 'sports center') ) 
 	then 
-		building_plan_construction(ID, 1, square(155,50,40,60)) + 
+		building_plan_construction(ID, 1, multipolygon("square(155,50,40,60)")) + 
 		insert(constructed(ID, Name)).
 }
