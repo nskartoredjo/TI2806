@@ -15,10 +15,14 @@ order = linearall.
 % - states: 1
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
-	if goal(buildTerrace; buildStore; buildSportsCenter), bel(stakeholder(StakeholderID, StakeholderName, _, _), 
-	StakeholderName=="Voorzieningen", buildings(X), member((BuildingID,_,StakeholderID,_,_,FunctionID,_), X), 
-	functions(Y), member((Name, FunctionID, _), Y), Name=\="terrace", Name=\="terras", 
-	Name=\="sportcentrum", Name=\="sports center", Name=\="buurtwinkel", Name=\="convenience store") 
+	
+	%A new goal for demolishing a building is added if the indicators are not met yet 
+	%and there is a building from the stakeholder that is not a building needed for the indicator.
+	if 	goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(stakeholder(StakeholderID, StakeholderName, _, _), 
+		StakeholderName=="Voorzieningen", buildings(X), member((BuildingID,_,StakeholderID,_,_,FunctionID,_), X), 
+		functions(Y), member((Name, FunctionID, _), Y), Name=\="terrace", Name=\="terras", 
+		Name=\="sportcentrum", Name=\="sports center", Name=\="buurtwinkel", Name=\="convenience store") 
 	then adopt(demolishBuilding(BuildingID)).
 	
 	if true then buildTerrace.
