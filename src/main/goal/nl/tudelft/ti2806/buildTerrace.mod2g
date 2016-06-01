@@ -17,6 +17,7 @@ module buildTerrace {
 	% then:
 	% - Build the terrace on a fixed polygon square
 	% - insert the belief 'constructed terrace'
+	
 	if 
 		goal(buildTerrace), 
 		not(bel(constructed(Id, Name), (Name == terrace; Name = terras))),

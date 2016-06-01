@@ -6,7 +6,7 @@ Computer Science
 ## Team: Test Crash Dummies
 | Contributor	  | Github 													|
 | --------------- | ------------------------------------------------------- |
-| J. van Tilburg  | [JaspervanTilburg](https://github.com/JaspervanTilburg) | 
+| ~~J. vanTilburg~~  | [~~JaspervanTilburg~~](https://github.com/JaspervanTilburg)	|
 | H.M. Kroon 	  | [HarmenKroon](https://github.com/HarmenKroon)			|
 | J. de vries	  | [jannelie](https://github.com/jannelie)					|
 | T. Bunner		  | [ardwennem2](https://github.com/ardwennem2)				|
@@ -24,7 +24,8 @@ to contact the team, aproach [nskartoredjo](https://github.com/nskartoredjo).
 | [#2](https://github.com/nskartoredjo/TI2806/blob/master/Deliverables/Backlog%20-%20Sprint%20Backlog%20%232.pdf) | [#2](https://github.com/nskartoredjo/TI2806/blob/master/Deliverables/Sprint%20Retrospective%20%232.pdf) |
 | [#3](https://github.com/nskartoredjo/TI2806/blob/master/Deliverables/Backlog%20-%20Sprint%20Backlog%20%233.pdf) | [#3](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Sprint%20Retrospective%20%233.pdf) |
 | [#4](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Backlog%20-%20Sprint%20Backlog%20%234.pdf) | [#4](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Sprint%20Retrospective%20%234.pdf) |
-| [#5](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Backlog%20-%20Sprint%20Backlog%20%235.pdf) | - |
+| [#5](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Backlog%20-%20Sprint%20Backlog%20%235.pdf) | [#5](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Sprint%20Retrospective%20%235.pdf) |
+| [#6](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Backlog%20-%20Sprint%20Backlog%20%236.pdf) | - |
 
 ## Tygron Environment
 The Tygron Environment used by the agent can be found at the [tygron fork](https://github.com/nskartoredjo/tygron)
