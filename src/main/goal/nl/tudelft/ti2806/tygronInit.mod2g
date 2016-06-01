@@ -12,16 +12,16 @@ module tygronInit {
 	%% During initialisation action_logs/1 is set to an empty list.
 	if true then insert(action_logs([])).
 	
-	%% During initialisation the list of pre-existing buildings are inserted into the belief base as building/7 beliefs.
-	forall percept(buildings(BuildingList)), bel(member(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors), BuildingList))
-		do insert(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors)).
+	%% During initialisation the list of pre-existing buildings are inserted into the belief base.
+	if percept(buildings(BuildingList))
+		then insert(buildings(BuildingList)).
 	
 	%% During initialisation functions/1 is set to an empty list.
 	if true then insert(functions([])).
 	
-	%% During initialisation the list of indicators are inserted into the belief base as indicator/3 beliefs. 
-	forall percept(indicators(IndicatorList)), bel(member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList))
-		do insert(indicator(IndicatorId, CurrentValue, TargetValue)).
+	%% During initialisation the list of indicators are inserted into the belief base. 
+	if percept(indicators(IndicatorList))
+		then insert(indicators(IndicatorList)).
 		
 	%% During initialisation lands/1 is set to an empty list.
 	if true then insert(lands([])).

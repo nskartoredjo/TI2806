@@ -2,7 +2,7 @@ use serviceKnowledge as knowledge.
 use serviceBeliefs as beliefs.
 
 % Tygron Event:
-% - states: 10
+% - states: 9
 % - discription: Percept Processing
 module tygronEvents {
 	%% Whenever actions are percepted old actions will be deleted and new actions will be inserted.
@@ -11,23 +11,17 @@ module tygronEvents {
 	%% Whenever logs of actions are percepted old action_logs will be deleted and new action_logs will be inserted.
 	if percept(action_logs(X)), bel(action_logs(Y)) then delete(action_logs(Y)) + insert(action_logs(X)).
 	
-	%% Whenever the list of buildings is updated all building/7 beliefs will be updated accordingly.
-	% for all the building/7 beliefs it is checked if that building still exist in the list of buildings
-	% if not then that building/7 belief is deleted.
-	forall percept(buildings(BuildingList)), bel(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors), not(member(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors), BuildingList)))
-		do delete(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors)).
-	
-	% for all the buildings in the percepted building list it is checked if that building/7 is already in the belief base.
-	% if not then that building/7 belief is inserted.
-	forall percept(buildings(BuildingList)), bel(member(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors), BuildingList), not(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors)))
-		do insert(building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors)).
+	%% Whenever the list of buildings is percepted the old list is deleted and the new list is inserted.
+	if percept(buildings(NewBuildingList)), bel(buildings(OldBuildingList))
+		then delete(buildings(OldBuildingList)) + insert(buildings(NewBuildingList)).
 	
 	%% Whenever functions are percepted old functions will be deleted and new functions will be inserted.
 	if percept(functions(X)), bel(functions(Y)) then delete(functions(Y)) + insert(functions(X)).
 	
-	%% Whenever the list of indicators is updated all indicator/3 beliefs will be updated accordingly.
-	forall percept(indicators(IndicatorList)), bel(member(indicator(IndicatorId, NewCurrentValue, TargetValue), IndicatorList), indicator(IndicatorId, OldCurrentValue, TargetValue), not(NewCurrentValue == OldCurrentValue))
-		do delete(indicator(IndicatorId, OldCurrentValue, TargetValue)) + insert(indicator(IndicatorId, NewCurrentValue, TargetValue)).
+	%% Whenever the list of indicators is percepted and it has changed from the previous list 
+	% then the old indicator list is deleted and the new indicator list is inserted.
+	if percept(indicators(NewIndicatorList)), bel(indicators(OldIndicatorList), not(NewIndicatorList == OldIndicatorList))
+		then delete(indicators(OldIndicatorList)) + insert(indicators(NewIndicatorList)).
 	
 	%% Whenever lands are percepted old lands will be deleted and new lands will be inserted.
 	if percept(lands(X)), bel(lands(Y)) then delete(lands(Y)) + insert(lands(X)).
