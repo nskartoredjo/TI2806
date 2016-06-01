@@ -5,7 +5,7 @@
 
 use "tygronenv-1.0.8-C-jar-with-dependencies.jar" as environment with
 	project = "basictestmap",
-	stakeholder = "COMPANY",
+	stakeholder = "COMPANY" ,
 	domain = "tudelft".
  
 define serviceAgent as agent {
