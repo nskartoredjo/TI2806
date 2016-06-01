@@ -14,8 +14,8 @@ module tygronEvents {
 	if percept(zones(X)), bel(zones(Y)) then delete(zones(Y)) + insert(zones(X)).
 	if percept(stakeholders(X)), bel(stakeholders(Y)) then delete(stakeholders(Y)) + insert(stakeholders(X)).
 	if percept(indicators(X)), bel(indicators(Y)) then delete(indicators(Y)) + insert(indicators(X)).
-	if percept(stakeholders(CombinedList)), bel(member(StakeholderList, CombinedList), member(stakeholder(StakeholderId, Name, Income, StartBudget), StakeholderList)) 
-			then insert(stakeholder(StakeholderId, Name, Income, StartBudget)).
-	if percept(stakeholders(CombinedList)), bel(member(IndicatorList, CombinedList), member(indicatorLink(StakeholderId, IndicatorWeights), IndicatorList))
-			then insert(indicatorLink(StakeholderId, IndicatorWeights)).
+	if percept(stakeholders(CombinedList)), bel(stakeholder(StakeholderIdOld, NameOld, IncomeOld, StartBudgetOld), member(StakeholderList, CombinedList), member(stakeholder(StakeholderId, Name, Income, StartBudget), StakeholderList)) 
+			then delete(stakeholder(StakeholderIdOld, NameOld, IncomeOld, StartBudgetOld)) + insert(stakeholder(StakeholderId, Name, Income, StartBudget)).
+	if percept(stakeholders(CombinedList)), bel(indicatorLink(StakeholderIdOld, IndicatorWeightsOld), member(IndicatorList, CombinedList), member(indicatorLink(StakeholderId, IndicatorWeights), IndicatorList))
+			then delete(indicatorLink(StakeholderIdOld, IndicatorWeightsOld)) + insert(indicatorLink(StakeholderId, IndicatorWeights)).
 }

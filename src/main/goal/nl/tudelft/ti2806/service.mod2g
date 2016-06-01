@@ -15,7 +15,7 @@ order = linearall.
 % - states: 1
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
-	if goal(buildTerrace; buildConvencienceStore; demolish), bel(stakeholder(StakeholderID, StakeholderName, _, _), 
+	if goal(buildTerrace; buildStore; buildSportsCenter), bel(stakeholder(StakeholderID, StakeholderName, _, _), 
 	StakeholderName=="Voorzieningen", buildings(X), member((BuildingID,_,StakeholderID,_,_,FunctionID,_), X), 
 	functions(Y), member((Name, FunctionID, _), Y), Name=\="terrace", Name=\="terras", 
 	Name=\="sportcentrum", Name=\="sports center", Name=\="buurtwinkel", Name=\="convenience store") 
