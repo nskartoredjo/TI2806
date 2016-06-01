@@ -12,12 +12,14 @@ exit = nogoals.
 order = linearall.
 
 % main:
-% - states: 1
+% - states: 5
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
-	
-	%A new goal for demolishing a building is added if the indicators are not met yet 
-	%and there is a building from the stakeholder that is not a building needed for the indicator.
+	% description: Demolish a specified building.
+	% if:
+	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
+	% then:
+	% - Adopt demolishbuilding(ID) goal.
 	if 	goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(stakeholder(StakeholderID, StakeholderName, _, _), 
 		StakeholderName=="Voorzieningen", buildings(X), member((BuildingID,_,StakeholderID,_,_,FunctionID,_), X), 

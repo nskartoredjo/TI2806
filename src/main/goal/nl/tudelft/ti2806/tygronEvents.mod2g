@@ -2,7 +2,7 @@ use serviceKnowledge as knowledge.
 use serviceBeliefs as beliefs.
 
 % Tygron Event:
-% - states: 4
+% - states: 10
 % - discription: Percept Processing
 module tygronEvents {
 	if percept(actions(X)), bel(actions(Y)) then delete(actions(Y)) + insert(actions(X)).

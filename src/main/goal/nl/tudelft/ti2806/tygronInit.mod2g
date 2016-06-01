@@ -3,7 +3,7 @@ use serviceBeliefs as beliefs.
 use serviceGoals as goals.
 
 % tygronInit:
-% - states: 4
+% - states: 10
 % - description: init module
 module tygronInit {
 		if true then insert(actions([])).
