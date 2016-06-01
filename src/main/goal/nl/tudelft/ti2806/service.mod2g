@@ -5,21 +5,30 @@ use demolish as module.
 use buildConvenienceStore as module.
 use buildSportsCenter as module.
 use buyLand as module.
+use sellLand as module.
 use demolish as module.
 
 exit = nogoals.
 order = linearall.
 
 % main:
-% - states: 1
+% - states: 5
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
-	% description: 
-	% - Should build a terrace if possible. 
-	% if true then: 
-	% - go to BuildTerrace module.
-	%if true then buildTerrace.
-	%if true then buildConvenienceStore.
-	%if true then buildSportsCenter.
-	%if true then demolish.
+	% description: Demolish a specified building.
+	% if:
+	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
+	% then:
+	% - Adopt demolishbuilding(ID) goal.
+	if 	goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(stakeholder(StakeholderID, StakeholderName, _, _), 
+		StakeholderName=="Voorzieningen", buildings(X), member((BuildingID,_,StakeholderID,_,_,FunctionID,_), X), 
+		functions(Y), member((Name, FunctionID, _), Y), Name=\="terrace", Name=\="terras", 
+		Name=\="sportcentrum", Name=\="sports center", Name=\="buurtwinkel", Name=\="convenience store") 
+	then adopt(demolishBuilding(BuildingID)).
+	
+	if true then buildTerrace.
+	if true then buildConvenienceStore.
+	if true then buildSportsCenter.
+	if true then demolish.
 }

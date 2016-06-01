@@ -38,6 +38,6 @@ timeout = 5.
 
 %	}
 
-%serviceAgent {
-%	do main.
-%}
+serviceAgent {
+	do main.
+}

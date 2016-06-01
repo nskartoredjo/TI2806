@@ -1,4 +1,4 @@
-% percepts:
+%%% percepts %%%
 :- dynamic actions/1.
 :- dynamic action_logs/1.
 
@@ -30,7 +30,7 @@
 :- dynamic zone/5.
 :- dynamic zones/1.
 
-% knowledge:
+%%% knowledge %%%
 :- dynamic demolished/1.
 :- dynamic constructed/2.
 
@@ -58,7 +58,51 @@ sportcentrumIndicator(CurrentValue, TargetValue) :-
 	indicators(IndicatorList),
 	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
 
-demolishBuilding(ID) :- demolished(ID).
-haveTerrace :- constructed(Id, Name), (Name == terrace; Name = terras).
-buildStore :- constructed(ID, Name), (Name =='buurtwinkel'; Name == 'convenience store').
-buildSportsCenter :- constructed(ID, Name), (Name =='sportcentrum'; Name == 'sports center').
+% description:
+% - demolish building will be automaticly comleted after demolished is done.
+demolishBuilding(ID) :- 
+	demolished(ID).
+
+% description: 
+% The buildStore goal will be completed when the value of the indicator is larger or equal to target of the indicator.
+% For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
+buildStore :- 
+	stakeholders(L), 
+	member((stakeholder(ID, Name, Budget, Income), 
+	indictorLink(ID, IndicatorL)), L), 
+	member(indicatorWeights(IndID, IndName,Weight), IndicatorL), 
+	IndName == 'Buurtwinkel Indicator', 
+	Name == 'Voorzieningen', 
+	indicators(Indicators), 
+	member(indicator(IndID, Value, Target),Indicators), 
+	Value >= Target.
+
+% description:
+% The buildSportsCenter goal will be completed when the value of the indicator is larger or equal to target of the indicator.
+% For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
+buildSportsCenter :- 
+	stakeholders(L), 
+	member((stakeholder(ID, Name, Budget, Income), 
+	indictorLink(ID, IndicatorL)), L), 
+	member(indicatorWeights(IndID, IndName,Weight), IndicatorL), 
+	IndName == 'Sportcentrum Indicator', 
+	Name == 'Voorzieningen', indicators(Indicators), 
+	member(indicator(IndID, Value, Target),Indicators), 
+	Value >= Target.
+
+% description:
+% The buildTerrace goal will be completed when the value of the indicator is larger or equal to target of the indicator.
+% For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.	
+buildTerrace :- 
+	stakeholders(L), 
+	member((stakeholder(ID, Name, Budget, Income), 
+	indictorLink(ID, IndicatorL)), L), 
+	member(indicatorWeights(IndID, IndName,Weight), IndicatorL), 
+	IndName == 'Terras Indicator', 
+	Name == 'Voorzieningen', 
+	indicators(Indicators), 
+	member(indicator(IndID, Value, Target),Indicators), 
+	Value >= Target.
+
+%%% NOTES %%% 
+% - Tygrons indicators still don't work so we can not test these. apart from there may be an error if multiple stakeholders make use of the same indicator since this changes the indicator names.
