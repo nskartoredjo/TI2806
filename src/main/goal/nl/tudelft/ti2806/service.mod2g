@@ -46,7 +46,8 @@ module main{
 	then 
 		adopt(buyLand).
 		
-	if true then demolish.
-	if true then buyLand.
+
+	if goal(demolishBuilding(BuildingID)) then demolish(BuildingID).
+	if goal(buyLand) then buyLand.
 	
 }
