@@ -37,18 +37,6 @@ module tygronEvents {
 		delete(functions(Y)) + 
 		insert(functions(X)).
 	
-	%% Whenever the list of indicators is percepted and it has changed from the previous list 
-	% then the old indicator list is deleted and the new indicator list is inserted.
-	if 
-		percept(indicators(NewIndicatorList)), 
-		bel(
-			indicators(OldIndicatorList), 
-			not(NewIndicatorList == OldIndicatorList)
-		)
-	then 
-		delete(indicators(OldIndicatorList)) + 
-		insert(indicators(NewIndicatorList)).
-	
 	%% Whenever lands are percepted old lands will be deleted and new lands will be inserted.
 	if 
 		percept(lands(X)), 
@@ -105,15 +93,4 @@ module tygronEvents {
 	do 
 		delete (indicator(IndID, OldValue, TargetValue,OldZone_LinkList)) + 
 		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
-
-	%% During initialisation the list of indicators are inserted into the belief base. 
-	forall
-		bel(
-			indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),
-			zoneLink(ZoneID, IndID, Old_Val, Tar_Val),
-			member(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val),Zone_LinkList)
-		)
-	do 
-		delete (zoneLink(ZoneID, IndID, Old_Val, Tar_Val)) + 
-		insert(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val)).	
 }

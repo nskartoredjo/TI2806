@@ -21,18 +21,16 @@ module tygronInit {
 	%% During initialisation requests/1 is set to an empty list.
 	if true then insert(requests([])).
 	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	%% During initialisation the list of pre-existing buildings are inserted into the belief base.
-	if 
-		percept(buildings(BuildingList))
-	then 
-		insert(buildings(BuildingList)).
+	%% During initialisation buildings/1 is set to an empty list.
+	if true	then insert(buildings([])).
 	
 	%% During initialisation settings/1 is set to an empty list.
 	if true then insert(settings([])).
 	
-		%% During initialisation the Stakeholder ID of this agent is percepted and inserted into the belief base as a my_stakeholder/1 belief.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	%% During initialisation the Stakeholder ID of this agent is percepted and inserted into the belief base as a my_stakeholder/1 belief.
 	if 
 		percept(my_stakeholder_id(StakeholderId)) 
 	then 
@@ -54,6 +52,7 @@ module tygronInit {
 	forall 
 		percept(stakeholders(CombinedList)), 
 		bel(
+			my_stakeholder_id(StakeholderId),
 			member(IndicatorList, CombinedList), 
 			member(indicatorLink(StakeholderId, IndicatorWeights), IndicatorList)
 		)
@@ -70,17 +69,11 @@ module tygronInit {
 	%% During initialisation the list of indicators are inserted into the belief base. 
 	forall 
 		percept(indicators(IndicatorList)), 
-		bel(member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList))
-	do 
-		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).
-		
-	forall 
-		percept(indicators(IndicatorList)), 
 		bel(
-			member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList), 
-			member(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val),Zone_LinkList)
+			indicatorLink(_, IndicatorLinkList),
+			member(indicatorWeights(IndID,_,_), IndicatorLinkList),
+			member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
 		)
 	do 
-		insert(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val)).		
-	
+		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
 }

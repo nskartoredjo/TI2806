@@ -14,6 +14,7 @@
 :- dynamic zoneLink/4.
 :- dynamic indicatorLink/2.
 :- dynamic indicators/1.
+:- dynamic indicatorWeights/3.
 
 :- dynamic lands/1.
 
