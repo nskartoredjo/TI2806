@@ -38,4 +38,12 @@ module tygronEvents {
 	% if either the MaxFloors or Allowed_Categories changes then the zone/5 belief has to be updated.
 	forall percept(zones(ZoneList)), bel(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories), member(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories), ZoneList), (not(NewMaxFloors == OldMaxFloors); not(NewAllowed_Categories == OldAllowed_Categories)))
 			do delete(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories)) + insert(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories)).
+
+	%% During initialisation the list of indicators are inserted into the belief base. 
+	forall percept(indicators(IndicatorList)), bel(indicator(IndID, OldValue, TargetValue, OldZone_LinkList), member(indicator(IndID, OldValue, CurrnetValue, ZoneLink_List),IndicatorList))
+		do delete (indicator(IndID, OldValue, TargetValue,OldZone_LinkList)) + insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
+
+	%% During initialisation the list of indicators are inserted into the belief base. 
+	forall percept(indicators(IndicatorList)), bel(zoneLink(ZoneID, IndID, Old_Val, Tar_Val), member(indicator(IndID, OldValue, CurrnetValue, Zone_LinkList),IndicatorList), member(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val),ZoneLink_List))
+		do delete (zoneLink(ZoneID, IndID, Old_Val, Tar_Val)) + insert(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val)).	
 }

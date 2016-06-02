@@ -10,7 +10,8 @@
 
 % indicator(IndicatorId, CurrentValue, TargetValue) are stored in a list in indicators(IndicatorsList).
 % indicatorLink(StakeholderId, indicatorWeights(IndicatorId, IndicatorName, Weight)) links a stakeholder to its indicators.
-:- dynamic indicator/3.
+:- dynamic indicator/4.
+:- dynamic zoneLink/4.
 :- dynamic indicatorLink/2.
 :- dynamic indicators/1.
 
