@@ -45,7 +45,7 @@ buurtwinkelIndicator(CurrentValue, TargetValue) :-
 	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
 	(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
 	indicators(IndicatorList),
-	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
+	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList).
 
 % description:
 % The indicator for our sports center/sportcentrum is stored in here.
@@ -57,7 +57,7 @@ sportcentrumIndicator(CurrentValue, TargetValue) :-
 	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
 	(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
 	indicators(IndicatorList),
-	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
+	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList).
 
 % description:
 % The indicator for our terrace/terras is stored in here.
@@ -69,7 +69,7 @@ terrasIndicator(CurrentValue, TargetValue) :-
 	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
 	(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'), 
 	indicators(IndicatorList),
-	member(indicator(IndicatorId, CurrentValue, TargetValue), IndicatorList).
+	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList).
 
 % description:
 % - demolish building will be automatically completed after demolished is done.

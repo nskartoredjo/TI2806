@@ -15,22 +15,47 @@ order = linearall.
 % - states: 5
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
+	if bel(my_stakeholder_id(StakeholderId), 
+	indicatorLink(StakeholderId, IndicatorWeights), 
+	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
+	(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
+	indicators(IndicatorList),
+	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList))
+	then insert (buurtwinkelIndicator(CurrentValue, TargetValue)).
+	
+	if bel(my_stakeholder_id(StakeholderId), 
+	indicatorLink(StakeholderId, IndicatorWeights), 
+	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
+	(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
+	indicators(IndicatorList),
+	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList))
+	then insert(sportcentrumIndicator(CurrentValue, TargetValue)).
+	
+	if bel(
+	my_stakeholder_id(StakeholderId), 
+	indicatorLink(StakeholderId, IndicatorWeights), 
+	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
+	(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'), 
+	indicators(IndicatorList),
+	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList))
+	then insert(terrasIndicator(CurrentValue, TargetValue)).
+	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(buurtwinkelIndicator(BCurrent, BTarget), sportcentrumIndicator(SCurrent, STarget), terrasIndicator(TCurrent, TTarget),
-		(BTarget - BCurrent) =< (STarget - SCurrent ), (BTarget - BCurrent) =< (TTarget - TCurrent )) 
+		(BTarget - BCurrent) >= (STarget - SCurrent ), (BTarget - BCurrent) >= (TTarget - TCurrent )) 
 	then buildConvenienceStore. 
 	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(buurtwinkelIndicator(BCurrent, BTarget), sportcentrumIndicator(SCurrent, STarget), terrasIndicator(TCurrent, TTarget),
-		(TTarget - TCurrent) =< (STarget - SCurrent ), (TTarget - TCurrent) =< (BTarget - BCurrent )) 
+		(TTarget - TCurrent) >= (STarget - SCurrent ), (TTarget - TCurrent) >= (BTarget - BCurrent )) 
 	then buildTerrace. 
 	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(buurtwinkelIndicator(BCurrent, BTarget), sportcentrumIndicator(SCurrent, STarget), terrasIndicator(TCurrent, TTarget),
-		(STarget - SCurrent) =< (TTarget - TCurrent ), (STarget - SCurrent) =< (BTarget - BCurrent )) 
+		(STarget - SCurrent) >= (TTarget - TCurrent ), (STarget - SCurrent) >= (BTarget - BCurrent )) 
 	then buildSportsCenter. 
 	
 	% description: Make a goal for demolishing.
@@ -60,6 +85,6 @@ module main{
 		adopt(buyLand).
 
 	if goal(demolishBuilding(BuildingID)) then demolish(BuildingID).
-	if goal(buyLand) then buyLand.
+%	if goal(buyLand) then buyLand.
 	
 }
