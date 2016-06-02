@@ -40,7 +40,7 @@ module tygronEvents {
 			do delete(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories)) + insert(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories)).
 
 	%% During initialisation the list of indicators are inserted into the belief base. 
-	forall percept(indicators(IndicatorList)), bel(indicator(IndID, OldValue, TargetValue, OldZone_LinkList), member(indicator(IndID, OldValue, CurrnetValue, ZoneLink_List),IndicatorList))
+	forall percept(indicators(IndicatorList)), bel(indicator(IndID, OldValue, TargetValue, OldZone_LinkList), member(indicator(IndID, OldValue, CurrentValue, Zone_LinkList),IndicatorList))
 		do delete (indicator(IndID, OldValue, TargetValue,OldZone_LinkList)) + insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
 
 	%% During initialisation the list of indicators are inserted into the belief base. 
