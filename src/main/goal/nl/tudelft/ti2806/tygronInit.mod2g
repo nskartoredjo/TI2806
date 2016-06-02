@@ -3,17 +3,49 @@ use serviceBeliefs as beliefs.
 use serviceGoals as goals.
 
 % tygronInit:
-% - states: 10
+% - states: 12
 % - description: init module
 module tygronInit {
-		if true then insert(actions([])).
-		if true then insert(action_logs([])).
-		if true then insert(buildings(none)).
-		if true then insert(functions([])).
-		if true then insert(lands([])).
-		if true then insert(requests([])).
-		if true then insert(settings([])).
-		if true then insert(stakeholders([])).
-		if true then insert(indicatorLink(none, none)).
-		if true then insert(zones([])).
+	%% During initialisation actions/1 is set to an empty list.
+	if true then insert(actions([])).
+	
+	%% During initialisation action_logs/1 is set to an empty list.
+	if true then insert(action_logs([])).
+	
+	%% During initialisation the list of pre-existing buildings are inserted into the belief base.
+	if percept(buildings(BuildingList))
+		then insert(buildings(BuildingList)).
+	
+	%% During initialisation functions/1 is set to an empty list.
+	if true then insert(functions([])).
+	
+	%% During initialisation the list of indicators are inserted into the belief base. 
+	if percept(indicators(IndicatorList))
+		then insert(indicators(IndicatorList)).
+		
+	%% During initialisation lands/1 is set to an empty list.
+	if true then insert(lands([])).
+	
+	%% During initialisation the Stakeholder ID of this agent is percepted and inserted into the belief base as a my_stakeholder/1 belief.
+	if percept(my_stakeholder_id(StakeholderId)) then insert(my_stakeholder_id(StakeholderId)).
+	
+	%% During initialisation requests/1 is set to an empty list.
+	if true then insert(requests([])).
+	
+	%% During initialisation settings/1 is set to an empty list.
+	if true then insert(settings([])).
+	
+	%%% stakeholder/4 beliefs should be inserted in the init module, because in the event module stakeholder/4 are only updated when changes occur.
+	%% During initialisation the list of stakeholders are inserted into the belief base as stakeholder/4 beliefs.
+	forall percept(stakeholders(CombinedList)), bel(member(StakeholderList, CombinedList), member(stakeholder(StakeholderId, Name, Income, StartBudget), StakeholderList)) 
+		do insert(stakeholder(StakeholderId, Name, Income, StartBudget)).
+	
+	%%% indicatorLink/2 should be only in the init module and not in the event module, because the indicatorsLinks are set in the game and never changed.
+	%% During initialisation the list of indicators per stakeholder are inserted into the belief base as indicatorLink/2 beliefs.
+	forall percept(stakeholders(CombinedList)), bel(member(IndicatorList, CombinedList), member(indicatorLink(StakeholderId, IndicatorWeights), IndicatorList))
+		do insert(indicatorLink(StakeholderId, IndicatorWeights)).
+	
+	%% During initialisation the list of zones are inserted into the belief base as zone/5 beliefs.
+	forall percept(zones(ZoneList)), bel(member(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories), ZoneList))
+		do insert(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories)).
 }

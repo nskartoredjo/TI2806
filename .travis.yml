@@ -31,6 +31,8 @@ before_script:
 script:
  # run the Goal Test with a 60s timeout
  - timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_*.jar goal.tools.Run src/test/goal/nl/tudelft/ti2806/test.test2g -v > log.txt || echo 0
+ # run the Percepts Test with a 60s timeout
+ - timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_*.jar goal.tools.Run src/test/goal/nl/tudelft/ti2806/percepts.test2g -v >> log.txt || echo 0
  # print the test output
  - cat log.txt
  # if there is a test failed then the build fails
