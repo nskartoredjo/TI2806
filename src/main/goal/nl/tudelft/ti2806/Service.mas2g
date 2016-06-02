@@ -4,7 +4,7 @@
 % - The agent uses the 1.0.9/context version of the environment.
 
 use "tygronenv-1.0.9-jar-with-dependencies.jar" as environment with
-	project = "dummies_demo",
+	project = "vhprojectctd",
 	stakeholders = ["Voorzieningen"] ,
 	domain = "tudelft".
  
