@@ -15,5 +15,5 @@ module buyLand {
 	if 
 		true
 	then 
-		map_buy_land(square(0,200,85,55), 1).
+		map_buy_land(multipolygon('MULTIPOLYGON (((0 200, 85 200, 85 255, 0 255, 0 200)))'), 1).
 }
