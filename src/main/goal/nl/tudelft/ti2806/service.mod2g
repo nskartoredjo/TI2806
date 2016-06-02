@@ -15,11 +15,24 @@ order = linearall.
 % - states: 5
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
-
-	if goal (buildTerrace) then buildTerrace.
-	if goal (buildStore) then buildConvenienceStore.
-	if goal (buildSportsCenter) then buildSportsCenter.
-
+	if 	
+		goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(buurtwinkelIndicator(BCurrent, BTarget), sportcentrumIndicator(SCurrent, STarget), terrasIndicator(TCurrent, TTarget),
+		(BTarget - BCurrent) =< (STarget - SCurrent ), (BTarget - BCurrent) =< (TTarget - TCurrent )) 
+	then buildConvenienceStore. 
+	
+	if 	
+		goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(buurtwinkelIndicator(BCurrent, BTarget), sportcentrumIndicator(SCurrent, STarget), terrasIndicator(TCurrent, TTarget),
+		(TTarget - TCurrent) =< (STarget - SCurrent ), (TTarget - TCurrent) =< (BTarget - BCurrent )) 
+	then buildTerrace. 
+	
+	if 	
+		goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(buurtwinkelIndicator(BCurrent, BTarget), sportcentrumIndicator(SCurrent, STarget), terrasIndicator(TCurrent, TTarget),
+		(STarget - SCurrent) =< (TTarget - TCurrent ), (STarget - SCurrent) =< (BTarget - BCurrent )) 
+	then buildSportsCenter. 
+	
 	% description: Make a goal for demolishing.
 	% if:
 	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
