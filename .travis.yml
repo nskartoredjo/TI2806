@@ -17,12 +17,7 @@ before_install:
  - git pull origin context
 
 install:
- # build the connector, testing if the connector is done in the tygron repo CI.
- - mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -Dcobertura.skip -B -V
- - java -cp environment/target/tygronenv-*-jar-with-dependencies.jar login.Login $email $password
- - cd ..
- # move the generated Tygron environment .jar to the same folder as the .mas2g file
- - mv tygron/environment/target/tygronenv-*-jar-with-dependencies.jar src/main/goal/nl/tudelft/ti2806/tygronenv-jar-with-dependencies.jar
+ - mv src/main/goal/nl/tudelft/ti2806/tygronenv-*-jar-with-dependencies.jar src/main/goal/nl/tudelft/ti2806/tygronenv-jar-with-dependencies.jar
 
 before_script:
  # substitute the Tygron environment directory in the Tygron.mas2g with the new Tygron environment
