@@ -16,8 +16,8 @@ module buildSportsCenter {
 	if 
 		bel(functions(FS), member([Name,FunctionID,L],FS), (Name =='sportcentrum'; Name == 'sports center') 
 		,lands(ListLands), my_stakeholder_id(StakeholderID), 
-		member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands)) 
+		member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), not(multipolygon(Multipolygon)))
 	then 
-		building_plan_construction(FunctionID, 1, Multipolygon)
-		+ insert(constructed(FunctionID, Name)).
+		building_plan_construction(FunctionID, 1, Multipolygon) 
+		+ insert(constructed(FunctionID, Name), multipolygon(Multipolygon)).
 }

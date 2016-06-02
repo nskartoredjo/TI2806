@@ -34,6 +34,8 @@
 :- dynamic demolished/1.
 :- dynamic bought/0.
 :- dynamic constructed/2.
+:- dynamic multipolygon/1.
+
 
 % description:
 % The indicator for our convenience store/buurtwinkel is stored in here.

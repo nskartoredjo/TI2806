@@ -16,9 +16,8 @@ module buildConvenienceStore {
 	if 
 		bel(functions(FS), member([Name,FunctionID,_], FS), (Name =='buurtwinkel'; Name == 'convenience store')
 		,lands(ListLands), my_stakeholder_id(StakeholderID), 
-		member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands))
-	then 
+		member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), not(multipolygon(Multipolygon)))	then 
 		building_plan_construction(FunctionID, 1, Multipolygon)
 		+
-	insert(constructed(FunctionID, Name)).
+	insert(constructed(FunctionID, Name), multipolygon(Multipolygon)).
 }
