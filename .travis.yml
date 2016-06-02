@@ -13,6 +13,7 @@ language: java
 before_script:
  # substitute the Tygron environment directory in the Tygron.mas2g with the new Tygron environment
  - mv src/main/goal/nl/tudelft/ti2806/tygronenv-*-jar-with-dependencies.jar src/main/goal/nl/tudelft/ti2806/tygronenv-jar-with-dependencies.jar
+ - java -cp src/main/goal/nl/tudelft/ti2806/tygronenv-jar-with-dependencies.jar login.Login $email $password
  - sed -i 's|tygronenv-*-jar-with-dependencies.jar|tygronenv-jar-with-dependencies.jar|g' src/main/goal/nl/tudelft/ti2806/Service.mas2g
 
 script:
