@@ -14,8 +14,10 @@ module buildSportsCenter {
 	% - Build the sports center on a fixed polygon square
 	% - insert constructed(FunctionId, Name) 
 	if 
-		bel(functions(FS), member([Name,ID,L],FS), (Name =='sportcentrum'; Name == 'sports center') ) 
+		bel(functions(FS), member([Name,FunctionID,L],FS), (Name =='sportcentrum'; Name == 'sports center') 
+		,lands(ListLands), my_stakeholder_id(StakeholderID), 
+		member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands)) 
 	then 
-		building_plan_construction(ID, 1, multipolygon('MULTIPOLYGON (((155 50, 195 50, 195 110, 155 110, 155 50)))')) + 
-		insert(constructed(ID, Name)).
+		building_plan_construction(FunctionID, 1, Multipolygon)
+		+ insert(constructed(FunctionID, Name)).
 }

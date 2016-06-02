@@ -14,9 +14,11 @@ module buildConvenienceStore {
 	% - Build the convenience store on a fixed polygon square
 	% - insert constructed(FunctionId, Name)
 	if 
-		bel(functions(FS), member([Name,ID,_], FS), (Name =='buurtwinkel'; Name == 'convenience store'))
+		bel(functions(FS), member([Name,FunctionID,_], FS), (Name =='buurtwinkel'; Name == 'convenience store')
+		,lands(ListLands), my_stakeholder_id(StakeholderID), 
+		member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands))
 	then 
-		building_plan_construction(ID, 1, multipolygon('MULTIPOLYGON (((10 10, 60 10, 60 60, 10 60, 10 10)))')) + 
-		building_plan_construction(ID, 1, multipolygon('MULTIPOLYGON (((60 60, 120 60, 120 120, 60 120, 60 60)))')) + 
-		insert(constructed(ID, Name)).
+		building_plan_construction(FunctionID, 1, Multipolygon)
+		+
+	insert(constructed(FunctionID, Name)).
 }
