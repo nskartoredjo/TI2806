@@ -12,7 +12,8 @@ The component diagram at \textbf{figure~\ref{fig:comp_diag}} shows the relations
 	  \caption{The component diagram}
 	  \label{fig:comp_diag}
 \end{figure}
-This figure shows the different components the project uses and how they connect to each each other. You can see how our bot connects to the connector which in turn will connect to the Tygron API. The Tygron API exists of the module SDK (software development kit) which consists of all the graphics and calculations, basicly the tygron game itself. The Connector uses the environment module, which is everything needed to connect a bot to the game and get and send information from the bot to the game. Finally, the Goal Agent consists of all the modules needed to run the bot. \\
+This figure shows the different components the project uses and how they connect to each each other. You can see how our bot connects to the connector which in turn will connect to the Tygron API. The Tygron API exists of the module SDK (software development kit) which consists of all the graphics and calculations, basicly the tygron game itself. The Connector uses the environment module, which is everything needed to connect a bot to the game and get and send information from the bot to the game. Finally, the Goal Agent consists of all the modules needed to run the bot.
+
 This starts with the service.mas2g file, which is more or less the main class from which everything happens. This makes use of the init.mod2g file to get all data it needs at the start of the game, and events to get data which is changed, added or removed later in the game. Finally it uses service.mod2g, which handles the main actions the bot does. It uses goals, beliefs, and knowledge as data it can use and the other mod.2g as actions it does (for example build.mod2g for building).
 
 \subsection{Hardware/software mapping}
@@ -20,7 +21,7 @@ Our virtual human uses a different connection approach to the server than a real
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{Hardware_software_mapping}
+	\includegraphics[width=0.5\textwidth]{Hardware_software_mapping}
 	\caption{Hardware software mapping}
 	\label{fig:Hard_soft_map}
 \end{figure}
