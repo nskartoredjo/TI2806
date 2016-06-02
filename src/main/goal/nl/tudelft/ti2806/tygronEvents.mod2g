@@ -6,44 +6,114 @@ use serviceBeliefs as beliefs.
 % - discription: Percept Processing
 module tygronEvents {
 	%% Whenever actions are percepted old actions will be deleted and new actions will be inserted.
-	if percept(actions(X)), bel(actions(Y)) then delete(actions(Y)) + insert(actions(X)).
+	if 
+		percept(actions(X)), 
+		bel(actions(Y)) 
+	then 
+		delete(actions(Y)) + 
+		insert(actions(X)).
 	
 	%% Whenever logs of actions are percepted old action_logs will be deleted and new action_logs will be inserted.
-	if percept(action_logs(X)), bel(action_logs(Y)) then delete(action_logs(Y)) + insert(action_logs(X)).
+	if 
+		percept(action_logs(X)), 
+		bel(action_logs(Y)) 
+	then 
+		delete(action_logs(Y)) + 
+		insert(action_logs(X)).
 	
 	%% Whenever the list of buildings is percepted the old list is deleted and the new list is inserted.
-	if percept(buildings(NewBuildingList)), bel(buildings(OldBuildingList))
-		then delete(buildings(OldBuildingList)) + insert(buildings(NewBuildingList)).
+	if 
+		percept(buildings(NewBuildingList)), 
+		bel(buildings(OldBuildingList))
+	then 
+		delete(buildings(OldBuildingList)) + 
+		insert(buildings(NewBuildingList)).
 	
 	%% Whenever functions are percepted old functions will be deleted and new functions will be inserted.
-	if percept(functions(X)), bel(functions(Y)) then delete(functions(Y)) + insert(functions(X)).
+	if 
+		percept(functions(X)), 
+		bel(functions(Y)) 
+	then 
+		delete(functions(Y)) + 
+		insert(functions(X)).
 	
 	%% Whenever the list of indicators is percepted and it has changed from the previous list 
 	% then the old indicator list is deleted and the new indicator list is inserted.
-	if percept(indicators(NewIndicatorList)), bel(indicators(OldIndicatorList), not(NewIndicatorList == OldIndicatorList))
-		then delete(indicators(OldIndicatorList)) + insert(indicators(NewIndicatorList)).
+	if 
+		percept(indicators(NewIndicatorList)), 
+		bel(
+			indicators(OldIndicatorList), 
+			not(NewIndicatorList == OldIndicatorList)
+		)
+	then 
+		delete(indicators(OldIndicatorList)) + 
+		insert(indicators(NewIndicatorList)).
 	
 	%% Whenever lands are percepted old lands will be deleted and new lands will be inserted.
-	if percept(lands(X)), bel(lands(Y)) then delete(lands(Y)) + insert(lands(X)).
+	if 
+		percept(lands(X)), 
+		bel(lands(Y)) 
+	then 
+		delete(lands(Y)) + 
+		insert(lands(X)).
 	
 	%% Whenever settings are percepted old settings will be deleted and new settings will be inserted.
-	if percept(settings(X)), bel(settings(Y)) then delete(settings(Y)) + insert(settings(X)).
+	if 
+		percept(settings(X)), 
+		bel(settings(Y)) 
+	then 
+		delete(settings(Y)) + 
+		insert(settings(X)).
 	
 	%% Whenever the list of stakeholders is updated all stakeholder/4 beliefs will be updated accordingly.
 	% if the Income of a stakeholder changes then the stakeholder/4 belief has to be updated.
-	forall percept(stakeholders(CombinedList)), bel(stakeholder(StakeholderId, Name, OldIncome, StartBudget), member(StakeholderList, CombinedList), member(stakeholder(StakeholderId, Name, NewIncome, StartBudget), StakeholderList), not(NewIncome == OldIncome)) 
-			do delete(stakeholder(StakeholderId, Name, OldIncome, StartBudget)) + insert(stakeholder(StakeholderId, Name, NewIncome, StartBudget)).
+	forall 
+		percept(stakeholders(CombinedList)), 
+		bel(
+			stakeholder(StakeholderId, Name, OldIncome, StartBudget), 
+			member(StakeholderList, CombinedList), 
+			member(stakeholder(StakeholderId, Name, NewIncome, StartBudget), StakeholderList), 
+			not(NewIncome == OldIncome)
+		) 
+	do 
+		delete(stakeholder(StakeholderId, Name, OldIncome, StartBudget)) + 
+		insert(stakeholder(StakeholderId, Name, NewIncome, StartBudget)).
 	
 	%% Whenever the list of zones is updated all zone/5 beliefs will be updated accordingly.
 	% if either the MaxFloors or Allowed_Categories changes then the zone/5 belief has to be updated.
-	forall percept(zones(ZoneList)), bel(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories), member(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories), ZoneList), (not(NewMaxFloors == OldMaxFloors); not(NewAllowed_Categories == OldAllowed_Categories)))
-			do delete(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories)) + insert(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories)).
+	forall 
+		percept(zones(ZoneList)), 
+		bel(
+			zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories), 
+			member(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories), ZoneList), 
+			(
+				not(NewMaxFloors == OldMaxFloors); 
+				not(NewAllowed_Categories == OldAllowed_Categories)
+			)
+		)
+	do 
+		delete(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories)) + 
+		insert(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories)).
 
 	%% During initialisation the list of indicators are inserted into the belief base. 
-	forall percept(indicators(IndicatorList)), bel(indicator(IndID, OldValue, TargetValue, OldZone_LinkList), member(indicator(IndID, OldValue, CurrentValue, Zone_LinkList),IndicatorList))
-		do delete (indicator(IndID, OldValue, TargetValue,OldZone_LinkList)) + insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
+	forall 
+		percept(indicators(IndicatorList)), 
+		bel(
+			indicator(IndID, OldValue, TargetValue, OldZone_LinkList), 
+			member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
+		)
+	do 
+		delete (indicator(IndID, OldValue, TargetValue,OldZone_LinkList)) + 
+		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
 
 	%% During initialisation the list of indicators are inserted into the belief base. 
-	forall percept(indicators(IndicatorList)), bel(zoneLink(ZoneID, IndID, Old_Val, Tar_Val), member(indicator(IndID, OldValue, CurrentValue, Zone_LinkList),IndicatorList), member(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val),ZoneLink_List))
-		do delete (zoneLink(ZoneID, IndID, Old_Val, Tar_Val)) + insert(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val)).	
+	forall
+		bel(
+			indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),
+			zoneLink(ZoneID, IndID, Old_Val, Tar_Val),
+			member(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val),Zone_LinkList)
+		)
+	do 
+		delete (zoneLink(ZoneID, IndID, Old_Val, Tar_Val)) + 
+		insert(zoneLink(ZoneID, IndID, Cur_Val, Tar_Val)).	
 }
