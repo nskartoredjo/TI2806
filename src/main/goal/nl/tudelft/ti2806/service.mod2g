@@ -15,19 +15,34 @@ order = linear.
 % - states: 5
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
-		
+	
+	% description: Build a conveniencestore when this is the lowest indicator score
+	% if:
+	% - you have a goal for building and the score for the convenience indicator is the lowest.
+	% then:
+	% - build a conveniencestore	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
 		BCurrent =< SCurrent,  BCurrent =< TCurrent , BCurrent =< 0.80) 
 	then buildConvenienceStore. 
 	
+	% description: Build a terras when this is the lowest indicator score
+	% if:
+	% - you have a goal for building and the score for the terras indicator is the lowest.
+	% then:
+	% - build a terras	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
 		TCurrent =< SCurrent , TCurrent =< BCurrent, TCurrent =< 0.80) 
 	then buildTerrace. 
 	
+	% description: Build a sports center when this is the lowest indicator score
+	% if:
+	% - you have a goal for building and the score for the sports center indicator is the lowest.
+	% then:
+	% - build a sports center	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
