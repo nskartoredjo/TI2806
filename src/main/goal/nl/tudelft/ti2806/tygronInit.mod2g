@@ -36,6 +36,10 @@ module tygronInit {
 	% description: 
 	% - stakeholder/4 beliefs should be inserted in the init module, because in the event module stakeholder/4 are only updated when changes occur.
 	% - During initialisation the list of stakeholders are inserted into the belief base as stakeholder/4 beliefs.
+	% forall:
+	% - stakeholders
+	% do:
+	% - insert them into the beliefs
 	forall 
 		percept(stakeholders(CombinedList)), 
 		bel(
@@ -48,6 +52,10 @@ module tygronInit {
 	% desciption:
 	% - indicatorLink/2 should be only in the init module and not in the event module, because the indicatorsLinks are set in the game and never changed.
 	% - During initialisation the list of indicators per stakeholder are inserted into the belief base as indicatorLink/2 beliefs.
+	% forall:
+	% - stakeholders
+	% do:
+	% - insert the indicatorLink into the belief
 	forall 
 		percept(stakeholders(CombinedList)), 
 		bel(
@@ -58,14 +66,22 @@ module tygronInit {
 	do 
 		insert(indicatorLink(StakeholderId, IndicatorWeights)).
 	
-	%desciption: During initialisation the list of zones are inserted into the belief base as zone/5 beliefs.
+	% desciption: During initialisation the list of zones are inserted into the belief base as zone/5 beliefs.
+	% forall:
+	% - zones
+	% do:
+	% - insert zone into the beliefs
 	forall 
 		percept(zones(ZoneList)), 
 		bel(member(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories), ZoneList))
 	do 
 		insert(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories)).
 		
-	%description: During initialisation the list of indicators are inserted into the belief base. 
+	% description: During initialisation the list of indicators are inserted into the belief base.
+	% forall:
+	% - indicators
+	% do:
+	% - insert indicator in to the beliefs.
 	forall 
 		percept(indicators(IndicatorList)), 
 		bel(

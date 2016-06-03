@@ -23,9 +23,16 @@ module main{
 	% - build a conveniencestore	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
-		BCurrent =< SCurrent,  BCurrent =< TCurrent , BCurrent =< 0.80) 
-	then buildConvenienceStore. 
+		bel(
+			buurtwinkelIndicator(BCurrent, _), 
+			sportcentrumIndicator(SCurrent, _), 
+			terrasIndicator(TCurrent, _),
+			BCurrent =< SCurrent,  
+			BCurrent =< TCurrent , 
+			BCurrent =< 0.80
+		) 
+	then 
+		buildConvenienceStore. 
 	
 	% description: Build a terras when this is the lowest indicator score
 	% if:
@@ -34,9 +41,16 @@ module main{
 	% - build a terras	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
-		TCurrent =< SCurrent , TCurrent =< BCurrent, TCurrent =< 0.80) 
-	then buildTerrace. 
+		bel(
+			buurtwinkelIndicator(BCurrent, _), 
+			sportcentrumIndicator(SCurrent, _), 
+			terrasIndicator(TCurrent, _),
+			TCurrent =< SCurrent, 
+			TCurrent =< BCurrent, 
+			TCurrent =< 0.80
+		) 
+	then 
+		buildTerrace. 
 	
 	% description: Build a sports center when this is the lowest indicator score
 	% if:
@@ -45,9 +59,16 @@ module main{
 	% - build a sports center	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
-		SCurrent =< TCurrent, SCurrent =< BCurrent, SCurrrent =< 0.80) 
-	then buildSportsCenter. 
+		bel(
+			buurtwinkelIndicator(BCurrent, _), 
+			sportcentrumIndicator(SCurrent, _), 
+			terrasIndicator(TCurrent, _),
+			SCurrent =< TCurrent, 
+			SCurrent =< BCurrent, 
+			SCurrrent =< 0.80
+		) 
+	then 
+		buildSportsCenter. 
 	
 	% description: Make a goal for demolishing.
 	% if:
@@ -62,8 +83,13 @@ module main{
 			member(building(BuildingID,_,StakeholderID,_,_,FunctionID,_, _), X), 
  			functions(Y), 
  			member([Name, FunctionID, _], Y), 
- 			not(Name =='terrace') , not(Name =='Terras') , not(Name == 'sportcentrum'), 
- 			not(Name =='sports center'), not(Name =='buurtwinkel'), not(Name =='convenience store'), not(demolished(BuildingID))
+ 			not(Name =='terrace') , 
+ 			not(Name =='Terras') , 
+ 			not(Name == 'sportcentrum'), 
+ 			not(Name =='sports center'), 
+ 			not(Name =='buurtwinkel'), 
+ 			not(Name =='convenience store'), 
+ 			not(demolished(BuildingID))
  		) 
 	then 
 			demolish(BuildingID).
