@@ -54,7 +54,7 @@ buurtwinkelIndicator(CurrentValue, TargetValue) :-
 % my_stakeholder_id gives our Stakeholder ID with which we can get our indicator through the indicatorLink.
 % Then the correct indicator is found by matching the IndicatorName.
 sportcentrumIndicator(CurrentValue, TargetValue) :- 
-	indicatorLink(StakeholderId, IndicatorWeights), 
+	indicatorLink(_, IndicatorWeights), 
 	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
 	(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
 	indicator(IndicatorId, CurrentValue, TargetValue, _).
@@ -64,7 +64,7 @@ sportcentrumIndicator(CurrentValue, TargetValue) :-
 % my_stakeholder_id gives our Stakeholder ID with which we can get our indicator through the indicatorLink.
 % Then the correct indicator is found by matching the IndicatorName.
 terrasIndicator(CurrentValue, TargetValue) :- 
-	indicatorLink(StakeholderId, IndicatorWeights), 
+	indicatorLink(_, IndicatorWeights), 
 	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
 	(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'), 
 	indicator(IndicatorId, CurrentValue, TargetValue, _).
