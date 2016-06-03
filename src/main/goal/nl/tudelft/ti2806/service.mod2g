@@ -40,26 +40,18 @@ module main{
 	% - Adopt demolishbuilding(ID) goal.
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(stakeholder(StakeholderID, StakeholderName, _, _), 
-		StakeholderName=="Voorzieningen", buildings(X), member((BuildingID,_,StakeholderID,_,_,FunctionID,_), X), 
-		functions(Y), member((Name, FunctionID, _), Y), Name=\="terrace", Name=\="terras", 
-		Name=\="sportcentrum", Name=\="sports center", Name=\="buurtwinkel", Name=\="convenience store") 
+		bel(
+			stakeholder(StakeholderID, StakeholderName, _, _), 
+			StakeholderName=="Voorzieningen", 
+			buildings(X), 
+			member((BuildingID,_,StakeholderID,_,_,FunctionID,_), X), 
+ 			functions(Y), 
+ 			member((Name, FunctionID, _), Y), 
+ 			Name=\="terrace", Name=\="terras", Name=\="sportcentrum", 
+ 			Name=\="sports center", Name=\="buurtwinkel", Name=\="convenience store"
+ 		) 
 	then 
 		adopt(demolishBuilding(BuildingID)).
-	
-	% description: Make a goal for buying
-	% if:
-	% - The indicators are not met yet and there is no goal for demolishing 
-	%   %and there is no land you own where there are no buildings. (this has yet to be implemented by Wouter)
-	% then:
-	% - Adopt buyLand goal.
-	if 	
-		goal(buildTerrace; buildStore; buildSportsCenter),
-		not(goal(demolishBuilding(_), (buyLand)))
-	then 
-		adopt(buyLand).
-
-	if goal(demolishBuilding(BuildingID)) then demolish(BuildingID).
-%	if goal(buyLand) then buyLand.
-	
+		
+	% TODO: buyland	
 }
