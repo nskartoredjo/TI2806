@@ -9,36 +9,90 @@ use sellLand as module.
 use demolish as module.
 
 exit = nogoals.
-order = linearall.
+order = linear.
 
 % main:
 % - states: 5
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	
-	if goal (buildTerrace) then buildTerrace.
-	
-	if goal (buildStore) then buildConvenienceStore.
-	
-	if goal (buildSportsCenter) then buildSportsCenter.
-	
-	if goal(demolishBuilding(BuildingID)) then demolish(BuildingID).
-		
+	% description: Build a conveniencestore when this is the lowest indicator score
+	% if:
+	% - you have a goal for building and the score for the convenience indicator is the lowest.
+	% then:
+	% - build a conveniencestore	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(
-			stakeholder(StakeholderID, StakeholderName, _, _), 
-			StakeholderName=="Voorzieningen", 
+			buurtwinkelIndicator(BCurrent, _), 
+			sportcentrumIndicator(SCurrent, _), 
+			terrasIndicator(TCurrent, _),
+			BCurrent =< SCurrent,  
+			BCurrent =< TCurrent , 
+			BCurrent =< 0.80
+		) 
+	then 
+		buildConvenienceStore. 
+	
+	% description: Build a terras when this is the lowest indicator score
+	% if:
+	% - you have a goal for building and the score for the terras indicator is the lowest.
+	% then:
+	% - build a terras	
+	if 	
+		goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(
+			buurtwinkelIndicator(BCurrent, _), 
+			sportcentrumIndicator(SCurrent, _), 
+			terrasIndicator(TCurrent, _),
+			TCurrent =< SCurrent, 
+			TCurrent =< BCurrent, 
+			TCurrent =< 0.80
+		) 
+	then 
+		buildTerrace. 
+	
+	% description: Build a sports center when this is the lowest indicator score
+	% if:
+	% - you have a goal for building and the score for the sports center indicator is the lowest.
+	% then:
+	% - build a sports center	
+	if 	
+		goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(
+			buurtwinkelIndicator(BCurrent, _), 
+			sportcentrumIndicator(SCurrent, _), 
+			terrasIndicator(TCurrent, _),
+			SCurrent =< TCurrent, 
+			SCurrent =< BCurrent, 
+			SCurrrent =< 0.80
+		) 
+	then 
+		buildSportsCenter. 
+	
+	% description: Make a goal for demolishing.
+	% if:
+	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
+	% then:
+	% - Adopt demolishbuilding(ID) goal.
+	if 	
+		goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(
+			my_stakeholder_id(StakeholderID),
 			buildings(X), 
-			member((BuildingID,_,StakeholderID,_,_,FunctionID,_), X), 
+			member(building(BuildingID,_,StakeholderID,_,_,FunctionID,_, _), X), 
  			functions(Y), 
- 			member((Name, FunctionID, _), Y), 
- 			Name=\="terrace", Name=\="terras", Name=\="sportcentrum", 
- 			Name=\="sports center", Name=\="buurtwinkel", Name=\="convenience store"
+ 			member([Name, FunctionID, _], Y), 
+ 			not(Name =='terrace') , 
+ 			not(Name =='Terras') , 
+ 			not(Name == 'sportcentrum'), 
+ 			not(Name =='sports center'), 
+ 			not(Name =='buurtwinkel'), 
+ 			not(Name =='convenience store'), 
+ 			not(demolished(BuildingID))
  		) 
 	then 
-		adopt(demolishBuilding(BuildingID)).
-		
-	% TODO: buyland
+			demolish(BuildingID).
 	
+	% TODO: buyland	
 }

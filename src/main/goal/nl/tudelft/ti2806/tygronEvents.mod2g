@@ -38,6 +38,10 @@ module tygronEvents {
 		insert(functions(X)).
 	
 	% description: During initialisation the list of indicators are inserted into the belief base. 
+	% forall:
+	% - indicators where the current value has changed
+	% do:
+	% - update the indicator
 	forall 
 		percept(indicators(IndicatorList)), 
 		bel(
@@ -65,10 +69,10 @@ module tygronEvents {
 		insert(settings(X)).
 	
 	% description:Whenever the list of stakeholders is updated all stakeholder/4 beliefs will be updated accordingly.
-	% if 
-	% - the Income of a stakeholder changes 
-	% then 
-	% - the stakeholder/4 belief has to be updated.
+	% forall:
+	% - stakeholders where the income has changed
+	% do: 
+	% - update the stakeholder
 	forall 
 		percept(stakeholders(CombinedList)), 
 		bel(
@@ -82,10 +86,10 @@ module tygronEvents {
 		insert(stakeholder(StakeholderId, Name, NewIncome, StartBudget)).
 	
 	% description: Whenever the list of zones is updated all zone/5 beliefs will be updated accordingly.
-	% if 
-	% - either the MaxFloors or Allowed_Categories changes 
-	% then 
-	% - the zone/5 belief has to be updated.
+	% forall:
+	% - zones where either the MaxFloors or Allowed_Categories changes 
+	% do:
+	% - update the zone
 	forall 
 		percept(zones(ZoneList)), 
 		bel(
