@@ -3,11 +3,92 @@ use serviceBeliefs as beliefs.
 use serviceGoals as goals.
 
 % tygronInit:
-% - states: 4
+% - states: 12
 % - description: init module
 module tygronInit {
-		if true then insert(settings([])).
-		if true then insert(functions([])).
-		if true then insert(stakeholders([])).
-		if true then insert(buildings(none)).
+	% description: During initialisation actions/1 is set to an empty list.
+	if true then insert(actions([])).
+	
+	% description: During initialisation action_logs/1 is set to an empty list.
+	if true then insert(action_logs([])).
+
+	% description: During initialisation functions/1 is set to an empty list.
+	if true then insert(functions([])).
+		
+	% description: During initialisation lands/1 is set to an empty list.
+	if true then insert(lands([])).
+		
+	% description: During initialisation requests/1 is set to an empty list.
+	if true then insert(requests([])).
+	
+	% description: During initialisation buildings/1 is set to an empty list.
+	if true	then insert(buildings([])).
+	
+	% description: During initialisation settings/1 is set to an empty list.
+	if true then insert(settings([])).
+		
+	% description: During initialisation the Stakeholder ID of this agent is percepted and inserted into the belief base as a my_stakeholder/1 belief.
+	if 
+		percept(my_stakeholder_id(StakeholderId)) 
+	then 
+		insert(my_stakeholder_id(StakeholderId)).
+
+	% description: 
+	% - stakeholder/4 beliefs should be inserted in the init module, because in the event module stakeholder/4 are only updated when changes occur.
+	% - During initialisation the list of stakeholders are inserted into the belief base as stakeholder/4 beliefs.
+	% forall:
+	% - stakeholders
+	% do:
+	% - insert them into the beliefs
+	forall 
+		percept(stakeholders(CombinedList)), 
+		bel(
+			member(StakeholderList, CombinedList), 
+			member(stakeholder(StakeholderId, Name, Income, StartBudget), StakeholderList)
+		) 
+	do 
+		insert(stakeholder(StakeholderId, Name, Income, StartBudget)).
+	
+	% desciption:
+	% - indicatorLink/2 should be only in the init module and not in the event module, because the indicatorsLinks are set in the game and never changed.
+	% - During initialisation the list of indicators per stakeholder are inserted into the belief base as indicatorLink/2 beliefs.
+	% forall:
+	% - stakeholders
+	% do:
+	% - insert the indicatorLink into the belief
+	forall 
+		percept(stakeholders(CombinedList)), 
+		bel(
+			my_stakeholder_id(StakeholderId),
+			member(IndicatorList, CombinedList), 
+			member(indicatorLink(StakeholderId, IndicatorWeights), IndicatorList)
+		)
+	do 
+		insert(indicatorLink(StakeholderId, IndicatorWeights)).
+	
+	% desciption: During initialisation the list of zones are inserted into the belief base as zone/5 beliefs.
+	% forall:
+	% - zones
+	% do:
+	% - insert zone into the beliefs
+	forall 
+		percept(zones(ZoneList)), 
+		bel(member(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories), ZoneList))
+	do 
+		insert(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories)).
+		
+	% description: During initialisation the list of indicators are inserted into the belief base.
+	% forall:
+	% - indicators
+	% do:
+	% - insert indicator in to the beliefs.
+	forall 
+		percept(indicators(IndicatorList)), 
+		bel(
+			indicatorLink(_, IndicatorLinkList),
+			member(indicatorWeights(IndID,_,_), IndicatorLinkList),
+			member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
+		)
+	do 
+		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
 }

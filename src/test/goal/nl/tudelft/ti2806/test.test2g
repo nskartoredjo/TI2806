@@ -12,17 +12,19 @@ use "../../../../../main/goal/nl/tudelft/ti2806/buildTerrace.mod2g" as module.
 
 timeout = 5.
 
-test buildTerrace with 
-	in{ 
-		eventually done(building_plan_construction(X, Y, Z)). 
+% description: 
+%	- Test if the building actions are executed.
+%	- Test if the indicators are percepts.
+%	- Test if the sportscenter goal is reach immidiatly (percentage is 99% and goal is 60%).
+test main with
+	in{
+		eventually done(building_plan_construction(FunctionID, FloorSize, Multipolygon)).
+		done(building_plan_construction(FunctionID, FloorSize, Multipolygon)) leadsto multipolygon(Multipolygon).
+		eventually bel(buildSportsCenter).
+		eventually bel(buurtwinkelIndicator(BCurrent, BTarget)). 
+		eventually bel(sportcentrumIndicator(SCurrent, STarget)). 
+		eventually bel(terrasIndicator(TCurrent, TTarget)).
 	}
-
-test buyLand with
-	in {
-		eventually done(map_buy_land(X,Y)).
-	}
-	
-%TODO: Write new tests for every module.
 
 serviceAgent {
 	do main.

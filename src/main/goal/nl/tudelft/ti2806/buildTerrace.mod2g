@@ -18,12 +18,19 @@ module buildTerrace {
 	% - Build the terrace on a fixed polygon square
 	% - insert the belief 'constructed terrace'
 	if 
-		goal(haveTerrace), 
-		not(bel(constructed(Id, Name), (Name == terrace; Name = terras))),
-		bel(functions(FS), member([Name,Id,L],FS), (Name == terrace; Name = terras)) 
-	then 
-		building_plan_construction(Id, 1, square(0,0,50,50)) + 
-		insert(constructed(Id, Name)).
+		bel(
+			functions(FS), 
+			member([Name,FunctionID,L],FS), 
+			(Name == terrace; Name = terras), 
+			lands(ListLands), my_stakeholder_id(StakeholderID), 
+			member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), 
+			not(multipolygon(Multipolygon)))	
+		then 
+			building_plan_construction(FunctionID, 1, Multipolygon) + 
+			insert(
+				constructed(FunctionID, Name), 
+				multipolygon(Multipolygon)
+			).
 		
 	% description: 
 	% - should build n+1 buildings if n buildings are build

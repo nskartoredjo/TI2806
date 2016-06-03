@@ -11,11 +11,21 @@ module buildSportsCenter {
 	% if:
 	% - there is a building type 'sports center' or 'sportcentrum'
 	% then:
-	% - Build the sports center on a fixed polygon square
-	% - insert constructed(FunctionId, Name) 
+	% - Build the sports center on a multipolygon from own land
 	if 
-		bel(functions(FS), member([Name,ID,L],FS), (Name =='sportcentrum'; Name == 'sports center') ) 
+		bel(
+			functions(FS), 
+			member([Name,FunctionID,L],FS), 
+			(Name =='sportcentrum'; Name == 'sports center'),
+			lands(ListLands), 
+			my_stakeholder_id(StakeholderID), 
+			member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), 
+			not(multipolygon(Multipolygon))
+		)
 	then 
-		building_plan_construction(ID, 1, square(155,50,40,60)) + 
-		insert(constructed(ID, Name)).
+		building_plan_construction(FunctionID, 1, Multipolygon) + 
+		insert(
+			constructed(FunctionID, Name), 
+			multipolygon(Multipolygon)
+		).
 }

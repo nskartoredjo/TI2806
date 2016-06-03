@@ -1,11 +1,11 @@
 % description: 
 % - This agent will cooperate as the service company with other agents in 
 %   the Tygron Environment. At the moment it should build and demolish.
-% - The agent uses the 1.0.8/context version of the environment.
+% - The agent uses the 1.0.9/context version 2 of the environment.
 
-use "tygronenv-1.0.8-C-jar-with-dependencies.jar" as environment with
-	project = "basictestmap",
-	stakeholder = "COMPANY",
+use "tygronenv-1.0.9-C.2-jar-with-dependencies.jar" as environment with
+	project = "vhprojectctd",
+	stakeholders = ["Voorzieningen"],
 	domain = "tudelft".
  
 define serviceAgent as agent {
@@ -15,5 +15,5 @@ define serviceAgent as agent {
 }
 
 launchpolicy {
-	when * launch serviceAgent.
+	when name=VOORZIENINGEN launch serviceAgent.
 }

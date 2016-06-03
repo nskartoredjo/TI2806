@@ -11,11 +11,17 @@ module buildConvenienceStore {
 	% if:
 	% - there is a building type 'convenience store' or 'buurtwinkel'
 	% then:
-	% - Build the convenience store on a fixed polygon square
-	% - insert constructed(FunctionId, Name)
+	% - Build the convenience store on multipolygon from own land
 	if 
-		bel(functions(FS), member([Name,ID,_], FS), (Name =='buurtwinkel'; Name == 'convenience store'))
+		bel(
+			functions(FS), member([Name,FunctionID,_], FS), 
+			(Name =='buurtwinkel'; Name == 'convenience store'),
+			lands(ListLands), 
+			my_stakeholder_id(StakeholderID), 
+			member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), 
+			not(multipolygon(Multipolygon))
+		)
 	then 
-		building_plan_construction(ID, 1, square(10,10,50,50)) + 
-		insert(constructed(ID, Name)).
+		building_plan_construction(FunctionID, 1, Multipolygon)	+
+		insert(constructed(FunctionID, Name), multipolygon(Multipolygon)).
 }
