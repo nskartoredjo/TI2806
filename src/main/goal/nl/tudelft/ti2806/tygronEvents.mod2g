@@ -39,6 +39,4 @@ module tygronEvents {
 	forall percept(zones(ZoneList)), bel(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories), member(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories), ZoneList), (not(NewMaxFloors == OldMaxFloors); not(NewAllowed_Categories == OldAllowed_Categories)))
 			do delete(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories)) + insert(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories)).
 
-
-
 }
