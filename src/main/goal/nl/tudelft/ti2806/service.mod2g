@@ -42,20 +42,20 @@ module main{
 	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(buurtwinkelIndicator(BCurrent, BTarget), sportcentrumIndicator(SCurrent, STarget), terrasIndicator(TCurrent, TTarget),
-		(BTarget - BCurrent) >= (STarget - SCurrent ), (BTarget - BCurrent) >= (TTarget - TCurrent )) 
+		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
+		BCurrent =< SCurrent,  BCurrent =< TCurrent ) 
 	then buildConvenienceStore. 
 	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(buurtwinkelIndicator(BCurrent, BTarget), sportcentrumIndicator(SCurrent, STarget), terrasIndicator(TCurrent, TTarget),
-		(TTarget - TCurrent) >= (STarget - SCurrent ), (TTarget - TCurrent) >= (BTarget - BCurrent )) 
+		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
+		TCurrent =< Current , TCurrent =< BCurrent) 
 	then buildTerrace. 
 	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(buurtwinkelIndicator(BCurrent, BTarget), sportcentrumIndicator(SCurrent, STarget), terrasIndicator(TCurrent, TTarget),
-		(STarget - SCurrent) >= (TTarget - TCurrent ), (STarget - SCurrent) >= (BTarget - BCurrent )) 
+		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
+		SCurrent =< TCurrent, SCurrent =< BCurrent ) 
 	then buildSportsCenter. 
 	
 	% description: Make a goal for demolishing.
