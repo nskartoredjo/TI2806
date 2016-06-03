@@ -3,9 +3,9 @@ use serviceBeliefs as beliefs.
 
 % Tygron Event:
 % - states: 9
-% - discription: Percept Processing
+% - description: Percept Processing
 module tygronEvents {
-	%% Whenever actions are percepted old actions will be deleted and new actions will be inserted.
+	% description: Whenever actions are percepted old actions will be deleted and new actions will be inserted.
 	if 
 		percept(actions(X)), 
 		bel(actions(Y)) 
@@ -13,7 +13,7 @@ module tygronEvents {
 		delete(actions(Y)) + 
 		insert(actions(X)).
 	
-	%% Whenever logs of actions are percepted old action_logs will be deleted and new action_logs will be inserted.
+	% description: Whenever logs of actions are percepted old action_logs will be deleted and new action_logs will be inserted.
 	if 
 		percept(action_logs(X)), 
 		bel(action_logs(Y)) 
@@ -21,15 +21,15 @@ module tygronEvents {
 		delete(action_logs(Y)) + 
 		insert(action_logs(X)).
 	
-	%% Whenever the list of buildings is percepted the old list is deleted and the new list is inserted.
+	% description: Whenever the list of buildings is percepted the old list is deleted and the new list is inserted.
 	if 
 		percept(buildings(NewBuildingList)), 
 		bel(buildings(OldBuildingList))
 	then 
 		delete(buildings(OldBuildingList)) + 
 		insert(buildings(NewBuildingList)).
-	
-	%% Whenever functions are percepted old functions will be deleted and new functions will be inserted.
+			
+	% description: Whenever functions are percepted old functions will be deleted and new functions will be inserted.
 	if 
 		percept(functions(X)), 
 		bel(functions(Y)) 
@@ -37,7 +37,18 @@ module tygronEvents {
 		delete(functions(Y)) + 
 		insert(functions(X)).
 	
-	%% Whenever lands are percepted old lands will be deleted and new lands will be inserted.
+	% description: During initialisation the list of indicators are inserted into the belief base. 
+	forall 
+		percept(indicators(IndicatorList)), 
+		bel(
+			indicator(IndID, OldValue, TargetValue, OldZone_LinkList), 
+			member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
+		)
+	do 
+		delete (indicator(IndID, OldValue, TargetValue,OldZone_LinkList)) + 
+		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
+	
+	% description: Whenever lands are percepted old lands will be deleted and new lands will be inserted.
 	if 
 		percept(lands(X)), 
 		bel(lands(Y)) 
@@ -45,7 +56,7 @@ module tygronEvents {
 		delete(lands(Y)) + 
 		insert(lands(X)).
 	
-	%% Whenever settings are percepted old settings will be deleted and new settings will be inserted.
+	% description: Whenever settings are percepted old settings will be deleted and new settings will be inserted.
 	if 
 		percept(settings(X)), 
 		bel(settings(Y)) 
@@ -53,8 +64,11 @@ module tygronEvents {
 		delete(settings(Y)) + 
 		insert(settings(X)).
 	
-	%% Whenever the list of stakeholders is updated all stakeholder/4 beliefs will be updated accordingly.
-	% if the Income of a stakeholder changes then the stakeholder/4 belief has to be updated.
+	% description:Whenever the list of stakeholders is updated all stakeholder/4 beliefs will be updated accordingly.
+	% if 
+	% - the Income of a stakeholder changes 
+	% then 
+	% - the stakeholder/4 belief has to be updated.
 	forall 
 		percept(stakeholders(CombinedList)), 
 		bel(
@@ -67,8 +81,11 @@ module tygronEvents {
 		delete(stakeholder(StakeholderId, Name, OldIncome, StartBudget)) + 
 		insert(stakeholder(StakeholderId, Name, NewIncome, StartBudget)).
 	
-	%% Whenever the list of zones is updated all zone/5 beliefs will be updated accordingly.
-	% if either the MaxFloors or Allowed_Categories changes then the zone/5 belief has to be updated.
+	% description: Whenever the list of zones is updated all zone/5 beliefs will be updated accordingly.
+	% if 
+	% - either the MaxFloors or Allowed_Categories changes 
+	% then 
+	% - the zone/5 belief has to be updated.
 	forall 
 		percept(zones(ZoneList)), 
 		bel(
@@ -82,15 +99,4 @@ module tygronEvents {
 	do 
 		delete(zone(ZoneId, ZoneName, OldMaxFloors, Size, OldAllowed_Categories)) + 
 		insert(zone(ZoneId, ZoneName, NewMaxFloors, Size, NewAllowed_Categories)).
-
-	%% During initialisation the list of indicators are inserted into the belief base. 
-	forall 
-		percept(indicators(IndicatorList)), 
-		bel(
-			indicator(IndID, OldValue, TargetValue, OldZone_LinkList), 
-			member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
-		)
-	do 
-		delete (indicator(IndID, OldValue, TargetValue,OldZone_LinkList)) + 
-		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
 }
