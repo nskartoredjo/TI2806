@@ -20,16 +20,16 @@ module main{
 	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
 	(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
 	indicators(IndicatorList),
-	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList))
-	then insert (buurtwinkelIndicator(CurrentValue, TargetValue)).
+	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList), buurtwinkelIndicator(OldCurrent, OldTarget))
+	then delete(buurtwinkelIndicator(OldCurrent, OldTarget)) + insert (buurtwinkelIndicator(CurrentValue, TargetValue)).
 	
 	if bel(my_stakeholder_id(StakeholderId), 
 	indicatorLink(StakeholderId, IndicatorWeights), 
 	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
 	(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
 	indicators(IndicatorList),
-	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList))
-	then insert(sportcentrumIndicator(CurrentValue, TargetValue)).
+	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList), sportcentrumIndicator(OldCurrent, OldTarget))
+	then delete(sportcentrumIndicator(OldCurrent, OldTarget)) + insert(sportcentrumIndicator(CurrentValue, TargetValue)).
 	
 	if bel(
 	my_stakeholder_id(StakeholderId), 
@@ -37,8 +37,8 @@ module main{
 	member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
 	(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'), 
 	indicators(IndicatorList),
-	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList))
-	then insert(terrasIndicator(CurrentValue, TargetValue)).
+	member(indicator(IndicatorId, CurrentValue, TargetValue, _), IndicatorList), terrasIndicator(OldCurrent, OldTarget))
+	then delete(terrasIndicator(OldCurrent, OldTarget)) + insert(terrasIndicator(CurrentValue, TargetValue)).
 	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
