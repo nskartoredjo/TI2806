@@ -12,6 +12,10 @@ use "../../../../../main/goal/nl/tudelft/ti2806/buildTerrace.mod2g" as module.
 
 timeout = 5.
 
+% description: 
+%	- Test if the building actions are executed.
+%	- Test if the indicators are percepts.
+%	- Test if the sportscenter goal is reach immidiatly (percentage is 99% and goal is 60%).
 test main with
 	in{
 		eventually done(building_plan_construction(FunctionID, FloorSize, Multipolygon)).
