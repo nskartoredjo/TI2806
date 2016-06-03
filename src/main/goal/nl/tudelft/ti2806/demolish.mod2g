@@ -15,5 +15,5 @@ module demolish(ID) {
 	if 
 		bel(buildings(BS), member(building(ID,_,_,_), BS))
 	then 
-		building_plan_demolish(ID).
+		building_plan_demolish(ID) + insert(demolished(ID)).
 }

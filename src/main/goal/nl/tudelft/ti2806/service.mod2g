@@ -15,25 +15,7 @@ order = linear.
 % - states: 5
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
-		if 	
-		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(
-			my_stakeholder_id(StakeholderID),
-			buildings(X), 
-			member(building(BuildingID,_,StakeholderID,_,_,FunctionID,_, _), X), 
- 			functions(Y), 
- 			member((Name, FunctionID, _), Y), 
- 			Name=\="terrace", Name=\="terras", Name=\="sportcentrum", 
- 			Name=\="sports center", Name=\="buurtwinkel", Name=\="convenience store"
- 		) 
-	then 
-		adopt(demolishBuilding(BuildingID)).
 		
-	if
-		goal(demolishBuilding(BuildingID))
-	then 
-	demolish(BuildingID).
-	
 	if 	
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(buurtwinkelIndicator(BCurrent, _), sportcentrumIndicator(SCurrent, _), terrasIndicator(TCurrent, _),
@@ -57,6 +39,19 @@ module main{
 	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
 	% then:
 	% - Adopt demolishbuilding(ID) goal.
+	if 	
+		goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(
+			my_stakeholder_id(StakeholderID),
+			buildings(X), 
+			member(building(BuildingID,_,StakeholderID,_,_,FunctionID,_, _), X), 
+ 			functions(Y), 
+ 			member([Name, FunctionID, _], Y), 
+ 			not(Name =='terrace') , not(Name =='Terras') , not(Name == 'sportcentrum'), 
+ 			not(Name =='sports center'), not(Name =='buurtwinkel'), not(Name =='convenience store'), not(demolished(BuildingID))
+ 		) 
+	then 
+			demolish(BuildingID).
 	
 	% TODO: buyland	
 }
