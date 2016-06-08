@@ -27,6 +27,7 @@ module buildSportsCenter {
 			maxTodo(ZoneList, Todo, ZoneID)
 		)
 	then 
+	%TODO build action who builds in zoneID with size Todo.
 		building_plan_construction(FunctionID, 1, Multipolygon) + 
 		insert(
 			constructed(FunctionID, Name), 
