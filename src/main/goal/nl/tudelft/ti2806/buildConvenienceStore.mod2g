@@ -19,9 +19,12 @@ module buildConvenienceStore {
 			lands(ListLands), 
 			my_stakeholder_id(StakeholderID), 
 			member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), 
-			not(multipolygon(Multipolygon))
+			not(multipolygon(Multipolygon)),
+			indicator(ZoneID, _, _, ZoneList),
+			maxTodo(ZoneList, Todo, ZoneID)
 		)
 	then 
+	%TODO build action who builds in zoneID with size Todo.
 		building_plan_construction(FunctionID, 1, Multipolygon)	+
 		insert(constructed(FunctionID, Name), multipolygon(Multipolygon)).
 }
