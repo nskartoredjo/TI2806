@@ -20,7 +20,11 @@ module buildSportsCenter {
 			lands(ListLands), 
 			my_stakeholder_id(StakeholderID), 
 			member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), 
-			not(multipolygon(Multipolygon))
+			not(multipolygon(Multipolygon)),
+			member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
+			(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
+			indicator(IndicatorID, _, _, ZoneList),
+			maxTodo(ZoneList, Todo, ZoneID)
 		)
 	then 
 		building_plan_construction(FunctionID, 1, Multipolygon) + 
