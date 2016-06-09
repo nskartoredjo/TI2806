@@ -5,6 +5,7 @@ use serviceBeliefs as beliefs.
 % - states: 9
 % - description: Percept Processing
 module tygronEvents {
+	
 	% description: Whenever actions are percepted old actions will be deleted and new actions will be inserted.
 	if 
 		percept(actions(X)), 
@@ -59,6 +60,13 @@ module tygronEvents {
 	then 
 		delete(lands(Y)) + 
 		insert(lands(X)).
+		
+	%description: Whenever de requests are percepted, the old requests will be deleted and de new requests will be inserted.
+	if
+		percept(requests(X)),
+		bel(requests(Y))
+	then
+		delete(requests(Y)) + insert(requests(X)).
 	
 	% description: Whenever settings are percepted old settings will be deleted and new settings will be inserted.
 	if 
