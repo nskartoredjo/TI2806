@@ -98,5 +98,6 @@ buildTerrace :-
 	terrasIndicator(Value, Target), 
 	Value >= 0.60.
 
+r(false).
 %%% NOTES %%% 
 % - Tygrons indicators still don't work so we can not test these. apart from there may be an error if multiple stakeholders make use of the same indicator since this changes the indicator names.

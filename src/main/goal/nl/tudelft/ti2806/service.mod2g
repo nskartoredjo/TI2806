@@ -17,7 +17,7 @@ order = linear.
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	if
-		true
+		bel(not(r(false)))
 	then
 		request.
 	
