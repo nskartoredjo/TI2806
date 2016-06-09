@@ -36,3 +36,8 @@ define	map_buy_land(MultiPolygon, Price) with
 define	map_sell_land(BuyerId,MultiPolygon, Price) with
 	pre{ true }
 	post{ true}
+
+define popup_answer(StakeholderID, PopUpID, AnswerID) with
+	pre{true}
+	post{true}
+	

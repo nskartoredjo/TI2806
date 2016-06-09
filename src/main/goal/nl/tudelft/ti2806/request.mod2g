@@ -6,7 +6,7 @@ module request {
 		bel(
 		requests(Requests), 
 		my_stakeholder_id(StakeholderID),
-		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Multipolygon, Area, Answers), Requests),
+		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
 		Type == 'INFORMATION', 
 		member(StakeholderId, VisibleStakeholders)
 		
@@ -17,7 +17,7 @@ module request {
 		bel(
 		requests(Requests),
 		my_stakeholder_id(StakeholderID), 
-		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Multipolygon, Area, Answers), Requests),
+		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
 		Type == 'INTERACTION', 
 		RequestType = 'BUY_LAND',
 		member(StakeholderId, VisibleStakeholders)
@@ -29,7 +29,7 @@ module request {
 		bel(
 		requests(Requests),
 		my_stakeholder_id(StakeholderID), 
-		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Multipolygon, Area, Answers), Requests),
+		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
 		Type == 'INTERACTION', 
 		RequestType = 'SELL_LAND',
 		member(StakeholderId, VisibleStakeholders)
@@ -41,7 +41,7 @@ module request {
 		bel(
 		requests(Requests),
 		my_stakeholder_id(StakeholderID), 
-		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Multipolygon, Area, Answers), Requests),
+		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
 		Type == 'INTERACTION', 
 		RequestType = 'DEMOLISH',
 		member(StakeholderId, VisibleStakeholders)
@@ -49,3 +49,4 @@ module request {
 		)
 	then insert(true).
 }
+
