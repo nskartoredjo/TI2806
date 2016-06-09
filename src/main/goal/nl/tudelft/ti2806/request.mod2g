@@ -8,10 +8,10 @@ module request {
 		my_stakeholder_id(StakeholderID),
 		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
 		Type == 'INFORMATION', 
-		member(StakeholderId, VisibleStakeholders)
-		
+		member(StakeholderID, VisibleStakeholders),
+		member(answer(AnswerID, 'OK'), Answers)
 		)
-	then insert(true).
+	then popup_answer(RequestID, AnswerID).
 	
 	if
 		bel(
@@ -20,10 +20,10 @@ module request {
 		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
 		Type == 'INTERACTION', 
 		RequestType = 'BUY_LAND',
-		member(StakeholderId, VisibleStakeholders)
-		
+		member(StakeholderId, VisibleStakeholders),
+		member(answer(AnswerID, 'Nee'), Answers)
 		)
-	then insert(true).
+	then popup_answer(RequestID, AnswerID).
 
 	if
 		bel(
@@ -32,10 +32,10 @@ module request {
 		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
 		Type == 'INTERACTION', 
 		RequestType = 'SELL_LAND',
-		member(StakeholderId, VisibleStakeholders)
-		
+		member(StakeholderId, VisibleStakeholders),
+		member(answer(AnswerID, 'Ja'), Answers)
 		)
-	then insert(true).
+	then popup_answer(RequestID, AnswerID).
 	
 	if
 		bel(
@@ -44,9 +44,9 @@ module request {
 		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
 		Type == 'INTERACTION', 
 		RequestType = 'DEMOLISH',
-		member(StakeholderId, VisibleStakeholders)
-		
+		member(StakeholderId, VisibleStakeholders),
+		member(answer(AnswerID, 'Ja'), Answers)
 		)
-	then insert(true).
+	then popup_answer(RequestID, AnswerID).
 }
 
