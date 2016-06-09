@@ -16,6 +16,12 @@ order = linear.
 % - states: 5
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
+	
+	%description: check if there are any request and answer these.
+	% if: 
+	% - Todo delete the always rejecting believe so this wil be executed.
+	%then: 
+	% - execute the request module.
 	if
 		bel(not(r(false)))
 	then

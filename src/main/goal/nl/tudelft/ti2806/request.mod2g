@@ -2,6 +2,13 @@ use serviceKnowledge as knowledge.
 use service as actionspec.
 
 module request {
+	
+	% description: if we get an information request answer with OK.
+	% if:
+	% - you have an information request
+	% - it is possible to answer with OK 
+	% then:
+	% - answer the reqest with OK.	
 	if
 		bel(
 		requests(Requests), 
@@ -13,6 +20,14 @@ module request {
 		)
 	then popup_answer(RequestID, AnswerID).
 	
+	% description: if we get an interaction request to buy land, answer with No or OK. 
+	%				You can only have an OK option if there are no other options.
+	% if:
+	% - you have an interaction request
+	% - this request is to buy some land
+	% - it is possible to answer with No or OK 
+	% then:
+	% - answer the reqest with No or OK.
 	if
 		bel(
 		requests(Requests),
@@ -25,6 +40,14 @@ module request {
 		)
 	then popup_answer(RequestID, AnswerID).
 
+	% description: if we get an interaction request to sell land, answer with Yes or OK. 
+	%				You can only have an OK option if there are no other options.
+	% if:
+	% - you have an interaction request
+	% - this request is to sell some land
+	% - it is possible to answer with Yes or OK 
+	% then:
+	% - answer the reqest with Yes or OK.
 	if
 		bel(
 		requests(Requests),
@@ -37,6 +60,14 @@ module request {
 		)
 	then popup_answer(RequestID, AnswerID).
 	
+	% description: if we get an interaction request to demolish, answer with Yes or OK. 
+	%				You can only have an OK option if there are no other options.
+	% if:
+	% - you have an interaction request
+	% - this request is to demolish
+	% - it is possible to answer with Yes or OK 
+	% then:
+	% - answer the reqest with Yes or OK.
 	if
 		bel(
 		requests(Requests),

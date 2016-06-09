@@ -37,6 +37,11 @@ define	map_sell_land(BuyerId,MultiPolygon, Price) with
 	pre{ true }
 	post{ true}
 
+% description:
+% - answer to a certain popup.
+% parameters:
+% -	PopUpID: The popup we are answering
+% - AnswerID: The answer we give on the popup
 define popup_answer(PopUpID, AnswerID) with
 	pre{true}
 	post{true}
