@@ -21,7 +21,7 @@ module request {
 		Type == 'INTERACTION', 
 		RequestType = 'BUY_LAND',
 		member(StakeholderId, VisibleStakeholders),
-		member(answer(AnswerID, 'Nee'), Answers)
+		(member(answer(AnswerID, 'Nee'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
 	then popup_answer(RequestID, AnswerID).
 
@@ -33,7 +33,7 @@ module request {
 		Type == 'INTERACTION', 
 		RequestType = 'SELL_LAND',
 		member(StakeholderId, VisibleStakeholders),
-		member(answer(AnswerID, 'Ja'), Answers)
+		(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
 	then popup_answer(RequestID, AnswerID).
 	
@@ -45,7 +45,7 @@ module request {
 		Type == 'INTERACTION', 
 		RequestType = 'DEMOLISH',
 		member(StakeholderId, VisibleStakeholders),
-		member(answer(AnswerID, 'Ja'), Answers)
+		(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
 	then popup_answer(RequestID, AnswerID).
 }
