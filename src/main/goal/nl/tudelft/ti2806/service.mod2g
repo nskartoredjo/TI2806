@@ -7,6 +7,7 @@ use buildSportsCenter as module.
 use buyLand as module.
 use sellLand as module.
 use demolish as module.
+use request as module.
 
 exit = nogoals.
 order = linear.
@@ -15,6 +16,15 @@ order = linear.
 % - states: 5
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
+	if
+		true
+	then
+		request.
+	
+	
+	
+	
+	
 	
 	% description: Build a conveniencestore when this is the lowest indicator score
 	% if:

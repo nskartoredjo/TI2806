@@ -1,0 +1,51 @@
+use serviceKnowledge as knowledge.
+use service as actionspec.
+
+module request {
+	if
+		bel(
+		requests(Requests), 
+		my_stakeholder_id(StakeholderID),
+		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Multipolygon, Area, Answers), Requests),
+		Type == 'INFORMATION', 
+		member(StakeholderId, VisibleStakeholders)
+		
+		)
+	then insert(true).
+	
+	if
+		bel(
+		requests(Requests),
+		my_stakeholder_id(StakeholderID), 
+		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Multipolygon, Area, Answers), Requests),
+		Type == 'INTERACTION', 
+		RequestType = 'BUY_LAND',
+		member(StakeholderId, VisibleStakeholders)
+		
+		)
+	then insert(true).
+
+	if
+		bel(
+		requests(Requests),
+		my_stakeholder_id(StakeholderID), 
+		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Multipolygon, Area, Answers), Requests),
+		Type == 'INTERACTION', 
+		RequestType = 'SELL_LAND',
+		member(StakeholderId, VisibleStakeholders)
+		
+		)
+	then insert(true).
+	
+	if
+		bel(
+		requests(Requests),
+		my_stakeholder_id(StakeholderID), 
+		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Multipolygon, Area, Answers), Requests),
+		Type == 'INTERACTION', 
+		RequestType = 'DEMOLISH',
+		member(StakeholderId, VisibleStakeholders)
+		
+		)
+	then insert(true).
+}
