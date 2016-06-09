@@ -16,6 +16,19 @@ order = linear.
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	
+	if
+		bel(
+			my_stakeholder_id(StakeholderId),
+			request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers),
+			member(StakeholderId, StakeholderIdList),
+			Type == 'PERMIT',
+			member(answer(AnswerId, Answer), Answers),
+			Answer == 'Ja'
+		)
+	then
+		popup_answer(PopUpId, AnswerId) +
+		delete(request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers)).
+	
 	% description: Build a conveniencestore when this is the lowest indicator score
 	% if:
 	% - you have a goal for building and the score for the convenience indicator is the lowest.
