@@ -18,7 +18,7 @@ module buildConvenienceStore {
 			(Name =='buurtwinkel'; Name == 'convenience store'),
 			lands(ListLands), 
 			my_stakeholder_id(StakeholderID), 
-			member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), 
+			member(land(_, StakeholderID, Multipolygon, _, _), ListLands), 
 			not(multipolygon(Multipolygon))
 		)
 	then 
