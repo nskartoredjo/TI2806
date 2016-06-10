@@ -23,12 +23,13 @@ module main{
 	%then: 
 	% - execute the request module.
 	if
-		bel(
-		requests(X), 
+	bel(
+		not(requests([])) ;
+		(requests(X), 
 		my_stakeholder_id(StakeholderID), 
 		member(request(_, _, _, _, VisibleStakeholders, _, _, _, _, _), Requests),
-		member(StakeholderID, VisibleStakeholders)
-		)
+		member(StakeholderID, VisibleStakeholders))
+	)
 	then
 		request.
 	
