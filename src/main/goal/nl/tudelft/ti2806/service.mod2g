@@ -19,11 +19,16 @@ module main{
 	
 	%description: check if there are any request and answer these.
 	% if: 
-	% - Todo delete the always rejecting believe so this wil be executed.
+	% - There are any request, execute the request module.
 	%then: 
 	% - execute the request module.
 	if
-		bel(not(r(false)))
+		bel(
+		requests(X), 
+		my_stakeholder_id(StakeholderID), 
+		member(request(_, _, _, _, VisibleStakeholders, _, _, _, _, _), Requests),
+		member(StakeholderID, VisibleStakeholders)
+		)
 	then
 		request.
 	
