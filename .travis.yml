@@ -7,7 +7,7 @@ notifications:
 language: java
 
 before_script:
-- java -cp main/goal/nl/tudelft/ti2806/contextvh-1.0.1-Requests-jar-with-dependencies.jar login.Login $email $password
+- java -cp src/main/goal/nl/tudelft/ti2806/contextvh-1.0.1*.jar login.Login $email $password
 
 script:
  # run the Goal Test with a 60s timeout
