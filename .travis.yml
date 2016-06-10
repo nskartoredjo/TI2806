@@ -4,29 +4,10 @@
 notifications:
  slack: tud-contextproject-16:AfNBwAAvnAJEeptKiBmnnhlc
 
-# blacklist
-# branches:
-#  except:
-
 language: java
 
-before_install:
- - git clone https://github.com/eishub/tygron
- - cd tygron
- - git checkout context
- - git pull origin context
-
-install:
- # build the connector, testing if the connector is done in the tygron repo CI.
- - mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -Dcobertura.skip -B -V
- - java -cp environment/target/tygronenv-*-jar-with-dependencies.jar login.Login $email $password
- - cd ..
- # move the generated Tygron environment .jar to the same folder as the .mas2g file
- - mv tygron/environment/target/tygronenv-*-jar-with-dependencies.jar src/main/goal/nl/tudelft/ti2806/tygronenv-jar-with-dependencies.jar
-
 before_script:
- # substitute the Tygron environment directory in the Tygron.mas2g with the new Tygron environment
- - sed -i 's|tygronenv-*-jar-with-dependencies.jar|tygronenv-jar-with-dependencies.jar|g' src/main/goal/nl/tudelft/ti2806/Service.mas2g
+- java -cp main/goal/nl/tudelft/ti2806/contextvh-1.0.1-Requests-jar-with-dependencies.jar login.Login $email $password
 
 script:
  # run the Goal Test with a 60s timeout
