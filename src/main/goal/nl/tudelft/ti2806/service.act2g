@@ -45,3 +45,15 @@ define	map_sell_land(BuyerId,MultiPolygon, Price) with
 define popup_answer(PopUpId, AnswerId) with
 	pre{ true }
 	post{ true }
+
+% description:
+% - answer a request/popup with the specified answer and a specified date
+% - NOTE: this action is used for requesting building permits.
+% parameters:
+% - PopUpId: The Popup ID of the request to be answered.
+% - AnswerId: The Answer ID of the specified answer for this request/popup.
+% - Date: The Date in milliseconds long from epoch. Arbitrary for simulation.
+define popup_answer_with_date(PopUpId, AnswerId, Date) with
+	pre{ true }
+	post{ true }
+	

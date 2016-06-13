@@ -26,7 +26,7 @@ module main{
 			Answer == 'Ja'
 		)
 	then
-		popup_answer(PopUpId, AnswerId) +
+		popup_answer_with_date(PopUpId, AnswerId, 0) +
 		delete(request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers)).
 	
 	% description: Build a conveniencestore when this is the lowest indicator score
