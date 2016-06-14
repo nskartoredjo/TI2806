@@ -16,33 +16,62 @@ In order to test if the request are working properly, Below there  are some scen
 The bot doesn't have any strategy yet. This will be done later.
 
 \subsection{Answer to Buy request}
-Play the tygron game with another stakeholder than services.
-Select a part of the land of services to buy from.
-Fill in the price per m2 you want to pay for this land.
-Send the request.
-The bot shouldn't accept this request and send a No back. This is because our bot doesn't want to loose any land.
+\begin{itemize}
+	\item Start the Tygron game.
+	\item Run the bot.
+	\item Join the game the bot is on.
+	\item choose a stakeholder.
+	\item select buy land.
+	\item select a land from services to buy.
+	\item choose price per m2.
+	\item confirm your buy action.
+	\item wait for the bot to react.
+	\item You should get a pop-up saying that the bot doesn't allow this request.
+\end{itemize}
+
 
 
 \subsection{Answer to Sell request}
-Play the tygron game with another stakeholder than services.
-Select a part of the land of your own to sell to services
-Fill in the price per m2 you want to get for this land.
-Send the request.
-The bot should accept this request and send a Yes back. This is because our bot always want extra land, because we don't have much land.
+\begin{itemize}
+	\item Start the Tygron game.
+	\item Run the bot.
+	\item Join the game the bot is on.
+	\item choose a stakeholder.
+	\item select sell land.
+	\item select a land of your own to sell.
+	\item choose price per m2.
+	\item choose services as stakeholder.
+	\item confirm your sell action.
+	\item wait for the bot to react.
+	\item You should get a pop-up saying that the bot does allow this request.
+\end{itemize}
 
 \subsection{Don't answer to buy request to other stakeholders.}
-Play the tygron game with another stakeholder than services.
-Select a part of the land of a random stakeholder except for yourself and services to buy from.
-Fill in the price per m2 you want to pay for this land.
-Send the request.
-The bot shouldn't answer at all, because this requests has nothing to to with us. 
+\begin{itemize}
+	\item Start the Tygron game.
+	\item Run the bot.
+	\item Join the game the bot is on.
+	\item choose a stakeholder.
+	\item select buy land.
+	\item select a land from another stakeholder except services to buy.
+	\item choose price per m2.
+	\item confirm your buy action.
+	\item wait for the bot to react.
+	\item you shouldn't get any reaction from the bot.
+\end{itemize}
 
 \subsection{Don't answer to sell request to other stakeholders.}
-Play the tygron game with another stakeholder than services.
-Select a part of the land of your own to sell to a random stakeholder except for yourself and services.
-Fill in the price per m2 you want to get for this land.
-Send the request.
-The bot shouldn't answer at all, because this requests has nothing to to with us. 
-
-
+\begin{itemize}
+	\item Start the Tygron game.
+	\item Run the bot.
+	\item Join the game the bot is on.
+	\item choose a stakeholder.
+	\item select sell land.
+	\item select a land of your own to sell.
+	\item choose price per m2.
+	\item choose a stakeholder except for services.
+	\item confirm your sell action.
+	\item wait for the bot to react.
+	\item you shouldn't get any reaction from the bot.
+\end{itemize}
 \end{document}
