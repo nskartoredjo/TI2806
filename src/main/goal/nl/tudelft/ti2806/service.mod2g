@@ -30,11 +30,6 @@ module main{
 	then
 		request.
 	
-	
-	
-	
-	
-	
 	% description: Build a conveniencestore when this is the lowest indicator score
 	% if:
 	% - you have a goal for building and the score for the convenience indicator is the lowest.
