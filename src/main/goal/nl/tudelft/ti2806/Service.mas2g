@@ -3,8 +3,8 @@
 %   the Tygron Environment. At the moment it should build and demolish.
 % - The agent uses the 1.0.9/context version 2 of the environment.
 
-use "contextvh-1.0.1-requests-jar-with-dependencies.jar" as environment with
-	project = "vhprojectctdpopup",
+use "contextvh-1.0.1-Requests-jar-with-dependencies.jar" as environment with
+	project = "vhprojectctd",
 	stakeholders = ["Voorzieningen"].
  
 define serviceAgent as agent {

@@ -32,6 +32,12 @@
 :- dynamic stakeholder/4.
 :- dynamic stakeholders/1.
 
+ % request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers) 
+ % are stored in a list in requests(RequestList).
+ :- dynamic requests/1.
+ :- dynamic request/10.
+
+
 % zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories) are stored individually.
 :- dynamic zone/5.
 :- dynamic zones/1.

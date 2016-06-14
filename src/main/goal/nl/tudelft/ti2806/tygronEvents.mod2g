@@ -5,6 +5,7 @@ use serviceBeliefs as beliefs.
 % - states: 10
 % - description: Percept Processing
 module tygronEvents {
+	
 	% description: Whenever actions are percepted old actions will be deleted and new actions will be inserted.
 	if 
 		percept(actions(X)), 
@@ -63,10 +64,14 @@ module tygronEvents {
 	% description: Whenever requests are percepted each request is inserted.
 	forall
 		percept(requests(RequestList)),
-		bel(member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList))
+		bel(
+		member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList),
+		my_stakeholder_id(StakeholderID),
+		member(StakeholderID, VisibleStakeholders)
+		)
 	do
 		insert(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers)).
-	
+
 	% description: Whenever settings are percepted old settings will be deleted and new settings will be inserted.
 	if 
 		percept(settings(X)), 

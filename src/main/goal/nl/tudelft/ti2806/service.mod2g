@@ -7,16 +7,30 @@ use buildSportsCenter as module.
 use buyLand as module.
 use sellLand as module.
 use demolish as module.
+use request as module.
 use permits as module.
 
 exit = nogoals.
 order = linear.
 
 % main:
-% - states: 5
+% - states: 6
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	
+	%description: check if there are any request and answer these.
+	% if: 
+	% - There are any request, which are not permits.
+	%then: 
+	% - execute the request module.
+	if
+	bel(
+		request(_,Type, _, _, _, _, _, _, _, _),
+		Type =\= 'PERMIT'
+	)
+	then
+		request.
+
 	% description: Go to the permit module and run that code.
 	% if:
 	% - There is a permit requests.
