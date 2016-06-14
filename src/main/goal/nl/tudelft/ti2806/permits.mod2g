@@ -2,6 +2,15 @@ use service as actionspec.
 use serviceKnowledge as knowledge.
 
 module permits {
+	
+	% description: answer yes to all interaction with date permits.
+	% if:
+	% - There is a request for my stakeholder
+	% - It is an interaction with date permit
+	% - It is possible to answer with yes.
+	% then:
+	% - answer the popup with yes and a date 0 miliseconds from now.
+	% - delete the request.
 	if
 		bel(
 			my_stakeholder_id(StakeholderId),
@@ -15,7 +24,15 @@ module permits {
 	then
 		popup_answer_with_date(PopUpId, AnswerId, 0) +
 		delete(request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers)).
-		
+	
+	% description: answer ok to all interaction permits.
+	% if:
+	% - There is a request for my stakeholder
+	% - It is an interaction permit
+	% - It is possible to answer with ok.
+	% then:
+	% - answer the popup with ok.
+	% - delete the request.	
 	if
 		bel(
 			my_stakeholder_id(StakeholderId),
