@@ -24,7 +24,7 @@ module main{
 	% - execute the request module.
 	if
 	bel(
-		request(_, Type, _, _, _, _, _, _, _, _),
+		request(_,Type, _, _, _, _, _, _, _, _),
 		Type =\= 'PERMIT'
 	)
 	then

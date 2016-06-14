@@ -11,11 +11,11 @@ module request {
 	% - answer the reqest with OK.	
 	if
 		bel(
-		my_stakeholder_id(StakeholderID),
-		request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
-		Type == 'INFORMATION', 
-		member(StakeholderID, VisibleStakeholders),
-		member(answer(AnswerID, 'OK'), Answers)
+			my_stakeholder_id(StakeholderID),
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INFORMATION', 
+			member(StakeholderID, VisibleStakeholders),
+			member(answer(AnswerID, 'OK'), Answers)
 		)
 	then popup_answer(RequestID, AnswerID).
 	
@@ -29,12 +29,12 @@ module request {
 	% - answer the reqest with No or OK.
 	if
 		bel(
-		my_stakeholder_id(StakeholderID), 
-		request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
-		Type == 'INTERACTION', 
-		RequestType = 'BUY_LAND',
-		member(StakeholderID, VisibleStakeholders),
-		(member(answer(AnswerID, 'Nee'), Answers); member(answer(AnswerID, 'OK'), Answers))
+			my_stakeholder_id(StakeholderID), 
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INTERACTION', 
+			RequestType = 'BUY_LAND',
+			member(StakeholderID, VisibleStakeholders),
+			(member(answer(AnswerID, 'Nee'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
 	then popup_answer(RequestID, AnswerID).
 
@@ -48,12 +48,12 @@ module request {
 	% - answer the reqest with Yes or OK.
 	if
 		bel(
-		my_stakeholder_id(StakeholderID), 
-		request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
-		Type == 'INTERACTION', 
-		RequestType = 'SELL_LAND',
-		member(StakeholderID, VisibleStakeholders),
-		(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
+			my_stakeholder_id(StakeholderID), 
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INTERACTION', 
+			RequestType = 'SELL_LAND',
+			member(StakeholderID, VisibleStakeholders),
+			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
 	then popup_answer(RequestID, AnswerID).
 	
@@ -67,12 +67,12 @@ module request {
 	% - answer the reqest with Yes or OK.
 	if
 		bel(
-		my_stakeholder_id(StakeholderID), 
-		request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
-		Type == 'INTERACTION', 
-		RequestType = 'DEMOLISH',
-		member(StakeholderID, VisibleStakeholders),
-		(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
+			my_stakeholder_id(StakeholderID), 
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INTERACTION', 
+			RequestType = 'DEMOLISH',
+			member(StakeholderID, VisibleStakeholders),
+			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
 	then popup_answer(RequestID, AnswerID).
 }
