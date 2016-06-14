@@ -21,12 +21,17 @@
 % my_stakeholder_id(StakeholderId) contains the Stakeholder ID of the stakeholder occupied by the agent.
 :- dynamic my_stakeholder_id/1.
 
-:- dynamic requests/1.
 :- dynamic settings/1.
 
 % stakeholder(StakeholderId, Name, OldIncome, StartBudget) are stored individually.
 :- dynamic stakeholder/4.
 :- dynamic stakeholders/1.
+
+ % request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers) 
+ % are stored in a list in requests(RequestList).
+ :- dynamic requests/1.
+ :- dynamic request/10.
+
 
 % zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories) are stored individually.
 :- dynamic zone/5.

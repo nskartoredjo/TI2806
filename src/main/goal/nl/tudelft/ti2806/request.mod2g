@@ -11,9 +11,8 @@ module request {
 	% - answer the reqest with OK.	
 	if
 		bel(
-		requests(Requests), 
 		my_stakeholder_id(StakeholderID),
-		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
+		request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 		Type == 'INFORMATION', 
 		member(StakeholderID, VisibleStakeholders),
 		member(answer(AnswerID, 'OK'), Answers)
@@ -30,9 +29,8 @@ module request {
 	% - answer the reqest with No or OK.
 	if
 		bel(
-		requests(Requests),
 		my_stakeholder_id(StakeholderID), 
-		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
+		request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 		Type == 'INTERACTION', 
 		RequestType = 'BUY_LAND',
 		member(StakeholderID, VisibleStakeholders),
@@ -50,9 +48,8 @@ module request {
 	% - answer the reqest with Yes or OK.
 	if
 		bel(
-		requests(Requests),
 		my_stakeholder_id(StakeholderID), 
-		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
+		request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 		Type == 'INTERACTION', 
 		RequestType = 'SELL_LAND',
 		member(StakeholderID, VisibleStakeholders),
@@ -70,9 +67,8 @@ module request {
 	% - answer the reqest with Yes or OK.
 	if
 		bel(
-		requests(Requests),
 		my_stakeholder_id(StakeholderID), 
-		member(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), Requests),
+		request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 		Type == 'INTERACTION', 
 		RequestType = 'DEMOLISH',
 		member(StakeholderID, VisibleStakeholders),
