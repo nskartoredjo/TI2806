@@ -10,7 +10,7 @@ use "../../../../../main/goal/nl/tudelft/ti2806/demolish.mod2g" as module.
 use "../../../../../main/goal/nl/tudelft/ti2806/buyLand.mod2g" as module.
 use "../../../../../main/goal/nl/tudelft/ti2806/buildTerrace.mod2g" as module.
 
-timeout = 20.
+timeout = 5.
 
 % description: 
 %	- Test if the building actions are executed.
