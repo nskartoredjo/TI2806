@@ -64,7 +64,11 @@ module tygronEvents {
 	% description: Whenever requests are percepted each request is inserted.
 	forall
 		percept(requests(RequestList)),
-		bel(member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList))
+		bel(
+		member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList),
+		my_stakeholder_id(StakeholderID),
+		member(StakeholderID, VisibleStakeholders)
+		)
 	do
 		insert(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers)).
 
