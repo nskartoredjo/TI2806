@@ -1,6 +1,9 @@
 use service as actionspec.
 use serviceKnowledge as knowledge.
 
+% permits:
+% - states: 2
+% - description: it should check wich permtis we have and answer them.
 module permits {
 	
 	% description: answer yes to all interaction with date permits.
