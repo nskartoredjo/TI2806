@@ -17,6 +17,11 @@ order = linear.
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	
+	% description: Go to the permit module and run that code.
+	% if:
+	% - There is a permit requests.
+	% then:
+	% - go to the permit module.
 	if
 		bel(
 			request(_, 'PERMIT', _,_,_,_,_,_,_,_)
