@@ -23,7 +23,7 @@ module buildTerrace {
 			member([Name,FunctionID,L],FS), 
 			(Name == terrace; Name = terras), 
 			lands(ListLands), my_stakeholder_id(StakeholderID), 
-			member(land(_, StakeholderID, Multipolygon, _, _), ListLands), 
+			member(land(_, StakeholderID, Multipolygon, _, _), ListLands),
 			not(multipolygon(Multipolygon)))	
 		then 
 			building_plan_construction(FunctionID, 1, Multipolygon) + 

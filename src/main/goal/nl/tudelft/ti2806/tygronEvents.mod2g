@@ -2,7 +2,7 @@ use serviceKnowledge as knowledge.
 use serviceBeliefs as beliefs.
 
 % Tygron Event:
-% - states: 9
+% - states: 10
 % - description: Percept Processing
 module tygronEvents {
 	

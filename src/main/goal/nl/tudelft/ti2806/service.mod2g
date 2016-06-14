@@ -8,12 +8,13 @@ use buyLand as module.
 use sellLand as module.
 use demolish as module.
 use request as module.
+use permits as module.
 
 exit = nogoals.
 order = linear.
 
 % main:
-% - states: 5
+% - states: 6
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	
@@ -29,6 +30,18 @@ module main{
 	)
 	then
 		request.
+
+	% description: Go to the permit module and run that code.
+	% if:
+	% - There is a permit requests.
+	% then:
+	% - go to the permit module.
+	if
+		bel(
+			request(_, 'PERMIT', _,_,_,_,_,_,_,_)
+		)
+	then
+		permits.
 	
 	% description: Build a conveniencestore when this is the lowest indicator score
 	% if:
