@@ -110,5 +110,7 @@ buildTerrace :-
 	terrasIndicator(Value, Target), 
 	Value >= 0.60.
 
-%%% NOTES %%% 
-% - Tygrons indicators still don't work so we can not test these. apart from there may be an error if multiple stakeholders make use of the same indicator since this changes the indicator names.
+% description:
+% The threshold price per m^2 the service stakeholder is willing to pay for land
+marktprijs(Huidigemarktprijs) :-
+	Huidigemarktprijs = 400.
