@@ -18,19 +18,6 @@ order = linear.
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	
-	%description: check if there are any request and answer these.
-	% if: 
-	% - There are any request, which are not permits.
-	%then: 
-	% - execute the request module.
-	if
-	bel(
-		request(_,Type, _, _, _, _, _, _, _, _),
-		Type =\= 'PERMIT'
-	)
-	then
-		request.
-
 	% description: Go to the permit module and run that code.
 	% if:
 	% - There is a permit requests.
@@ -42,7 +29,20 @@ module main{
 		)
 	then
 		permits.
-	
+		
+	%description: check if there are any request and answer these.
+	% if: 
+	% - There are any request, which are not permits.
+	%then: 
+	% - execute the request module.
+	if
+	bel(
+		request(_,Type, _, _, _, _, _, _, _, _),
+		not(Type == 'PERMIT')
+	)
+	then
+		request.
+
 	% description: Build a conveniencestore when this is the lowest indicator score
 	% if:
 	% - you have a goal for building and the score for the convenience indicator is the lowest.
