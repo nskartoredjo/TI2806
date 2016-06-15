@@ -2,7 +2,7 @@ use serviceKnowledge as knowledge.
 use serviceBeliefs as beliefs.
 
 % Tygron Event:
-% - states: 10
+% - states: 9
 % - description: Percept Processing
 module tygronEvents {
 	
@@ -21,14 +21,6 @@ module tygronEvents {
 	then 
 		delete(action_logs(Y)) + 
 		insert(action_logs(X)).
-	
-	% description: Whenever the list of buildings is percepted the old list is deleted and the new list is inserted.
-	if 
-		percept(buildings(NewBuildingList)), 
-		bel(buildings(OldBuildingList))
-	then 
-		delete(buildings(OldBuildingList)) + 
-		insert(buildings(NewBuildingList)).
 			
 	% description: Whenever functions are percepted old functions will be deleted and new functions will be inserted.
 	if 
