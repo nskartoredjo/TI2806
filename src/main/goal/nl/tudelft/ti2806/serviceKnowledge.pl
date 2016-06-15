@@ -36,6 +36,8 @@
  % are stored in a list in requests(RequestList).
  :- dynamic requests/1.
  :- dynamic request/10.
+ % request_answered(PopUpId) is inserted whenever a request is answered by the agent.
+ :- dynamic request_answered/1.
 
 
 % zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories) are stored individually.

@@ -44,7 +44,7 @@ define	map_sell_land(BuyerId,MultiPolygon, Price) with
 % - AnswerId: The Answer ID of the specified answer for this request/popup.
 define popup_answer(PopUpId, AnswerId) with
 	pre{ true }
-	post{ true }
+	post{ request_answered(PopUpId) }
 
 % description:
 % - answer a request/popup with the specified answer and a specified date
@@ -55,5 +55,5 @@ define popup_answer(PopUpId, AnswerId) with
 % - Date: The Date in milliseconds long from epoch. Arbitrary for simulation.
 define popup_answer_with_date(PopUpId, AnswerId, Date) with
 	pre{ true }
-	post{ true }
+	post{ request_answered(PopUpId) }
 	

@@ -25,7 +25,8 @@ module main{
 	% - go to the permit module.
 	if
 		bel(
-			request(_, 'PERMIT', _,_,_,_,_,_,_,_)
+			request(_, Type, _,_,_,_,_,_,_,_),
+			Type == 'PERMIT'
 		)
 	then
 		permits.
