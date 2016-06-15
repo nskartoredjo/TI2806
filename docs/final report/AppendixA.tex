@@ -1,85 +1,78 @@
 \section{Appendix A}
-Strategie
-
-Wat wij willen:\\
+In this section we describe what strategy we wanted to have for our bot. Also we will describe what strategy we really have.
+\subsection{What we wanted as a strategy}
 \begin{itemize}
-	\item Gedrag omtrent gebouwen:
+	\item behaviour concerning buildings:
 	\begin{itemize}
-		\item 	Een gebouw moet in staat zijn om de indicatoren van de voorzieningen te kunnen veranderen.
-		\item Een gebouw moet in staat zijn om indicatoren van andere stakeholders te kunnen veranderen.
+		\item  A building should be able to change the indicators for services.
+		\item A building should be able to change indicators for other stakeholders.
 		\begin{itemize}
-			\item Dit ten aanzien of afzien van andere stakeholders.
-			\item Te denken aan het verhogen van de groenindicator of overlast.
+			\item This could be an advantage or an disadvantage for other stakeholders.
+			\item For example increase the green indicator or nuisance.
 		\end{itemize}
 	
 	\end{itemize}
-
-	\item Gedrag omtrent bouwen:
+	\item behaviour concerning building:
 	\begin{itemize}
-		\item Een gebouw zou gebouwd kunnen worden wanneer deze als hoogste prioriteit staat gezien de indicatoren.
-		\item Een gebouw moet gebouwd kunnen worden wanneer deze positieve gevolgen heeft gezien alle indicatoren.
-		\item Een gebouw moet gebouwd kunnen worden in realistische vormen.
-		\item Een gebouw moet gebouwd kunnen worden in de opgegeven formaten/opgegeven oppervlakte.
-		\item Een gebouw moet gebouwd kunnen worden op locaties gezien andere units.
+		\item A building could be build if this has the highest priority looking at the indicators.
+		\item A building could be build if this has positive results for all indicators.
+		\item A building should be build with a realistic shape.
+		\item A building should be build within the given size or area.
+		\item A building should be build based on other buildings and locations.
 		\begin{itemize}
-			\item te denken aan wegen en eigen gebouwen.
+			\item For example next to roads or close to other buildings you own..
 		\end{itemize}
 	\end{itemize}
-	
-	\item Gedrag omtrent slopen:
+	\item behaviour concerning demolishing:
 	\begin{itemize}
-		\item Een gebouw moet gesloopt kunnen worden slechts als deze sloop een minimale verschil maakt voor de desbetreffende indicator.
-		\item Een gebouw moet gesloopt kunnen worden als deze geen deel uitmaakt van de voorzieningen gebouwen, maar wel in bezit is van de stakeholder voorzieningen.
-		\item Een gebouw moet gesloopt worden als dit een goedkopere oplossing is voor het verkrijgen van bebouwbaar land dan kopen van nieuw land.
+		\item A building could be demolished only when it has a minimum effect for that indicator.
+		\item A building could be demolished if it isn't any of the buildings services want to have, but services does own this building.
+		\item A building could be demolished if this is cheaper to use this land than buying new land.
 	\end{itemize}
-	
-	\item Gedrag omtrent verkopen:
+	\item behaviour concerning selling:
 	\begin{itemize}
-		\item 	Een gebouw moet verkocht kunnen worden slechts als deze verkoop minimale verschil maakt voor de desbetreffende indicator, en dat de inkomen voor het bouwen van het gebouw vergoed wordt.
-	\item	Land moet verkocht kunnen worden slechts als er zelf voldoende grond beschikbaar is, en wanneer het grond vergoed wordt.
-	\begin{itemize}
-		\item 	Er is voldoende grond beschikbaar als alle indicatoren worden gehaald, of gehaald kunnen worden
-	\end{itemize}
-		\end{itemize}
-
-	\item Gedrag omtrent kopen:
-	\begin{itemize}
-		\item 	Een stuk land moet gekocht kunnen worden in realistische vormen.
-		\item Een stuk land moet gekocht kunnen worden van andere stakeholders als er geen land is om te bouwen, en de indicatoren niet worden gehaald. 
-		\item	Een stuk land moet gekocht kunnen worden als er geen beschikbaar land is om te bouwen en slechts als de prijs van kopen hoger is dan slopen, of als de mogelijkheid voor slopen er niet is.
-	\item	Een stuk land moet gekocht kunnen worden als deze in een gunstige zone ligt, gezien de indicatoren
-	\item	Een stuk land moet gekocht kunnen worden wanneer deze over geen bebouwing beschikt.
-	\begin{itemize}
-		\item Zo niet dan moet een stuk land gekocht kunnen worden waar een gebouw op gebouwd is.
-	\end{itemize}		\item	Een stuk land moet gekocht kunnen worden als deze aangeboden wordt door andere stakeholders.
-	\item	Een stuk land moet gekocht kunnen worden enkel wanneer deze aangeboden wordt voor een acceptabele prijs.
-		
-	\end{itemize}
-	\item Gedrag omtrent interactie met andere stakeholders:
-	\begin{itemize}
-		\item 	De stakeholders moeten in staat zijn verkopen/kopen van land/gebouwen tegen te kunnen houden wanneer deze acties negatief uitvallen voor de indicatoren.
-		\item De stakeholders moeten in staat zijn om berichten naar elkaar te sturen.
-		\item De gemeente moeten een bouwvergunningen kunnen accepteren of verwerpen wanneer er gebouwd wordt door de stakeholder voorzieningen:
+		\item 	A building should be sold when it has a minimum effect on that indicator and the money we get is enough to cover building the exact same building.E
+		\item	Land should be only be sold if we have enough land and we get enough money for this land.
 		\begin{itemize}
-			\item Een nieuwe bouwvergunning moet kunnen worden beoordeelt door de gemeente wanneer de oude vergunnen geweigerd wordt.
+			\item 	There is enough land if all indicators have a 100$\%$ score or when this can be reached.
 		\end{itemize}
-	\item	De voorzieningen moet een bouwvergunning kunnen sturen naar de gemeente wanneer een gebouw is gebouwd.
+	\end{itemize}
+	\item behaviour concerning buying:
 	\begin{itemize}
-		\item De voorzieningen moet in staat zijn een alternatieve bouwvergunning te kunnen sturen wanneer een vergunning wordt geweigerd.
+		\item 	Land should be bought in realistic shapes. 
+		\item 	Land should be bought from other stakeholders if there is no land to build on and the indicators don't have a 100$\%$ score yet.
+		\item	Land should be bought if there is no land to build on and if the price for buying is better then demolishing or if demolishing is not an option.
+		\item	Land should be bought if it is in a zone which is useful looking at the indicators.
+		\item	Land should be bought when it doesn't have any buildings on it.
+		\begin{itemize}
+			\item If this is not the case, we need to buy land that has  building on it.
+		\end{itemize}		
+		\item	Land should be bought if other stakeholders are offering this land.
+		\item	Land should be bought only when it is for an acceptable price.
+	\end{itemize}
+	\item behaviour concerning interaction with other stakeholders:
+	\begin{itemize}
+		\item 	The stakeholders should be able to stop buying and selling of buildings or land if this has negative effects on our indicators.
+		\item 	The stakeholder should be able to send messages to each other.
+		\item 	Municipality should be able to accept or reject building permits from services.
+		\begin{itemize}
+			\item A new building permit should be reviewed by municipality when old building permits are rejected.
+		\end{itemize}
+	\item	Services should be able to send a building permit to municipality when a building is build.
+	\begin{itemize}
+		\item Services should be able to send another building permit is an old permit gets rejected by municipality.
 	\end{itemize}	
-	\item	De voorzieningen moet in staat zijn om land aan andere stakeholders aan te kunnen bieden.
-	\item	De voorzieningen moet in staat zijn om te kunnen onderhandelen, en te concurreren, met andere stakeholder over de prijs van te kopen of te verkopen land.
-	\item	De voorzieningen moet in staat zijn om te kunnen onderhandelen, en te concurreren, door middel van secundaire giften.
+	\item	Services should be able to offer land to other stakeholders.
+	\item	Services should be able to negotiate and compete with other stakeholders about the price for selling and buying land.
+	\item 	Services should be able to negotiate and compete by giving secondary gifts.
 	\begin{itemize}
-		\item Te denken aan meer groen voor voorzieningen.
+		\item For example increase the green indicator or give money to other stakeholders.
 	\end{itemize}	
-	\item	De voorzieningen moet in staat kunnen zijn om het aanzien te verhogen door middel van giften bij andere stakeholders, om hierdoor meer gunsten te kunnen verwachten bij de desbetreffende stakeholders.
+	\item	Services should be able to get more respect from other stakeholders by giving gifts, so we are able to do more when negotiating with these stakeholders.
 	\end{itemize}
 
 \end{itemize}
-
-
-Wat wij kunnen:
+\subsection{What we have as a strategy}
 
 
 \newpage
