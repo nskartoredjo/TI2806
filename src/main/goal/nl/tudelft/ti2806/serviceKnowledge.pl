@@ -2,8 +2,8 @@
 :- dynamic actions/1.
 :- dynamic action_logs/1.
 
-% building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors) are stored in a list in buildings(BuildingsList).
-:- dynamic building/7.
+% building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors, MultiPolygon, Area) are stored in a list in buildings(BuildingsList).
+:- dynamic building/9.
 :- dynamic buildings/1.
 
 :- dynamic functions/1.
@@ -16,6 +16,7 @@
 :- dynamic indicators/1.
 :- dynamic indicatorWeights/3.
 
+% land(LandId, OwnerId, MultiPolygon, ZoneList, Area) are stored in a list in lands(LandList).
 :- dynamic lands/1.
 
 % my_stakeholder_id(StakeholderId) contains the Stakeholder ID of the stakeholder occupied by the agent.
