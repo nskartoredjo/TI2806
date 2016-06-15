@@ -8,13 +8,11 @@ module request {
 	% - you have an information request
 	% - it is possible to answer with OK 
 	% then:
-	% - answer the reqest with OK.	
+	% - answer the request with OK.	
 	if
 		bel(
-			my_stakeholder_id(StakeholderID),
 			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 			Type == 'INFORMATION', 
-			member(StakeholderID, VisibleStakeholders),
 			member(answer(AnswerID, 'OK'), Answers)
 		)
 	then popup_answer(RequestID, AnswerID).
@@ -26,15 +24,15 @@ module request {
 	% - this request is to buy some land
 	% - it is possible to answer with No or OK 
 	% then:
-	% - answer the reqest with No or OK.
+	% - answer the request with No or OK.
 	if
-		bel(
-			my_stakeholder_id(StakeholderID), 
+		bel( 
 			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 			Type == 'INTERACTION', 
 			RequestType = 'BUY_LAND',
-			member(StakeholderID, VisibleStakeholders),
 			(member(answer(AnswerID, 'Nee'), Answers); member(answer(AnswerID, 'OK'), Answers))
+			% TODO: decide if we want to sell this piece of land
+			% based on the price per m^2, zone, service buildings present, buildable land and indicator change
 		)
 	then popup_answer(RequestID, AnswerID).
 
@@ -45,15 +43,15 @@ module request {
 	% - this request is to sell some land
 	% - it is possible to answer with Yes or OK 
 	% then:
-	% - answer the reqest with Yes or OK.
+	% - answer the request with Yes or OK.
 	if
 		bel(
-			my_stakeholder_id(StakeholderID), 
 			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 			Type == 'INTERACTION', 
 			RequestType = 'SELL_LAND',
-			member(StakeholderID, VisibleStakeholders),
 			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
+			% TODO: decide if we want to accept the offer to buy this piece of land
+			% based on the price per m^2, zone and amount of buildings present/buildable land
 		)
 	then popup_answer(RequestID, AnswerID).
 	
@@ -64,15 +62,14 @@ module request {
 	% - this request is to demolish
 	% - it is possible to answer with Yes or OK 
 	% then:
-	% - answer the reqest with Yes or OK.
+	% - answer the request with Yes or OK.
 	if
 		bel(
-			my_stakeholder_id(StakeholderID), 
 			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 			Type == 'INTERACTION', 
 			RequestType = 'DEMOLISH',
-			member(StakeholderID, VisibleStakeholders),
 			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
+			% TODO: decide if the indicator change and cost of demolishing is worth it.
 		)
 	then popup_answer(RequestID, AnswerID).
 }
