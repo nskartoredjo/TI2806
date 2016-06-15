@@ -22,14 +22,6 @@ module tygronEvents {
 		delete(action_logs(Y)) + 
 		insert(action_logs(X)).
 	
-	% description: Whenever the list of buildings is percepted the old list is deleted and the new list is inserted.
-	if 
-		percept(buildings(NewBuildingList)), 
-		bel(buildings(OldBuildingList))
-	then 
-		delete(buildings(OldBuildingList)) + 
-		insert(buildings(NewBuildingList)).
-			
 	% description: Whenever functions are percepted old functions will be deleted and new functions will be inserted.
 	if 
 		percept(functions(X)), 
@@ -65,9 +57,9 @@ module tygronEvents {
 	forall
 		percept(requests(RequestList)),
 		bel(
-		member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList),
-		my_stakeholder_id(StakeholderID),
-		member(StakeholderID, VisibleStakeholders)
+			member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList),
+			my_stakeholder_id(StakeholderID),
+			member(StakeholderID, VisibleStakeholders)
 		)
 	do
 		insert(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers)).

@@ -21,9 +21,6 @@ module tygronInit {
 	% description: During initialisation requests/1 is set to an empty list.
 	if true then insert(requests([])).
 	
-	% description: During initialisation buildings/1 is set to an empty list.
-	if true	then insert(buildings([])).
-	
 	% description: During initialisation settings/1 is set to an empty list.
 	if true then insert(settings([])).
 		
