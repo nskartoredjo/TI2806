@@ -67,7 +67,7 @@ module tygronEvents {
 		bel(
 		member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList),
 		my_stakeholder_id(StakeholderID),
-		member(StakeholderID, VisibleStakeholders)
+		member(StakeholderID, VisibleForStakeholders)
 		)
 	do
 		insert(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers)).
