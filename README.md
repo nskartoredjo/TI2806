@@ -18,7 +18,7 @@ to contact the team, aproach [nskartoredjo](https://github.com/nskartoredjo).
 [![Build Status](https://travis-ci.org/nskartoredjo/TI2806.svg?branch=master)](https://travis-ci.org/nskartoredjo/TI2806)
 
 ## Final Report
-[Final report](https://github.com/nskartoredjo/TI2806/blob/Final_report/deliverables/Final_Product_Vision.pdf)
+[Final report](https://github.com/nskartoredjo/TI2806/blob/Final_report/deliverables/final%20report.pdf)
 
 
 ## SCRUM Deliverables
