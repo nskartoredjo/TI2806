@@ -1,6 +1,11 @@
 \section{Description}
 The services provider is responsible for a slew of services in the TU Delft campus area. Services include terraces, convenience stores and sports centers. These services need to be provided to all citizens of all the zones in the area. The design of our virtual human is based on the strategy descussed in \ref{sec:appendixa}. However, not every wanted feature has been implemented and thus in this section we will go over every implemented feature in the virtual human.
 
-\subsection{}
+\subsection{Decision making for buildings}
+By continiously consulting the indicators, the virtual human is able to decide, based on those indicators, what service building it should build. This is decided by which indicator is the lowest currently. When that decision is made, then the virtual human searches for a plot of land to build on. The build location is decided by looking at each zone and picking the zone which would allow us to provide the most citizens with our services. Next we look at the land we own ourself in that zone. If that yields a suitable place to build on, then the virtual human will build an appropriate size building on that piece of land. The size is computed based on the needed square meters of service building, that is needed in the chosen zone. If the virtual human does not already own a plot of land which suits the needs at the moment, then it will try to buy land from another stakeholder for an appropriate price. 
+If a building is build, then the virtual human must request a building permit from the municipality. Only if that permit is granted, the building is actually build in the game and we will see it in the indicators. 
+
+\subsection{Communication with other stakeholders}
+While playing our virtual human will have to reply to request by other stakeholders in the game. These might be received whenever a stakeholder wants to buy a piece of land from the services stakeholder. The virtual human will decide if we can spare the plot of land and if we are offered a good sum of money for it. Another request we might receive would be when another stakeholder offers a piece of land to us. The virtual human will decide if we want that plot of land based on the need for land and the requested sum of money.
 
 \newpage
