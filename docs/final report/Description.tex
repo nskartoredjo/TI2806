@@ -6,6 +6,9 @@ By continiously consulting the indicators, the virtual human is able to decide, 
 If a building is build, then the virtual human must request a building permit from the municipality. Only if that permit is granted, the building is actually build in the game and we will see it in the indicators. 
 
 \subsection{Communication with other stakeholders}
-While playing our virtual human will have to reply to request by other stakeholders in the game. These might be received whenever a stakeholder wants to buy a piece of land from the services stakeholder. The virtual human will decide if we can spare the plot of land and if we are offered a good sum of money for it. Another request we might receive would be when another stakeholder offers a piece of land to us. The virtual human will decide if we want that plot of land based on the need for land and the requested sum of money.
+While playing our virtual human will have to reply to request by other stakeholders in the game. These might be received whenever a stakeholder wants to buy a piece of land from the services stakeholder. The virtual human will decide if we can spare the plot of land and if we are offered a good sum of money for it. It also takes into account that, if service buildings are on that specific plot of land, our indicators might drop. Another request we might receive would be when another stakeholder offers a piece of land to us. The virtual human will decide if we want that plot of land based on the need for land and the requested sum of money.
+
+\subsection{Indicators in the scenario}
+To gather information about the amount of floor size service buildings cover in the game, we designed and implemented excel-based indicators for the game. These indicators will score each service category seperately. Every zone gets a factor appropriate to the amount of citizens of that zone. Then the floor size is compared to the amount of housing units present in the zone and if that result matches a threshold, then that zone is statified with our services. The virtual human is designed to get convenience stores, terraces and sports centers to every citizen in every zone.
 
 \newpage
