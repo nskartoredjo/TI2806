@@ -28,6 +28,7 @@ module buildConvenienceStore {
 		)
 	then 
 	%TODO build action who builds in zoneID with size Todo.
-		building_plan_construction(FunctionID, 1, Multipolygon)	+
+		build_specified_land(StakeholderID, ZoneID, FunctionID, 10, 10, 0) +
+		%building_plan_construction(FunctionID, 1, Multipolygon)	+
 		insert(constructed(FunctionID, Name), multipolygon(Multipolygon)).
 }
