@@ -14,8 +14,11 @@ module buildTerrace {
 	% - there is a goal to build a building
 	% - there hasn't been build any terrace
 	% - there is a building type 'terrace'
+	% - we have an indicator who whant to build this type
+	% - The zoneID is the zone with the highest needed value.
+	% - Size is sqrt of the total needed value.
 	% then:
-	% - Build the terrace on a fixed polygon square
+	% - Build the terrace on the given zone, with the given size 10 meters next to a road
 	% - insert the belief 'constructed terrace'
 	if 
 		bel(

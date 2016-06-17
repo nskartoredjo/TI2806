@@ -10,8 +10,11 @@ module buildSportsCenter {
 	% description: Build a sports center on a specified MultiPolygon.
 	% if:
 	% - there is a building type 'sports center' or 'sportcentrum'
+	% - we have an indicator who whant to build this type
+	% - The zoneID is the zone with the highest needed value.
+	% - Size is sqrt of the total needed value.
 	% then:
-	% - Build the sports center on a multipolygon from own land
+	% - Build the sports center on the given zone, with the given size 10 meters next to a road
 	if 
 		bel(
 			functions(FS), 

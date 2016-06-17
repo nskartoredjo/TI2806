@@ -10,8 +10,11 @@ module buildConvenienceStore {
 	% description: Build a convenience store on a specified MultiPolygon.
 	% if:
 	% - there is a building type 'convenience store' or 'buurtwinkel'
+	% - we have an indicator who whant to build this type
+	% - The zoneID is the zone with the highest needed value.
+	% - Size is sqrt of the total needed value.
 	% then:
-	% - Build the convenience store on multipolygon from own land
+	% - Build the convenience store on the given zone, with the given size 10 meters next to a road
 	if 
 		bel(
 			functions(FS), member([Name,FunctionID,_], FS), 
