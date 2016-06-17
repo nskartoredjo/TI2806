@@ -43,6 +43,11 @@ module main{
 	then
 		permits.
 	
+	if
+		bel(counter(ZoneID, Count), Count > 1)
+	then
+		buyLand(ZoneID).
+		
 	% description: Build a conveniencestore when this is the lowest indicator score
 	% if:
 	% - you have a goal for building and the score for the convenience indicator is the lowest.

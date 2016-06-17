@@ -6,14 +6,26 @@ exit = always.
 % buyLand:
 % - states: 1
 % - description: Prompts the owner of the specified MultiPolygon square the agent wants to buy that land.
-module buyLand {
+module buyLand(ZoneID) {
 	% description: Buys the specified MultiPolygon square if possible.
 	% if:
 	% - true
 	% then:
 	% - Buys the specified MultiPolygon square for the specified price.
 	if 
-		true
+		bel(
+			functions(FS), member([Name,FunctionID,_], FS), 
+			(Name =='buurtwinkel'; Name == 'convenience store'), 
+			my_stakeholder_id(StakeholderID),
+			indicatorLink(_, IndicatorWeights), 
+			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
+			(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
+			indicator(IndicatorID, _, _, ZoneList) ,
+			maxTodo(ZoneList, Todo, ZoneID) , Size is sqrt(Todo), counter(ZoneID, Count)
+		)
 	then 
-		map_buy_land(multipolygon('MULTIPOLYGON (((0 200, 85 200, 85 255, 0 255, 0 200)))'), 1).
+	%TODO build action who builds in zoneID with size Todo.
+		buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, 10) +
+		delete(counter(ZoneID, Count)) +
+		insert(counter(ZoneID, 0)).
 }

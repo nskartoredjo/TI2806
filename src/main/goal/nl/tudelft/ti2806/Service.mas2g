@@ -4,7 +4,7 @@
 % - The agent uses the 1.0.9/context version 2 of the environment.
 
 use "contextvh-1.0.1.2-jar-with-dependencies.jar" as environment with
-	project = "vhprojectctd",
+	project = "vhprojectbuy",
 	stakeholders = ["Voorzieningen"].
  
 define serviceAgent as agent {
