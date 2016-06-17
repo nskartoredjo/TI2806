@@ -22,7 +22,7 @@ module permits {
 			PopUpType = 'INTERACTION_WITH_DATE',
 			Type == 'PERMIT',
 			member(answer(AnswerId, Answer), Answers),
-			Answer == 'Ja'
+			(Answer == 'Ja'; Answer == 'Yes')
 		)
 	then
 		popup_answer_with_date(PopUpId, AnswerId, 0) +
