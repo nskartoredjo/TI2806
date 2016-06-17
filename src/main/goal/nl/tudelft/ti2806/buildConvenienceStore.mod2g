@@ -13,22 +13,56 @@ module buildConvenienceStore {
 	% - we have an indicator who whant to build this type
 	% - The zoneID is the zone with the highest needed value.
 	% - Size is sqrt of the total needed value.
+	% - There is land that is big enough to build on
 	% then:
 	% - Build the convenience store on the given zone, with the given size 10 meters next to a road
 	if 
 		bel(
 			functions(FS), member([Name,FunctionID,_], FS), 
 			(Name =='buurtwinkel'; Name == 'convenience store'), 
-			my_stakeholder_id(StakeholderID), 
+			my_stakeholder_id(StakeholderID),
 			indicatorLink(_, IndicatorWeights), 
 			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
 			(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
 			indicator(IndicatorID, _, _, ZoneList) ,
-			maxTodo(ZoneList, Todo, ZoneID) , Size is sqrt(Todo)
+			maxTodo(ZoneList, Todo, ZoneID) , Size is sqrt(Todo),	
+			lands(ListLands),
+			member(land(_,StakeholderID,_,Zones,Area), ListLands),
+			member(ZoneID, Zones), Area >= Todo*0.8
 		)
 	then 
 	%TODO build action who builds in zoneID with size Todo.
 		build_specified_building(StakeholderID, ZoneID, FunctionID, Size, Size, 10) +
 		%building_plan_construction(FunctionID, 1, Multipolygon)	+
 		insert(constructed(FunctionID, Name).%, multipolygon(Multipolygon)).
+
+% description: Build a convenience store on a specified MultiPolygon.
+	% if:
+	% - there is a building type 'convenience store' or 'buurtwinkel'
+	% - we have an indicator who whant to build this type
+	% - The zoneID is the zone with the highest needed value.
+	% - Size is sqrt of the total needed value.
+	% - There is no land that is big enough to build on.
+	% then:
+	% - buy land in that zone.
+	if 
+		bel(
+			functions(FS), member([Name,FunctionID,_], FS), 
+			(Name =='buurtwinkel'; Name == 'convenience store'), 
+			my_stakeholder_id(StakeholderID),
+			indicatorLink(_, IndicatorWeights), 
+			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
+			(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
+			indicator(IndicatorID, _, _, ZoneList) ,
+			maxTodo(ZoneList, Todo, ZoneID) , Size is sqrt(Todo),	
+			lands(ListLands),
+			member(land(_,StakeholderID,_,Zones,Area), ListLands),
+			member(ZoneID, Zones), Area < Todo*0.8
+		)
+	then 
+	%TODO build action who builds in zoneID with size Todo.
+		buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, 10).
 }
+
+
+

@@ -49,3 +49,16 @@ define	map_sell_land(BuyerId,MultiPolygon, Price) with
 define build_specified_building(StakeholderID, ZoneID, BuildingID, DEPTH, WIDTH, DISTANCETOROAD) with
 	pre{ true }
 	post{ true}
+	
+	% description:
+% - build on a piece of land in a given zone for a given depth and width
+% parameters:
+% -	StakeholderID: The Stakeholder ID of the bot.
+% - ZoneID: The zone the building should be built in.
+% - BuildingID: The id of the building you need.
+% - Depth: The depth of the area.
+% - Width: The width of the area.
+% - DistanceToRoad: distance to a road.
+define buy_specified_land(StakeholderID, ZoneID, Indicator, Price, DEPTH, WIDTH, DISTANCETOROAD) with
+	pre{ true }
+	post{ true}

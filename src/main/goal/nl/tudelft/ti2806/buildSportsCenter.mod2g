@@ -13,6 +13,7 @@ module buildSportsCenter {
 	% - we have an indicator who whant to build this type
 	% - The zoneID is the zone with the highest needed value.
 	% - Size is sqrt of the total needed value.
+	% - There is no land that is big enough to build on.
 	% then:
 	% - Build the sports center on the given zone, with the given size 10 meters next to a road
 	if 
@@ -25,7 +26,10 @@ module buildSportsCenter {
 			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
 			(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
 			indicator(IndicatorID, _, _, ZoneList),
-			maxTodo(ZoneList, Todo, ZoneID), Size is sqrt(Todo)
+			maxTodo(ZoneList, Todo, ZoneID), Size is sqrt(Todo),
+			lands(ListLands),
+			member(land(_,StakeholderID,_,Zones,Area), ListLands),
+			member(ZoneID, Zones), Area >= Todo*0.8
 		)
 	then 
 	%TODO build action who builds in zoneID with size Todo.
@@ -34,4 +38,31 @@ module buildSportsCenter {
 		insert(
 			constructed(FunctionID, Name)
 		).
+
+	% description: Build a sports center on a specified MultiPolygon.
+	% if:
+	% - there is a building type 'sports center' or 'sportcentrum'
+	% - we have an indicator who whant to build this type
+	% - The zoneID is the zone with the highest needed value.
+	% - Size is sqrt of the total needed value.
+	% - There is no land that is big enough to build on.
+	% then:
+	% - buy land in that zone
+	if 
+		bel(
+			functions(FS), 
+			member([Name,FunctionID,L],FS), 
+			(Name =='sportcentrum'; Name == 'sports center'),
+			my_stakeholder_id(StakeholderID),
+			indicatorLink(_, IndicatorWeights), 
+			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
+			(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
+			indicator(IndicatorID, _, _, ZoneList),
+			maxTodo(ZoneList, Todo, ZoneID), Size is sqrt(Todo),
+			lands(ListLands),
+			member(land(_,StakeholderID,_,Zones,Area), ListLands),
+			member(ZoneID, Zones), Area < Todo*0.8
+		)
+	then 
+	buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, 10).
 }
