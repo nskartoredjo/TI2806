@@ -89,9 +89,6 @@ module request {
 			% check which zone this is request is related to > connector change needed
 			% check if we have service buildings on this piece of land
 			% check if selling would affect indicators 
-			
-			% lands/5 has area, building/9 has area & zone
-			% based on the price per m^2, zone, service buildings present, buildable land and indicator change
 }
 
 	% description: if we get an interaction request to sell land, answer with Yes or OK. 
@@ -113,7 +110,7 @@ module request {
 			marktprijs(Huidigemarktprijs),
 			(Huidigemarktprijs >= Price/Area)
 			% TODO: decide if we want to accept the offer to buy this piece of land
-			% based on the price per m^2, zone and amount of buildings present/buildable land
+			% based on the price per m^2(done), zone and amount of buildings present/buildable land
 		)
 	then 
 		popup_answer(RequestID, AnswerID) +

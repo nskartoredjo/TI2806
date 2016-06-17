@@ -115,26 +115,38 @@ buildTerrace :-
 % The threshold price per m^2 the service stakeholder is willing to pay for land
 marktprijs(Huidigemarktprijs) :-
 	Huidigemarktprijs = 400.
-	
+
+% description:
+% returns all area values of all owned lands	
 availableAreas(Area) :-
 	my_stakeholder_id(StakeholderId),
 	lands(LandList),
 	member(land(_, StakeholderId, _, _, Area), LandList).
 
+% description:
+% sums all areas from availableAreas
 ownedLand(AvailableArea) :-
 	bagof(Area, availableAreas(Area), Out),
 	list_sum(Out, AvailableArea).
-	
+
+% description:
+% prolog rule to sum a list	
 list_sum([], 0).
 list_sum([Head | Tail], Total) :-
 	list_sum(Tail, Sum1),
 	Total is Head + Sum1.
 
+% description:
+% returns the total target area from the indicators
 targetLand(TotalArea) :-
 	buurtwinkelIndicator(_, BuurtwinkelTargetValue),
 	sportcentrumIndicator(_, SportcentrumTargetValue),
 	terrasIndicator(_, TerrasTargetValue),
 	list_sum([BuurtwinkelTargetValue, SportcentrumTargetValue, TerrasTargetValue], TotalArea).
 	
+% description:
+% returns the margin by which we allow the virtual human to sell land
+% until the virtual human can see in the request which zone we are selling from,
+% this is the solution we decided on
 marginofTotalLand(Margin) :-
 	Margin is 2.
