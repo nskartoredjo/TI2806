@@ -19,8 +19,8 @@ timeout = 5.
 %	- Test if the permit requests are correctly answered.
 test main with
 	in{
-		eventually done(building_plan_construction(FunctionID, FloorSize, Multipolygon)).
-		done(building_plan_construction(FunctionID, FloorSize, Multipolygon)) leadsto multipolygon(Multipolygon).
+		eventually done(build_specified_building(StakeholderID, ZoneID, FunctionID, Depth, Width, DistancetoRoad)).
+		done(build_specified_building(StakeholderID, ZoneID, FunctionID, Depth, Width, DistancetoRoad)) leadsto constructed(FunctionID, Name).
 		eventually bel(buildSportsCenter).
 		eventually bel(buurtwinkelIndicator(BCurrent, BTarget)). 
 		eventually bel(sportcentrumIndicator(SCurrent, STarget)). 

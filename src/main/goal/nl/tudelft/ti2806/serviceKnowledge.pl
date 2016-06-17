@@ -150,3 +150,10 @@ targetLand(TotalArea) :-
 % this is the solution we decided on
 marginofTotalLand(Margin) :-
 	Margin is 2.
+
+maxTodo([zone_link(ZoneID,_, Current, Target)],(Target -Current), ZoneID).
+maxTodo([zone_link(ZoneID,_, Current, Target)|Xs], R, ZoneID3) :- 
+        	 maxTodo(Xs, Todo, ZoneID2), 
+    ((Target -Current) > Todo -> 
+    R = (Target-Current), ZoneID3 = ZoneID ; 
+    R = Todo, ZoneID3 = ZoneID2).

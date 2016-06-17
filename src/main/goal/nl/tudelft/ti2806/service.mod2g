@@ -50,7 +50,7 @@ module main{
 	% then:
 	% - build a conveniencestore	
 	if 	
-		goal(buildTerrace; buildStore; buildSportsCenter), 
+		goal(buildStore), 
 		bel(
 			buurtwinkelIndicator(BCurrent, _), 
 			sportcentrumIndicator(SCurrent, _), 
@@ -68,7 +68,7 @@ module main{
 	% then:
 	% - build a terras	
 	if 	
-		goal(buildTerrace; buildStore; buildSportsCenter), 
+		goal(buildTerrace), 
 		bel(
 			buurtwinkelIndicator(BCurrent, _), 
 			sportcentrumIndicator(SCurrent, _), 
@@ -86,7 +86,7 @@ module main{
 	% then:
 	% - build a sports center	
 	if 	
-		goal(buildTerrace; buildStore; buildSportsCenter), 
+		goal(buildSportsCenter), 
 		bel(
 			buurtwinkelIndicator(BCurrent, _), 
 			sportcentrumIndicator(SCurrent, _), 

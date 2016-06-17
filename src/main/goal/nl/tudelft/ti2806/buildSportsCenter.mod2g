@@ -10,22 +10,28 @@ module buildSportsCenter {
 	% description: Build a sports center on a specified MultiPolygon.
 	% if:
 	% - there is a building type 'sports center' or 'sportcentrum'
+	% - we have an indicator who whant to build this type
+	% - The zoneID is the zone with the highest needed value.
+	% - Size is sqrt of the total needed value.
+	% - There is no land that is big enough to build on.
 	% then:
-	% - Build the sports center on a multipolygon from own land
+	% - Build the sports center on the given zone, with the given size 10 meters next to a road
 	if 
 		bel(
 			functions(FS), 
 			member([Name,FunctionID,L],FS), 
 			(Name =='sportcentrum'; Name == 'sports center'),
-			lands(ListLands), 
-			my_stakeholder_id(StakeholderID), 
-			member(land(_, StakeholderID, Multipolygon, _, _), ListLands),
-			not(multipolygon(Multipolygon))
+			my_stakeholder_id(StakeholderID),
+			indicatorLink(_, IndicatorWeights), 
+			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
+			(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
+			indicator(IndicatorID, _, _, ZoneList),
+			maxTodo(ZoneList, Todo, ZoneID), Size is sqrt(Todo)
 		)
 	then 
-		building_plan_construction(FunctionID, 1, Multipolygon) + 
+	%TODO build action who builds in zoneID with size Todo.
+		build_specified_building(StakeholderID, ZoneID, FunctionID, Size, Size, 10) +
 		insert(
-			constructed(FunctionID, Name), 
-			multipolygon(Multipolygon)
+			constructed(FunctionID, Name)
 		).
 }
