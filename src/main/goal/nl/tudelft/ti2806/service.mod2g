@@ -62,8 +62,7 @@ module main{
  			not(Name == 'sportcentrum'), 
  			not(Name =='sports center'), 
  			not(Name =='buurtwinkel'), 
- 			not(Name =='convenience store'), 
- 			not(demolished(BuildingID))
+ 			not(Name =='convenience store')
  		) 
 	then 
 			demolish(BuildingID).
@@ -74,7 +73,12 @@ module main{
 	% Then:
 	% - execute the buyland module.		
 	if
-		bel(counter(ZoneID, Count), Count > 1)
+		bel(
+			counter(ZoneID, Count), 
+			Count > 1, 
+			haltCount(Halt),
+			Halt < 3
+		)
 	then
 		buyLand(ZoneID).
 		

@@ -57,11 +57,18 @@ module request {
 			% description:
 			% If the OK option is present then answer with that
 			if
-				bel(member(answer(AnswerID, 'OK'), Answers))
+				bel(
+					member(answer(AnswerID, 'OK'), Answers),
+					haltCount(Halt),
+					NewHalt is Halt - 1
+				)
 			then
 				popup_answer(RequestID, AnswerID) +
-				delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
-			
+				delete(
+					request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+					haltCount(Halt)
+				) +
+				insert(haltCount(NewHalt)).
 				
 			% description:
 			% Decide if we want to sell a piece of land

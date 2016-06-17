@@ -22,11 +22,22 @@ module buyLand(ZoneID) {
 			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
 			(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
 			indicator(IndicatorID, _, _, ZoneList) ,
-			maxTodo(ZoneList, Todo, ZoneID) , Size is sqrt(Todo), counter(ZoneID, Count)
+			maxTodo(ZoneList, Todo, ZoneID) , 
+			Size is sqrt(Todo), 
+			counter(ZoneID, Count),
+			haltCount(Halt),
+			NewHalt is Halt + 1
 		)
 	then 
 	%TODO build action who builds in zoneID with size Todo.
-		buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, Size) +
-		delete(counter(ZoneID, Count)) +
-		insert(counter(ZoneID, 0)).
+		buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, 0) +
+		delete(
+			counter(ZoneID, Count),
+			haltCount(Halt)
+		) +
+		insert(
+			counter(ZoneID, 0), 
+			haltCount(NewHalt)
+		).
+		
 }

@@ -26,8 +26,10 @@ module buildConvenienceStore {
 			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
 			(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
 			indicator(IndicatorID, _, _, ZoneList) ,
-			maxTodo(ZoneList, Todo, ZoneID) , Size is sqrt(Todo),
-			counter(ZoneID, Count), NewCount is Count + 1	
+			maxTodo(ZoneList, Todo, ZoneID) , 
+			Size is sqrt(Todo),
+			counter(ZoneID, Count), 
+			NewCount is Count + 1	
 		)
 	then 
 	%TODO build action who builds in zoneID with size Todo.
