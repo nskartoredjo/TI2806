@@ -24,7 +24,7 @@ module request {
 		popup_answer(RequestID, AnswerID) +
 		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
 	
-	% description: if we get an interaction request to buy land, answer with Ja, Nee or OK. 
+	% description: if we get an interaction request to buy land, answer with Yes, No or OK. 
 	%				You can only have an OK option if there are no other options.
 	% if:
 	% - you have an interaction request
@@ -33,14 +33,14 @@ module request {
 	% - if:
 	%	- the offered price for the land is good enough
 	%	- the owned land is enough to build on 
-	%	- it is possible to answer with Ja
+	%	- it is possible to answer with Yes
 	% - then:
-	%	- answer with Ja
+	%	- answer with Yes
 	%	- delete the request from the belief base
 	% - if:
-	%	- it is possible to answer with Nee
+	%	- it is possible to answer with No
 	% - then:
-	%	- answer with Nee
+	%	- answer with No
 	%	- delete the request from the belief base
 	% - if:
 	%	- it is possible to answer with OK
@@ -58,8 +58,8 @@ module request {
 			% Decide if we want to sell a piece of land
 			if
 				bel(
-					marktprijs(Huidigemarktprijs),
-					(Huidigemarktprijs =< Price/Area),
+					marketprice(Currentmarketprice),
+					(Currentmarketprice =< Price/Area),
 					(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'Yes'), Answers)),
 					ownedLand(OwnedTotalArea),
 					targetLand(NeededTotalArea),
@@ -109,17 +109,36 @@ module request {
 		bel(
 			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 			Type == 'INTERACTION', 
-			RequestType == 'SELL_LAND',
-			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers)),
-			marktprijs(Huidigemarktprijs),
-			(Huidigemarktprijs >= Price/Area)
-			% TODO: decide if we want to accept the offer to buy this piece of land
-			% based on the price per m^2(done), zone and amount of buildings present/buildable land
-		)
-	then 
-		popup_answer(RequestID, AnswerID) +
-		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
-	
+			RequestType == 'SELL_LAND')
+		then {
+			
+		% description:
+		% Decide if we want to buy the offered piece of land based on if the marketprice is ok
+		% and if we actually need land.
+		% TODO: decide if we want to accept the offer to buy this piece of land
+		% based on the price per m^2(done), land needed(done), zone and amount of buildings present/buildable land
+		if 
+			bel(
+				(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'Yes'), Answers)),
+				marketprice(Currentmarketprice),
+				(Currentmarketprice >= Price/Area),
+				ownedLand(OwnedTotalArea),
+				targetLand(NeededTotalArea),
+				marginofTotalLand(Margin),
+				OwnedTotalArea < (NeededTotalArea * Margin)
+			)
+		then
+			popup_answer(RequestID, AnswerID) +
+			delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+				
+		% description:
+		% If the OK option is present then answer with that
+		if
+			bel(member(answer(AnswerID, 'OK'), Answers))
+		then 
+			popup_answer(RequestID, AnswerID) +
+			delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+		}
 	% description: if we get an interaction request to demolish, answer with Yes or OK. 
 	%				You can only have an OK option if there are no other options.
 	% if:

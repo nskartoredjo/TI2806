@@ -113,8 +113,8 @@ buildTerrace :-
 
 % description:
 % The threshold price per m^2 the service stakeholder is willing to pay for land
-marktprijs(Huidigemarktprijs) :-
-	Huidigemarktprijs = 400.
+marketprice(Currentmarketprice) :-
+	Currentmarketprice = 400.
 
 % description:
 % returns all area values of all owned lands	
