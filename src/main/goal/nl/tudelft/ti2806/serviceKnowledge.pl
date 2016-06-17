@@ -115,3 +115,26 @@ buildTerrace :-
 % The threshold price per m^2 the service stakeholder is willing to pay for land
 marktprijs(Huidigemarktprijs) :-
 	Huidigemarktprijs = 400.
+	
+availableAreas(Area) :-
+	my_stakeholder_id(StakeholderId),
+	lands(LandList),
+	member(land(_, StakeholderId, _, _, Area), LandList).
+
+ownedLand(AvailableArea) :-
+	bagof(Area, availableAreas(Area), Out),
+	list_sum(Out, AvailableArea).
+	
+list_sum([], 0).
+list_sum([Head | Tail], Total) :-
+	list_sum(Tail, Sum1),
+	Total is Head + Sum1.
+
+targetLand(TotalArea) :-
+	buurtwinkelIndicator(_, BuurtwinkelTargetValue),
+	sportcentrumIndicator(_, SportcentrumTargetValue),
+	terrasIndicator(_, TerrasTargetValue),
+	list_sum([BuurtwinkelTargetValue, SportcentrumTargetValue, TerrasTargetValue], TotalArea).
+	
+marginofTotalLand(Margin) :-
+	Margin is 2.
