@@ -19,7 +19,7 @@ module buildConvenienceStore {
 	% - Update the counter.
 	if 
 		bel(
-			functions(FS), member([Name,FunctionID,_], FS), 
+			functions(Functions), member([Name,FunctionID,_], Functions), 
 			(Name =='buurtwinkel'; Name == 'convenience store'), 
 			my_stakeholder_id(StakeholderID),
 			indicatorLink(_, IndicatorWeights), 

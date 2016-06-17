@@ -6,14 +6,14 @@ exit = always.
 % buildDemolish:
 % - states: 2
 % - description: Demolish buildings as specified if possible.
-module demolish(ID) {
+module demolish(BuildingID) {
 	% description: Demolish a specified building.
 	% if:
 	% - There exist a building with buildingID.
 	% then:
 	% - Demolish the building with buildingID.
 	if 
-		bel(buildings(BS), member(building(ID,_,_,_), BS))
+		bel(buildings(Builings), member(building(BuildingID,_,_,_), Buildings))
 	then 
-		building_plan_demolish(ID).
+		building_plan_demolish(BuildingID).
 }

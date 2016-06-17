@@ -8,27 +8,35 @@ module tygronEvents {
 	
 	% description: Whenever actions are percepted old actions will be deleted and new actions will be inserted.
 	if 
-		percept(actions(X)), 
-		bel(actions(Y)) 
+		percept(actions(NewActions)), 
+		bel(actions(OldActions)) 
 	then 
-		delete(actions(Y)) + 
-		insert(actions(X)).
+		delete(actions(OldActions)) + 
+		insert(actions(NewActions)).
 	
 	% description: Whenever logs of actions are percepted old action_logs will be deleted and new action_logs will be inserted.
 	if 
-		percept(action_logs(X)), 
-		bel(action_logs(Y)) 
+		percept(action_logs(NewActionLog)), 
+		bel(action_logs(OldActionLog)) 
 	then 
-		delete(action_logs(Y)) + 
-		insert(action_logs(X)).
+		delete(action_logs(OldActionLog)) + 
+		insert(action_logs(NewActionLog)).
 
+	% description: Whenever buildings are percepted old buildings will be deleted and new buildings will be inserted.
+	if
+		percept(buildings(NewBuildings)),
+		bel(buildings(OldBuildings))
+	then
+		delete(buildings(OldBuildings)) +
+		insert(buildings(NewBuildings)).
+		
 	% description: Whenever functions are percepted old functions will be deleted and new functions will be inserted.
 	if 
-		percept(functions(X)), 
-		bel(functions(Y)) 
+		percept(functions(NewFunctions)), 
+		bel(functions(OldFunctions)) 
 	then 
-		delete(functions(Y)) + 
-		insert(functions(X)).
+		delete(functions(OldFunctions)) + 
+		insert(functions(NewFunctions)).
 	
 	% description: During initialisation the list of indicators are inserted into the belief base. 
 	% forall:
@@ -38,20 +46,20 @@ module tygronEvents {
 	forall 
 		percept(indicators(IndicatorList)), 
 		bel(
-			indicator(IndID, OldValue, TargetValue, OldZone_LinkList), 
-			member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
+			indicator(IndicatorID, OldValue, TargetValue, OldZone_LinkList), 
+			member(indicator(IndicatorID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
 		)
 	do 
-		delete (indicator(IndID, OldValue, TargetValue,OldZone_LinkList)) + 
-		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
+		delete (indicator(IndicatorID, OldValue, TargetValue,OldZone_LinkList)) + 
+		insert(indicator(IndicatorID, CurrentValue, TargetValue, Zone_LinkList)).	
 	
 	% description: Whenever lands are percepted old lands will be deleted and new lands will be inserted.
 	if 
-		percept(lands(X)), 
-		bel(lands(Y)) 
+		percept(lands(NewLands)), 
+		bel(lands(OldLands)) 
 	then 
-		delete(lands(Y)) + 
-		insert(lands(X)).
+		delete(lands(OldLands)) + 
+		insert(lands(NewLands)).
 		
 	% description: Whenever requests are percepted each request is inserted.
 	forall
@@ -67,11 +75,11 @@ module tygronEvents {
 
 	% description: Whenever settings are percepted old settings will be deleted and new settings will be inserted.
 	if 
-		percept(settings(X)), 
-		bel(settings(Y)) 
+		percept(settings(NewSettings)), 
+		bel(settings(OldSettings)) 
 	then 
-		delete(settings(Y)) + 
-		insert(settings(X)).
+		delete(settings(OldSettings)) + 
+		insert(settings(NewSettings)).
 	
 	% description:Whenever the list of stakeholders is updated all stakeholder/4 beliefs will be updated accordingly.
 	% forall:

@@ -3,10 +3,10 @@ use serviceKnowledge as knowledge.
 % description: 
 % - build a building
 % parameters:
-% - Id: The building id
+% - BuildingId: The building id
 % - Level: level of game
 % - MultiPolygon: Polygon (like square) where the building should be build
-define	building_plan_construction(Id, Level, MultiPolygon) with
+define	building_plan_construction(BuildingId, Level, MultiPolygon) with
 	pre{ true }
 	post{ true }
 
