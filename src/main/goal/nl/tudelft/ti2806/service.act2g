@@ -51,6 +51,19 @@ define build_specified_building(StakeholderID, ZoneID, BuildingID, DEPTH, WIDTH,
 	post{true}
 
 % description:
+% - buy a piece of land in a given zone for a given depth and width
+% parameters:
+% -	StakeholderID: The Stakeholder ID of the bot.
+% - ZoneID: The zone where the land should be bought.
+% - Indicator: Wheter or not to buy buildings..
+% - Depth: The depth of the area.
+% - Width: The width of the area.
+% - DistanceToRoad: distance to a road.
+define buy_specified_land(StakeholderID, ZoneID, Indicator, Price, DEPTH, WIDTH, DISTANCETOROAD) with
+	pre{ true }
+	post{true}
+	
+% description:
 % - answer a request/popup with the specified answer
 % parameters:
 % - PopUpId: The Popup ID of the request to be answered.

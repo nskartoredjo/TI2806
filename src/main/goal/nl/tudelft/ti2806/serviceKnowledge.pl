@@ -5,7 +5,7 @@
 % building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors, MultiPolygon, Area) are stored in a list in buildings(BuildingsList).
 :- dynamic building/9.
 :- dynamic buildings/1.
-
+:- dynamic counter/2.
 :- dynamic functions/1.
 
 % indicator(IndicatorId, CurrentValue, TargetValue) are stored in a list in indicators(IndicatorsList).

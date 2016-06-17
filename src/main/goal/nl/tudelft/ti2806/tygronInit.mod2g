@@ -72,7 +72,7 @@ module tygronInit {
 		percept(zones(ZoneList)), 
 		bel(member(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories), ZoneList))
 	do 
-		insert(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories)).
+		insert(zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories), counter(ZoneId, 0)).
 		
 	% description: During initialisation the list of indicators are inserted into the belief base.
 	% forall:

@@ -44,6 +44,40 @@ module main{
 	then
 		request.
 
+	% description: Make a goal for demolishing.
+	% if:
+	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
+	% then:
+	% - Adopt demolishbuilding(ID) goal.
+	if 	
+		goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(
+			my_stakeholder_id(StakeholderID),
+			buildings(X), 
+			member(building(BuildingID,_,StakeholderID,_,_,FunctionID,_, _), X), 
+ 			functions(Y), 
+ 			member([Name, FunctionID, _], Y), 
+ 			not(Name =='terrace') , 
+ 			not(Name =='Terras') , 
+ 			not(Name == 'sportcentrum'), 
+ 			not(Name =='sports center'), 
+ 			not(Name =='buurtwinkel'), 
+ 			not(Name =='convenience store'), 
+ 			not(demolished(BuildingID))
+ 		) 
+	then 
+			demolish(BuildingID).
+			
+	%description: if there is a zone with as high zounter, we don't have enough land.
+	%if:
+	% - There is a zone with a counter greater than 1.
+	% Then:
+	% - execute the buyland module.		
+	if
+		bel(counter(ZoneID, Count), Count > 1)
+	then
+		buyLand(ZoneID).
+		
 	% description: Build a conveniencestore when this is the lowest indicator score
 	% if:
 	% - you have a goal for building and the score for the convenience indicator is the lowest.
@@ -97,30 +131,5 @@ module main{
 		) 
 	then 
 		buildSportsCenter. 
-	
-	% description: Make a goal for demolishing.
-	% if:
-	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
-	% then:
-	% - Adopt demolishbuilding(ID) goal.
-	if 	
-		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(
-			my_stakeholder_id(StakeholderID),
-			buildings(X), 
-			member(building(BuildingID,_,StakeholderID,_,_,FunctionID,_, _), X), 
- 			functions(Y), 
- 			member([Name, FunctionID, _], Y), 
- 			not(Name =='terrace') , 
- 			not(Name =='Terras') , 
- 			not(Name == 'sportcentrum'), 
- 			not(Name =='sports center'), 
- 			not(Name =='buurtwinkel'), 
- 			not(Name =='convenience store'), 
- 			not(demolished(BuildingID))
- 		) 
-	then 
-			demolish(BuildingID).
-	
-	% TODO: buyland	
+
 }
