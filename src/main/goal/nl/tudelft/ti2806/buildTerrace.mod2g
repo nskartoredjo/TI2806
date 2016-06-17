@@ -21,23 +21,21 @@ module buildTerrace {
 		bel(
 			functions(FS), 
 			member([Name,FunctionID,L],FS), 
-			(Name == terrace; Name = terras), 
-			lands(ListLands), my_stakeholder_id(StakeholderID), 
-			member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), 
-			not(multipolygon(Multipolygon)),
-			member(indicatorWeights(IndicatorId, IndicatorName, _), IndicatorWeights), 
+			(Name == 'terrace'; Name == 'terras'), 
+			my_stakeholder_id(StakeholderID), 
+			indicatorLink(_, IndicatorWeights), 
+			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
 			(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'),  
 			indicator(IndicatorID, _, _, ZoneList),
-			maxTodo(ZoneList, Todo, ZoneID)
+			maxTodo(ZoneList, Todo, ZoneID), Size is sqrt(Todo)
 			
 			)	
 		then 
 		%TODO build action who builds in zoneID with size Todo.
-			build_specified_land(StakeholderID, ZoneID, FunctionID, 10, 10, 0) +
+			build_specified_building(StakeholderID, ZoneID, FunctionID, Size, Size, 10) +
 			%building_plan_construction(FunctionID, 1, Multipolygon) + 
 			insert(
-				constructed(FunctionID, Name), 
-				multipolygon(Multipolygon)
+				constructed(FunctionID, Name)
 			).
 		
 	% description: 

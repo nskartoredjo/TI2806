@@ -46,6 +46,6 @@ define	map_sell_land(BuyerId,MultiPolygon, Price) with
 % - Depth: The depth of the area.
 % - Width: The width of the area.
 % - DistanceToRoad: distance to a road.
-define build_specified_land(StakeholderID, ZoneID, BuildingID, DEPTH, WIDTH, DISTANCETOROAD) with
+define build_specified_building(StakeholderID, ZoneID, BuildingID, DEPTH, WIDTH, DISTANCETOROAD) with
 	pre{ true }
 	post{ true}
