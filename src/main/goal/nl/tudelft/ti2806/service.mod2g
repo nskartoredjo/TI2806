@@ -26,7 +26,7 @@ module main{
 	if
 	bel(
 		request(_,Type, _, _, _, _, _, _, _, _),
-		Type =\= 'PERMIT'
+		not(Type == 'PERMIT')
 	)
 	then
 		request.
