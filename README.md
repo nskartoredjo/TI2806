@@ -20,6 +20,9 @@ to contact the team, aproach [nskartoredjo](https://github.com/nskartoredjo).
 ## Final Report
 [Final report](https://github.com/nskartoredjo/TI2806/blob/Final_report/deliverables/final%20report.pdf)
 
+## Architecture Design
+[Architecture Design] (https://github.com/nskartoredjo/TI2806/blob/Final_report/deliverables/architecture%20design.pdf)
+
 
 ## SCRUM Deliverables
 | Sprint Backlog																								  | Sprint retrospective 																					|
