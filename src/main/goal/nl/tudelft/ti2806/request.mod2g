@@ -1,6 +1,10 @@
 use serviceKnowledge as knowledge.
 use service as actionspec.
 
+% request:
+% - states: 5
+% - description: Whenever requests are present in the belief base, these will be handled in this module.
+%				 Requests can be information, buy_land, sell_land, demolish and stakeholder_standard requests.
 module request {
 	
 	% description: if we get an information request answer with OK.
