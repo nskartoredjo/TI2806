@@ -16,6 +16,7 @@ module buildConvenienceStore {
 	% - There is land that is big enough to build on
 	% then:
 	% - Build the convenience store on the given zone, with the given size 10 meters next to a road
+	% - Update the counter.
 	if 
 		bel(
 			functions(FS), member([Name,FunctionID,_], FS), 
@@ -32,7 +33,7 @@ module buildConvenienceStore {
 	%TODO build action who builds in zoneID with size Todo.
 		build_specified_building(StakeholderID, ZoneID, FunctionID, Size, Size, 10) +
 		delete(counter(ZoneID, Count)) +
-		insert(constructed(FunctionID, Name), counter(ZoneID, NewCount)).
+		insert(counter(ZoneID, NewCount)).
 }
 
 

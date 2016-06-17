@@ -12,6 +12,7 @@ module buyLand(ZoneID) {
 	% - true
 	% then:
 	% - Buys the specified MultiPolygon square for the specified price.
+	% - resets the counter
 	if 
 		bel(
 			functions(FS), member([Name,FunctionID,_], FS), 

@@ -51,11 +51,11 @@ define build_specified_building(StakeholderID, ZoneID, BuildingID, DEPTH, WIDTH,
 	post{true}
 
 % description:
-% - build on a piece of land in a given zone for a given depth and width
+% - buy a piece of land in a given zone for a given depth and width
 % parameters:
 % -	StakeholderID: The Stakeholder ID of the bot.
-% - ZoneID: The zone the building should be built in.
-% - BuildingID: The id of the building you need.
+% - ZoneID: The zone where the land should be bought.
+% - Indicator: Wheter or not to buy buildings..
 % - Depth: The depth of the area.
 % - Width: The width of the area.
 % - DistanceToRoad: distance to a road.
