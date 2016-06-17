@@ -1,0 +1,52 @@
+use service as actionspec.
+use serviceKnowledge as knowledge.
+
+% permits:
+% - states: 2
+% - description: it should check wich permtis we have and answer them.
+module permits {
+	
+	% description: answer yes to all interaction with date permits.
+	% if:
+	% - There is a request for my stakeholder
+	% - It is an interaction with date permit
+	% - It is possible to answer with yes.
+	% then:
+	% - answer the popup with yes and a date 0 miliseconds from now.
+	% - delete the request.
+	if
+		bel(
+			my_stakeholder_id(StakeholderId),
+			request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers),
+			member(StakeholderId, StakeholderIdList),
+			PopUpType = 'INTERACTION_WITH_DATE',
+			Type == 'PERMIT',
+			member(answer(AnswerId, Answer), Answers),
+			Answer == 'Ja'
+		)
+	then
+		popup_answer_with_date(PopUpId, AnswerId, 0) +
+		delete(request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers)).
+	
+	% description: answer ok to all interaction permits.
+	% if:
+	% - There is a request for my stakeholder
+	% - It is an interaction permit
+	% - It is possible to answer with ok.
+	% then:
+	% - answer the popup with ok.
+	% - delete the request.	
+	if
+		bel(
+			my_stakeholder_id(StakeholderId),
+			request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers),
+			member(StakeholderId, StakeholderIdList),
+			(PopUpType == 'INTERACTION'; PopUpType == 'INFORMATION'),
+			Type == 'PERMIT',
+			member(answer(AnswerId, Answer), Answers),
+			Answer == 'OK'
+		)
+	then
+		popup_answer(PopUpId, AnswerId) +
+		delete(request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers)).
+}

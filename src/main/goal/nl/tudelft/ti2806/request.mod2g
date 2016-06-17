@@ -1,0 +1,79 @@
+use serviceKnowledge as knowledge.
+use service as actionspec.
+
+module request {
+	
+	% description: if we get an information request answer with OK.
+	% if:
+	% - you have an information request
+	% - it is possible to answer with OK 
+	% then:
+	% - answer the reqest with OK.	
+	if
+		bel(
+			my_stakeholder_id(StakeholderID),
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INFORMATION', 
+			member(StakeholderID, VisibleStakeholders),
+			member(answer(AnswerID, 'OK'), Answers)
+		)
+	then popup_answer(RequestID, AnswerID).
+	
+	% description: if we get an interaction request to buy land, answer with No or OK. 
+	%				You can only have an OK option if there are no other options.
+	% if:
+	% - you have an interaction request
+	% - this request is to buy some land
+	% - it is possible to answer with No or OK 
+	% then:
+	% - answer the reqest with No or OK.
+	if
+		bel(
+			my_stakeholder_id(StakeholderID), 
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INTERACTION', 
+			RequestType = 'BUY_LAND',
+			member(StakeholderID, VisibleStakeholders),
+			(member(answer(AnswerID, 'Nee'), Answers); member(answer(AnswerID, 'OK'), Answers))
+		)
+	then popup_answer(RequestID, AnswerID).
+
+	% description: if we get an interaction request to sell land, answer with Yes or OK. 
+	%				You can only have an OK option if there are no other options.
+	% if:
+	% - you have an interaction request
+	% - this request is to sell some land
+	% - it is possible to answer with Yes or OK 
+	% then:
+	% - answer the reqest with Yes or OK.
+	if
+		bel(
+			my_stakeholder_id(StakeholderID), 
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INTERACTION', 
+			RequestType = 'SELL_LAND',
+			member(StakeholderID, VisibleStakeholders),
+			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
+		)
+	then popup_answer(RequestID, AnswerID).
+	
+	% description: if we get an interaction request to demolish, answer with Yes or OK. 
+	%				You can only have an OK option if there are no other options.
+	% if:
+	% - you have an interaction request
+	% - this request is to demolish
+	% - it is possible to answer with Yes or OK 
+	% then:
+	% - answer the reqest with Yes or OK.
+	if
+		bel(
+			my_stakeholder_id(StakeholderID), 
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INTERACTION', 
+			RequestType = 'DEMOLISH',
+			member(StakeholderID, VisibleStakeholders),
+			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
+		)
+	then popup_answer(RequestID, AnswerID).
+}
+

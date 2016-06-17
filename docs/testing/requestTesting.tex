@@ -1,0 +1,77 @@
+\documentclass[]{article}
+\usepackage{graphicx}
+\usepackage[a4paper]{geometry}
+\usepackage{epstopdf}
+\usepackage{endnotes}
+\usepackage{enumitem}
+
+\begin{document}
+
+	
+\section{Request Testing}
+It is not possible to write a test for request because we need another player to make the requests.
+
+In order to test if the request are working properly, Below there  are some scenario's to describe how it should work.
+
+The bot doesn't have any strategy yet. This will be done later.
+
+\subsection{Answer to Buy request}
+\begin{itemize}
+	\item Start the Tygron game.
+	\item Run the bot.
+	\item Join the game the bot is on.
+	\item choose a stakeholder.
+	\item select buy land.
+	\item select a land from services to buy.
+	\item choose price per m2.
+	\item confirm your buy action.
+	\item wait for the bot to react.
+	\item You should get a pop-up saying that the bot doesn't allow this request.
+\end{itemize}
+
+
+
+\subsection{Answer to Sell request}
+\begin{itemize}
+	\item Start the Tygron game.
+	\item Run the bot.
+	\item Join the game the bot is on.
+	\item choose a stakeholder.
+	\item select sell land.
+	\item select a land of your own to sell.
+	\item choose price per m2.
+	\item choose services as stakeholder.
+	\item confirm your sell action.
+	\item wait for the bot to react.
+	\item You should get a pop-up saying that the bot does allow this request.
+\end{itemize}
+
+\subsection{Don't answer to buy request to other stakeholders.}
+\begin{itemize}
+	\item Start the Tygron game.
+	\item Run the bot.
+	\item Join the game the bot is on.
+	\item choose a stakeholder.
+	\item select buy land.
+	\item select a land from another stakeholder except services to buy.
+	\item choose price per m2.
+	\item confirm your buy action.
+	\item wait for the bot to react.
+	\item you shouldn't get any reaction from the bot.
+\end{itemize}
+
+\subsection{Don't answer to sell request to other stakeholders.}
+\begin{itemize}
+	\item Start the Tygron game.
+	\item Run the bot.
+	\item Join the game the bot is on.
+	\item choose a stakeholder.
+	\item select sell land.
+	\item select a land of your own to sell.
+	\item choose price per m2.
+	\item choose a stakeholder except for services.
+	\item confirm your sell action.
+	\item wait for the bot to react.
+	\item you shouldn't get any reaction from the bot.
+\end{itemize}
+\end{document}
