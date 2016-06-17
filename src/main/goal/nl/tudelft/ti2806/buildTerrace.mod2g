@@ -20,7 +20,7 @@ module buildTerrace {
 	% - There is land that is big enough to build on.
 	% then:
 	% - Build the terrace on the given zone, with the given size 10 meters next to a road
-	% - insert the belief 'constructed terrace'
+	% - update the counter.
 	if 
 		bel(
 			functions(FS), 
@@ -31,12 +31,12 @@ module buildTerrace {
 			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
 			(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'),  
 			indicator(IndicatorID, _, _, ZoneList),
-			maxTodo(ZoneList, Todo, ZoneID), Size is sqrt(Todo)
+			maxTodo(ZoneList, Todo, ZoneID), Size is sqrt(Todo),
+			counter(ZoneID, Count), NewCount is Count + 1
 			)	
 		then 
 		%TODO build action who builds in zoneID with size Todo.
 			build_specified_building(StakeholderID, ZoneID, FunctionID, Size, Size, 10) +
-			insert(
-				constructed(FunctionID, Name)
-			).
+			delete(counter(ZoneID, Count)) +
+			insert(counter(ZoneID, NewCount)).
 }

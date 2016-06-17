@@ -17,7 +17,9 @@ module request {
 			member(StakeholderID, VisibleStakeholders),
 			member(answer(AnswerID, 'OK'), Answers)
 		)
-	then popup_answer(RequestID, AnswerID).
+	then 
+		popup_answer(RequestID, AnswerID) + 
+		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
 	
 	% description: if we get an interaction request to buy land, answer with No or OK. 
 	%				You can only have an OK option if there are no other options.
@@ -36,7 +38,9 @@ module request {
 			member(StakeholderID, VisibleStakeholders),
 			(member(answer(AnswerID, 'Nee'), Answers); member(answer(AnswerID, 'No'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
-	then popup_answer(RequestID, AnswerID).
+	then 
+		popup_answer(RequestID, AnswerID) +
+		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
 
 	% description: if we get an interaction request to sell land, answer with Yes or OK. 
 	%				You can only have an OK option if there are no other options.
@@ -55,7 +59,9 @@ module request {
 			member(StakeholderID, VisibleStakeholders),
 			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
-	then popup_answer(RequestID, AnswerID).
+	then 
+		popup_answer(RequestID, AnswerID) +
+		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
 	
 	% description: if we get an interaction request to demolish, answer with Yes or OK. 
 	%				You can only have an OK option if there are no other options.
@@ -74,6 +80,8 @@ module request {
 			member(StakeholderID, VisibleStakeholders),
 			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'Yes'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
-	then popup_answer(RequestID, AnswerID).
+	then 
+		popup_answer(RequestID, AnswerID) +
+		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
 }
 
