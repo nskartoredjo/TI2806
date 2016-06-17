@@ -37,7 +37,7 @@ to contact the team, aproach [nskartoredjo](https://github.com/nskartoredjo).
 | [#8](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Backlog%20-%20Sprint%20Backlog%20%238.pdf) | [#8](https://github.com/nskartoredjo/TI2806/blob/master/deliverables/Sprint%20Retrospective%20%238.pdf)|
 
 ## Tygron Environment
-The Tygron Environment used by the agent can be found at the [Tygron fork](https://github.com/nskartoredjo/tygron).
+The Tygron Environment used by the agent can be found at the [Tygron fork](https://github.com/nskartoredjo/tygron). For developed functionalities, watch the [develop branch](https://github.com/nskartoredjo/tygron/tree/develop).
  
 To run the agent, specific indicators should be preloaded in the tygron project. Those can be found at the [docs/indicators folder](https://github.com/nskartoredjo/TI2806/tree/master/docs/indicators).
 
