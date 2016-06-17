@@ -56,7 +56,7 @@ module request {
 				bel(
 					marktprijs(Huidigemarktprijs),
 					(Huidigemarktprijs =< Price/Area),
-					(member(answer(AnswerID, 'Ja'), Answers)),
+					(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'Yes'), Answers)),
 					ownedLand(OwnedTotalArea),
 					targetLand(NeededTotalArea),
 					marginofTotalLand(Margin),
@@ -69,7 +69,7 @@ module request {
 			% description:
 			% If the Nee option is present and we didn't answer Ja then answer with Nee
 			if
-				bel(member(answer(AnswerID, 'Nee'), Answers))
+				bel(member(answer(AnswerID, 'Nee'), Answers); member(answer(AnswerID, 'No'), Answers))
 			then
 				popup_answer(RequestID, AnswerID) +
 				delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
@@ -130,7 +130,7 @@ module request {
 			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
 			Type == 'INTERACTION', 
 			RequestType == 'DEMOLISH',
-			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'OK'), Answers))
+			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'Yes'), Answers); member(answer(AnswerID, 'OK'), Answers))
 		)
 	then 
 		popup_answer(RequestID, AnswerID) +
