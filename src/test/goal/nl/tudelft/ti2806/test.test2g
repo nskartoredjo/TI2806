@@ -25,7 +25,8 @@ test main with
 		eventually bel(buurtwinkelIndicator(BCurrent, BTarget)). 
 		eventually bel(sportcentrumIndicator(SCurrent, STarget)). 
 		eventually bel(terrasIndicator(TCurrent, TTarget)).
-		bel(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), TypeName == 'INTERACTION_WITH_DATE', Type == 'PERMIT') leadsto done(popup_answer_with_date(PopUpId, 0, 0)).
+		bel(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), 
+		TypeName == 'INTERACTION_WITH_DATE', Type == 'PERMIT') leadsto done(popup_answer_with_date(PopUpId, 0, 0)).
 	}
 
 serviceAgent {

@@ -84,8 +84,8 @@ terrasIndicator(CurrentValue, TargetValue) :-
 
 % description:
 % - demolish building will be automatically completed after demolished is done.
-demolishBuilding(ID) :- 
-	demolished(ID).
+demolishBuilding(BuildingID) :- 
+	demolished(BuildingID).
 	
 buyLand :-
 	bought.

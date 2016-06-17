@@ -86,9 +86,9 @@ module tygronInit {
 		percept(indicators(IndicatorList)), 
 		bel(
 			indicatorLink(_, IndicatorLinkList),
-			member(indicatorWeights(IndID,_,_), IndicatorLinkList),
-			member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
+			member(indicatorWeights(IndicatorID,_,_), IndicatorLinkList),
+			member(indicator(IndicatorID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
 		)
 	do 
-		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
+		insert(indicator(IndicatorID, CurrentValue, TargetValue, Zone_LinkList)).	
 }

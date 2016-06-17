@@ -53,11 +53,11 @@ module main{
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(
 			my_stakeholder_id(StakeholderID),
-			buildings(X),
+			buildings(Buildings),
 			
-			member(building(BuildingId, _, Stakeholder, _, _, FunctionID, _, _, _), X), 
- 			functions(Y), 
- 			member([Name, FunctionID, _], Y), 
+			member(building(BuildingId, _, Stakeholder, _, _, FunctionID, _, _, _), Buildings), 
+ 			functions(Functions), 
+ 			member([Name, FunctionID, _], Functions), 
  			not(Name =='terrace') , 
  			not(Name =='Terras') , 
  			not(Name == 'sportcentrum'), 

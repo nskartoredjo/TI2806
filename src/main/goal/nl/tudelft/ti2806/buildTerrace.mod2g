@@ -23,8 +23,8 @@ module buildTerrace {
 	% - update the counter.
 	if 
 		bel(
-			functions(FS), 
-			member([Name,FunctionID,L],FS), 
+			functions(Functions), 
+			member([Name,FunctionID,_],Functions), 
 			(Name == 'terrace'; Name == 'terras'), 
 			my_stakeholder_id(StakeholderID), 
 			indicatorLink(_, IndicatorWeights), 
