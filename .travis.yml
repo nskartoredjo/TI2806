@@ -19,18 +19,18 @@ before_install:
 install:
  # build the connector, testing if the connector is done in the tygron repo CI.
  - mvn -pl "!doc" install -DskipTests=true -Dmaven.javadoc.skip=true -Dcobertura.skip -B -V
- - java -cp environment/target/tygronenv-*-jar-with-dependencies.jar login.Login $email $password
+ - java -cp contextvh/target/contextvh-*-jar-with-dependencies.jar login.Login $email $password
  - cd ..
  # move the generated Tygron environment .jar to the same folder as the .mas2g file
- - mv tygron/environment/target/tygronenv-*-jar-with-dependencies.jar src/main/goal/nl/tudelft/ti2806/tygronenv-jar-with-dependencies.jar
+ - mv tygron/contextvh/target/contextvh-*-jar-with-dependencies.jar src/main/goal/nl/tudelft/ti2806/contextvh-jar-with-dependencies.jar
 
 before_script:
  # substitute the Tygron environment directory in the Tygron.mas2g with the new Tygron environment
- - sed -i 's|tygronenv-*-jar-with-dependencies.jar|tygronenv-jar-with-dependencies.jar|g' src/main/goal/nl/tudelft/ti2806/Service.mas2g
+ - sed -i 's|contextvh-*-jar-with-dependencies.jar|contextvh-jar-with-dependencies.jar|g' src/main/goal/nl/tudelft/ti2806/Service.mas2g
 
 script:
- # run the Goal Test with a 60s timeout
- - timeout 60 java -cp com.github.goalhub.runtime.jar-with-dependencies_*.jar goal.tools.Run src/test/goal/nl/tudelft/ti2806/test.test2g -v > log.txt || echo 0
+ # run the Goal Test with a 120s timeout
+ - timeout 120 java -cp com.github.goalhub.runtime.jar-with-dependencies_*.jar goal.tools.Run src/test/goal/nl/tudelft/ti2806/test.test2g -d -v > log.txt || echo 0
  # run the Percepts Test with a 60s timeout
  # print the test output
  - cat log.txt

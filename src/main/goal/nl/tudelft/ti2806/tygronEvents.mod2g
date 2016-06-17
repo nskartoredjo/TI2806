@@ -5,37 +5,60 @@ use serviceBeliefs as beliefs.
 % - states: 9
 % - description: Percept Processing
 module tygronEvents {
-	% description: Whenever actions are percepted old actions will be deleted and new actions will be inserted.
-	if 
-		percept(actions(X)), 
-		bel(actions(Y)) 
-	then 
-		delete(actions(Y)) + 
-		insert(actions(X)).
+
+	% description: when we get a new building percept, we want to delete the buildings that aren't there. 
+	% We also don't  need the buildings we sold.
+	forall
+		percept(buildings(NewBuildings)),
+		bel(
+			my_stakeholder_id(StakeholderID),
+			building(StakeholderID, BuildingID, FunctionID),
+			not(member(building(BuildingID, _, StakeholderID, _, _, FunctionID, _, _, _), NewBuildings))
+		)
+	do
+		delete(building(StakeholderID, BuildingID, FunctionID)).
+
+	% description: when we get a new building percept, we want to insert the buildings that are new. 
+	% We also need the buildings we bought and built.
+	forall
+		percept(buildings(NewBuildings)),
+		bel(
+			my_stakeholder_id(StakeholderID),
+			member(building(BuildingID, _, StakeholderID, _, _, FunctionID, _, _, _), NewBuildings),
+			not(building(StakeholderID, BuildingID, FunctionID))
+		)
+	do
+		insert(building(StakeholderID, BuildingID, FunctionID)).
 	
-	% description: Whenever logs of actions are percepted old action_logs will be deleted and new action_logs will be inserted.
-	if 
-		percept(action_logs(X)), 
-		bel(action_logs(Y)) 
-	then 
-		delete(action_logs(Y)) + 
-		insert(action_logs(X)).
+	% description: if we get a lands percept, we want to delete the land that is not ours anymore.		
+	forall
+		percept(lands(NewLand)),
+		bel(
+			my_stakeholder_id(StakeholderID),
+			land(LandID, StakeholderID, Area),
+			not(member(land(LandID, StakeholderID, _, _, Area), NewLand))
+		)
+	do
+		delete(land(LandID, StakeholderID, Area)).
 	
-	% description: Whenever the list of buildings is percepted the old list is deleted and the new list is inserted.
-	if 
-		percept(buildings(NewBuildingList)), 
-		bel(buildings(OldBuildingList))
-	then 
-		delete(buildings(OldBuildingList)) + 
-		insert(buildings(NewBuildingList)).
-			
+	% description: if we get a lands percept, we want to insert the new land that is ours.
+	forall
+		percept(lands(NewLand)),
+		bel(
+			my_stakeholder_id(StakeholderID),
+			not(land(LandID, StakeholderID, Area)),
+			member(land(LandID, StakeholderID, _, _, Area), NewLand)
+		)
+	do
+		insert(land(LandID, StakeholderID, Area)).
+
 	% description: Whenever functions are percepted old functions will be deleted and new functions will be inserted.
 	if 
-		percept(functions(X)), 
-		bel(functions(Y)) 
+		percept(functions(NewFunctions)), 
+		bel(functions(OldFunctions)) 
 	then 
-		delete(functions(Y)) + 
-		insert(functions(X)).
+		delete(functions(OldFunctions)) + 
+		insert(functions(NewFunctions)).
 	
 	% description: During initialisation the list of indicators are inserted into the belief base. 
 	% forall:
@@ -45,29 +68,25 @@ module tygronEvents {
 	forall 
 		percept(indicators(IndicatorList)), 
 		bel(
-			indicator(IndID, OldValue, TargetValue, OldZone_LinkList), 
-			member(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
+			indicator(IndicatorID, OldValue, TargetValue, OldZone_LinkList), 
+			member(indicator(IndicatorID, CurrentValue, TargetValue, Zone_LinkList),IndicatorList)
 		)
 	do 
-		delete (indicator(IndID, OldValue, TargetValue,OldZone_LinkList)) + 
-		insert(indicator(IndID, CurrentValue, TargetValue, Zone_LinkList)).	
+		delete (indicator(IndicatorID, OldValue, TargetValue,OldZone_LinkList)) + 
+		insert(indicator(IndicatorID, CurrentValue, TargetValue, Zone_LinkList)).	
 	
-	% description: Whenever lands are percepted old lands will be deleted and new lands will be inserted.
-	if 
-		percept(lands(X)), 
-		bel(lands(Y)) 
-	then 
-		delete(lands(Y)) + 
-		insert(lands(X)).
-	
-	% description: Whenever settings are percepted old settings will be deleted and new settings will be inserted.
-	if 
-		percept(settings(X)), 
-		bel(settings(Y)) 
-	then 
-		delete(settings(Y)) + 
-		insert(settings(X)).
-	
+	% description: Whenever requests are percepted each request is inserted.
+	forall
+		percept(requests(RequestList)),
+		bel(
+			member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList),
+			my_stakeholder_id(StakeholderID),
+			member(StakeholderID, VisibleForStakeholders),
+			not(request_answered(PopupId))
+		)
+	do
+		insert(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers)).
+
 	% description:Whenever the list of stakeholders is updated all stakeholder/4 beliefs will be updated accordingly.
 	% forall:
 	% - stakeholders where the income has changed

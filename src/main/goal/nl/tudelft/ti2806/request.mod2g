@@ -1,0 +1,188 @@
+use serviceKnowledge as knowledge.
+use service as actionspec.
+
+% request:
+% - states: 10
+% - description: Whenever requests are present in the belief base, these will be handled in this module.
+%				 Requests can be information, buy_land, sell_land, demolish and stakeholder_standard requests.
+module request {
+	
+	% description: if we get an information request answer with OK.
+	% if:
+	% - you have an information request
+	% - it is possible to answer with OK 
+	% then:
+	% - answer the request with OK.	
+	% - remove the request from the belief base
+	if
+		bel(
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INFORMATION', 
+			member(answer(AnswerID, 'OK'), Answers)
+		)
+	then 
+		popup_answer(RequestID, AnswerID) +
+		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+	
+	% description: if we get an interaction request to buy land, answer with Yes, No or OK. 
+	%				You can only have an OK option if there are no other options.
+	% if:
+	% - you have an interaction request
+	% - this request is to buy some land 
+	% then:
+	% - if:
+	%	- the offered price for the land is good enough
+	%	- the owned land is enough to build on 
+	%	- it is possible to answer with Yes
+	% - then:
+	%	- answer with Yes
+	%	- delete the request from the belief base
+	% - if:
+	%	- it is possible to answer with No
+	% - then:
+	%	- answer with No
+	%	- delete the request from the belief base
+	% - if:
+	%	- it is possible to answer with OK
+	% - then:
+	%	- answer with OK
+	%	- delete the request from the belief base
+	if
+		bel( 
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INTERACTION', 
+			RequestType == 'BUY_LAND')
+			then {
+			
+			% description:
+			% If the OK option is present then answer with that
+			if
+				bel(
+					member(answer(AnswerID, 'OK'), Answers),
+					haltCount(Halt),
+					NewHalt is Halt - 1
+				)
+			then
+				popup_answer(RequestID, AnswerID) +
+				delete(
+					request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+					haltCount(Halt)
+				) +
+				insert(haltCount(NewHalt)).
+				
+			% description:
+			% Decide if we want to sell a piece of land
+			if
+				bel(
+					marketprice(Currentmarketprice),
+					(Currentmarketprice =< Price/Area),
+					(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'Yes'), Answers)),
+					ownedLand(OwnedTotalArea),
+					targetLand(NeededTotalArea),
+					marginofTotalLand(Margin),
+					OwnedTotalArea > (NeededTotalArea * Margin)
+				)
+			then
+				popup_answer(RequestID, AnswerID) +
+				delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+			
+			% description:
+			% If the Nee option is present and we didn't answer Ja then answer with Nee
+			if
+				bel(member(answer(AnswerID, 'Nee'), Answers); member(answer(AnswerID, 'No'), Answers))
+			then
+				popup_answer(RequestID, AnswerID) +
+				delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+					
+			% TODO: decide if we want to sell this piece of land
+			% check if our indicators are met > skipped
+			% check if we need land still > done
+			% check if price is ok > done
+			% check which zone this is request is related to > connector change needed
+			% check if we have service buildings on this piece of land
+			% check if selling would affect indicators 
+}
+
+	% description: if we get an interaction request to sell land, answer with Yes or OK. 
+	%				You can only have an OK option if there are no other options.
+	% if:
+	% - you have an interaction request
+	% - this request is to sell some land
+	% - it is possible to answer with Yes or OK 
+	% - the price per m^2 is below or equal to the price threshold
+	% then:
+	% - answer the request with Yes or OK.
+	% - remove the request from the belief base
+	if
+		bel(
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INTERACTION', 
+			RequestType == 'SELL_LAND')
+		then {
+		
+		% description:
+		% If the OK option is present then answer with that
+		if
+			bel(member(answer(AnswerID, 'OK'), Answers))
+		then
+			popup_answer(RequestID, AnswerID) +
+			delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+				
+		% description:
+		% Decide if we want to buy the offered piece of land based on if the marketprice is ok
+		% and if we actually need land.
+		% TODO: decide if we want to accept the offer to buy this piece of land
+		% based on the price per m^2(done), land needed(done), zone and amount of buildings present/buildable land
+		if 
+			bel(
+				(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'Yes'), Answers)),
+				marketprice(Currentmarketprice),
+				(Currentmarketprice >= Price/Area),
+				ownedLand(OwnedTotalArea),
+				targetLand(NeededTotalArea),
+				marginofTotalLand(Margin),
+				OwnedTotalArea < (NeededTotalArea * Margin)
+			)
+		then
+			popup_answer(RequestID, AnswerID) +
+			delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+				
+	}
+
+	% description: if we get an interaction request to demolish, answer with Yes or OK. 
+	%				You can only have an OK option if there are no other options.
+	% if:
+	% - you have an interaction request
+	% - this request is to demolish
+	% - it is possible to answer with Yes or OK 
+	% then:
+	% - answer the request with Yes or OK.
+	% - remove the request from the belief base
+	if
+		bel(
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'INTERACTION', 
+			RequestType == 'DEMOLISH',
+			(member(answer(AnswerID, 'Ja'), Answers); member(answer(AnswerID, 'Yes'), Answers); member(answer(AnswerID, 'OK'), Answers))
+		)
+	then 
+		popup_answer(RequestID, AnswerID) +
+		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+
+	% description: if we get an stakeholder_standard request remove it from the belief base. 
+	%				Also add request_answered to suppress new handling.
+	% if:
+	% - you have a request
+	% - with type is 'STAKEHOLDER_STANDARD'
+	% then:
+	% - set the request ID to answered
+	% - remove the request from the belief base
+	if
+		bel(
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			Type == 'STAKEHOLDER_STANDARD'
+		)
+	then 
+		insert(request_answered(RequestID)) +
+		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+}

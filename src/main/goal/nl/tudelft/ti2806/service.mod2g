@@ -7,22 +7,88 @@ use buildSportsCenter as module.
 use buyLand as module.
 use sellLand as module.
 use demolish as module.
+use request as module.
+use permits as module.
 
 exit = nogoals.
 order = linear.
 
 % main:
-% - states: 5
+% - states: 7
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	
+	% description: Go to the permit module and run that code.
+	% if:
+	% - There is a permit requests.
+	% then:
+	% - go to the permit module.
+	if
+		bel(
+			request(_, Type, _,_,_,_,_,_,_,_),
+			Type == 'PERMIT'
+		)
+	then
+		permits.
+		
+	%description: check if there are any request and answer these.
+	% if: 
+	% - There are any request, which are not permits.
+	%then: 
+	% - execute the request module.
+	if
+	bel(
+		request(_,Type, _, _, _, _, _, _, _, _),
+		not(Type == 'PERMIT')
+	)
+	then
+		request.
+
+	% description: Make a goal for demolishing.
+	% if:
+	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
+	% then:
+	% - Adopt demolishbuilding(ID) goal.
+	if 	
+		goal(buildTerrace; buildStore; buildSportsCenter), 
+		bel(
+			my_stakeholder_id(StakeholderID),
+			buildings(Buildings),
+			member(building(BuildingID, _, StakeholderID, _, _, FunctionID, _, _, _), Buildings), 
+ 			functions(Functions), 
+ 			member([Name, FunctionID, _], Functions), 
+ 			not(Name =='terrace') , 
+ 			not(Name =='Terras') , 
+ 			not(Name == 'sportcentrum'), 
+ 			not(Name =='sports center'), 
+ 			not(Name =='buurtwinkel'), 
+ 			not(Name =='convenience store')
+ 		) 
+	then 
+			demolish(BuildingID).
+			
+	%description: if there is a zone with as high zounter, we don't have enough land.
+	%if:
+	% - There is a zone with a counter greater than 1.
+	% Then:
+	% - execute the buyland module.		
+	if
+		bel(
+			counter(ZoneID, Count), 
+			Count > 1, 
+			haltCount(Halt),
+			Halt < 3
+		)
+	then
+		buyLand(ZoneID).
+		
 	% description: Build a conveniencestore when this is the lowest indicator score
 	% if:
 	% - you have a goal for building and the score for the convenience indicator is the lowest.
 	% then:
 	% - build a conveniencestore	
 	if 	
-		goal(buildTerrace; buildStore; buildSportsCenter), 
+		goal(buildStore), 
 		bel(
 			buurtwinkelIndicator(BCurrent, _), 
 			sportcentrumIndicator(SCurrent, _), 
@@ -40,7 +106,7 @@ module main{
 	% then:
 	% - build a terras	
 	if 	
-		goal(buildTerrace; buildStore; buildSportsCenter), 
+		goal(buildTerrace), 
 		bel(
 			buurtwinkelIndicator(BCurrent, _), 
 			sportcentrumIndicator(SCurrent, _), 
@@ -58,7 +124,7 @@ module main{
 	% then:
 	% - build a sports center	
 	if 	
-		goal(buildTerrace; buildStore; buildSportsCenter), 
+		goal(buildSportsCenter), 
 		bel(
 			buurtwinkelIndicator(BCurrent, _), 
 			sportcentrumIndicator(SCurrent, _), 
@@ -69,30 +135,5 @@ module main{
 		) 
 	then 
 		buildSportsCenter. 
-	
-	% description: Make a goal for demolishing.
-	% if:
-	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
-	% then:
-	% - Adopt demolishbuilding(ID) goal.
-	if 	
-		goal(buildTerrace; buildStore; buildSportsCenter), 
-		bel(
-			my_stakeholder_id(StakeholderID),
-			buildings(X), 
-			member(building(BuildingID,_,StakeholderID,_,_,FunctionID,_, _), X), 
- 			functions(Y), 
- 			member([Name, FunctionID, _], Y), 
- 			not(Name =='terrace') , 
- 			not(Name =='Terras') , 
- 			not(Name == 'sportcentrum'), 
- 			not(Name =='sports center'), 
- 			not(Name =='buurtwinkel'), 
- 			not(Name =='convenience store'), 
- 			not(demolished(BuildingID))
- 		) 
-	then 
-			demolish(BuildingID).
-	
-	% TODO: buyland	
+
 }

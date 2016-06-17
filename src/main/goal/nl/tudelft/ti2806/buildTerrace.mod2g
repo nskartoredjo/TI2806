@@ -5,7 +5,7 @@ exit = always.
 order = linearall.
 
 % buildTerrace:
-% - states: 2
+% - states: 1
 % - description: Should build a terrace if possible. 
 module buildTerrace {
 	% description: 
@@ -14,28 +14,31 @@ module buildTerrace {
 	% - there is a goal to build a building
 	% - there hasn't been build any terrace
 	% - there is a building type 'terrace'
+	% - we have an indicator who whant to build this type
+	% - The zoneID is the zone with the highest needed value.
+	% - Size is sqrt of the total needed value.
+	% - There is land that is big enough to build on.
 	% then:
-	% - Build the terrace on a fixed polygon square
-	% - insert the belief 'constructed terrace'
+	% - Build the terrace on the given zone, with the given size 10 meters next to a road
+	% - update the counter.
 	if 
 		bel(
-			functions(FS), 
-			member([Name,FunctionID,L],FS), 
-			(Name == terrace; Name = terras), 
-			lands(ListLands), my_stakeholder_id(StakeholderID), 
-			member(land(_, stakeholder(StakeholderID, _, _, _), Multipolygon), ListLands), 
-			not(multipolygon(Multipolygon)))	
+			functions(Functions), 
+			member([Name,FunctionID,_],Functions), 
+			(Name == 'terrace'; Name == 'terras'), 
+			my_stakeholder_id(StakeholderID), 
+			indicatorLink(_, IndicatorWeights), 
+			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
+			(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'),  
+			indicator(IndicatorID, _, _, ZoneList),
+			maxTodo(ZoneList, Todo, ZoneID), 
+			Size is sqrt(Todo),
+			counter(ZoneID, Count), 
+			NewCount is Count + 1
+			)	
 		then 
-			building_plan_construction(FunctionID, 1, Multipolygon) + 
-			insert(
-				constructed(FunctionID, Name), 
-				multipolygon(Multipolygon)
-			).
-		
-	% description: 
-	% - should build n+1 buildings if n buildings are build
-	% if:
-	% - TODO
-	% then:
-	% - TODO
+		%TODO build action who builds in zoneID with size Todo.
+			build_specified_building(StakeholderID, ZoneID, FunctionID, Size, Size, 10) +
+			delete(counter(ZoneID, Count)) +
+			insert(counter(ZoneID, NewCount)).
 }

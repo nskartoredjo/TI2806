@@ -10,20 +10,23 @@ use "../../../../../main/goal/nl/tudelft/ti2806/demolish.mod2g" as module.
 use "../../../../../main/goal/nl/tudelft/ti2806/buyLand.mod2g" as module.
 use "../../../../../main/goal/nl/tudelft/ti2806/buildTerrace.mod2g" as module.
 
-timeout = 5.
+timeout = 10.
 
 % description: 
 %	- Test if the building actions are executed.
 %	- Test if the indicators are percepts.
-%	- Test if the sportscenter goal is reach immidiatly (percentage is 99% and goal is 60%).
+%	- Test if the sportscenter goal is reach immediately (percentage is 99% and goal is 60%).
+%	- Test if the permit requests are correctly answered.
 test main with
 	in{
-		eventually done(building_plan_construction(FunctionID, FloorSize, Multipolygon)).
-		done(building_plan_construction(FunctionID, FloorSize, Multipolygon)) leadsto multipolygon(Multipolygon).
+		eventually done(build_specified_building(StakeholderID, ZoneID, FunctionID, Depth, Width, DistancetoRoad)).
+		done(build_specified_building(StakeholderID, ZoneID, FunctionID, Depth, Width, DistancetoRoad)) leadsto constructed(FunctionID, Name).
 		eventually bel(buildSportsCenter).
 		eventually bel(buurtwinkelIndicator(BCurrent, BTarget)). 
 		eventually bel(sportcentrumIndicator(SCurrent, STarget)). 
 		eventually bel(terrasIndicator(TCurrent, TTarget)).
+		bel(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), 
+		TypeName == 'INTERACTION_WITH_DATE', Type == 'PERMIT') leadsto done(popup_answer_with_date(PopUpId, 0, 0)).
 	}
 
 serviceAgent {
