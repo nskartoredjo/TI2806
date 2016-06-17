@@ -3,6 +3,7 @@
 \usepackage[a4paper]{geometry}
 \usepackage{epstopdf}
 \usepackage{endnotes}
+\usepackage{apacite}
 
 \begin{document}
 	
@@ -11,10 +12,9 @@
 		
 		{\Huge VIRTUAL HUMANS}\\[1em]
 		{\huge FOR SERIOUS GAMING}\\[1em]
-		{\Large ARCHITECTURE DESIGN}\\[2em]
+		{\Large FINAL REPORT}\\[2em]
 		{Jannelie de Vries}\\
 		{Harmen Kroon}\\
-		{Jasper van Tiburg}\\
 		{Tom Brunner}\\
 		{Nando Kartoredjo}
 		
@@ -32,8 +32,18 @@
 	\newpage
 	
 	\input{Introduction.tex}
-	\input{Software_architecture_view.tex}
-	%\input{Glossary}
+	\input{Overview.tex}
+	\input{Reflection.tex}
+	\input{Description.tex}
+	\input{InteractionDesign.tex}
+	\input{Evaluation.tex}
+	\input{Outlook.tex}
 
 	
+
+
+	\bibliographystyle{apacite}
+	\bibliography{bibli}
+
+	\input{Appendices.tex}
 \end{document}
