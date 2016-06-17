@@ -1,23 +1,29 @@
 %%% percepts %%%
-:- dynamic actions/1.
-:- dynamic action_logs/1.
 
-% building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors, MultiPolygon, Area) are stored in a list in buildings(BuildingsList).
-:- dynamic building/9.
+% building(BuildingId, BuildingName, OwnerId, ConstructionYear, Categories, FunctionId, Floors, MultiPolygon, Area) 
+% are stored in a list in buildings(BuildingsList).
+:- dynamic building/3.
 :- dynamic buildings/1.
-:- dynamic counter/2.
+
+% land(landID, StakeholderID, Area) are stored in a list of lands(Lands).
+:- dynamic lands/1.
+:- dynamic land/3.
+
+% list of all functions possible in the tygron game.
 :- dynamic functions/1.
 
 % indicator(IndicatorId, CurrentValue, TargetValue) are stored in a list in indicators(IndicatorsList).
-% indicatorLink(StakeholderId, indicatorWeights(IndicatorId, IndicatorName, Weight)) links a stakeholder to its indicators.
 :- dynamic indicator/4.
-:- dynamic zoneLink/4.
-:- dynamic indicatorLink/2.
 :- dynamic indicators/1.
-:- dynamic indicatorWeights/3.
 
-% land(LandId, OwnerId, MultiPolygon, ZoneList, Area) are stored in a list in lands(LandList).
-:- dynamic lands/1.
+% indicatorLink(StakeholderId, indicatorWeights(IndicatorId, IndicatorName, Weight)) links a stakeholder to its indicators.
+:- dynamic indicatorLink/2.
+
+% zoneLink(ZoneID, InidcatorID, CurrentValue, TargetValue) links the indicator to the zone.
+:- dynamic zoneLink/4.
+
+% indicatorWeights(IndicatorID, IndicatorName, IndicatorWeight) give the weight of the indicator.
+:- dynamic indicatorWeights/3.
 
 % my_stakeholder_id(StakeholderId) contains the Stakeholder ID of the stakeholder occupied by the agent.
 :- dynamic my_stakeholder_id/1.
@@ -27,30 +33,24 @@
 :- dynamic requests/1.
 :- dynamic request/10.
 
-:- dynamic settings/1.
-
 % stakeholder(StakeholderId, Name, OldIncome, StartBudget) are stored individually.
 :- dynamic stakeholder/4.
 :- dynamic stakeholders/1.
 
- % request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers) 
- % are stored in a list in requests(RequestList).
- :- dynamic requests/1.
- :- dynamic request/10.
  % request_answered(PopUpId) is inserted whenever a request is answered by the agent.
  :- dynamic request_answered/1.
-
 
 % zone(ZoneId, ZoneName, MaxFloors, Size, Allowed_Categories) are stored individually.
 :- dynamic zone/5.
 :- dynamic zones/1.
 
 %%% knowledge %%%
-:- dynamic demolished/1.
-:- dynamic bought/0.
-:- dynamic constructed/2.
-:- dynamic multipolygon/1.
 
+%Haltcount, to make sure wwe don't send infinite requests
+:- dynamic haltCount/1.
+
+% counter to make sure we don't try to build in the same zone, when we don't have any land to build on
+:- dynamic counter/2.
 
 % description:
 % The indicator for our convenience store/buurtwinkel is stored in here.
@@ -82,34 +82,26 @@ terrasIndicator(CurrentValue, TargetValue) :-
 	(IndicatorName == 'Terras Indicator' ; IndicatorName == 'Terras Indicator (2)'), 
 	indicator(IndicatorId, CurrentValue, TargetValue, _).
 
-% description:
-% - demolish building will be automatically completed after demolished is done.
-demolishBuilding(BuildingID) :- 
-	demolished(BuildingID).
-	
-buyLand :-
-	bought.
-
 % description: 
 % The buildStore goal will be completed when the value of the indicator is larger or equal to target of the indicator.
 % For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
 buildStore :- 
 	buurtwinkelIndicator(Value, Target), 
-	Value >= 0.60.
+	Value >= 0.80.
 
 % description:
 % The buildSportsCenter goal will be completed when the value of the indicator is larger or equal to target of the indicator.
 % For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
 buildSportsCenter :- 
 	sportcentrumIndicator(Value, Target), 
-	Value >= 0.60.
+	Value >= 0.80.
 
 % description:
 % The buildTerrace goal will be completed when the value of the indicator is larger or equal to target of the indicator.
 % For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.	
 buildTerrace :- 
 	terrasIndicator(Value, Target), 
-	Value >= 0.60.
+	Value >= 0.80.
 
 % description:
 % The threshold price per m^2 the service stakeholder is willing to pay for land
@@ -120,8 +112,7 @@ marketprice(Currentmarketprice) :-
 % returns all area values of all owned lands	
 availableAreas(Area) :-
 	my_stakeholder_id(StakeholderId),
-	lands(LandList),
-	member(land(_, StakeholderId, _, _, Area), LandList).
+	land(_, StakeholderId, Area).
 
 % description:
 % sums all areas from availableAreas
