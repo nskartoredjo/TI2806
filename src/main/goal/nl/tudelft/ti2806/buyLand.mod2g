@@ -26,7 +26,7 @@ module buyLand(ZoneID) {
 		)
 	then 
 	%TODO build action who builds in zoneID with size Todo.
-		buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, 10) +
+		buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, Size) +
 		delete(counter(ZoneID, Count)) +
 		insert(counter(ZoneID, 0)).
 }

@@ -53,6 +53,15 @@ module request {
 			Type == 'INTERACTION', 
 			RequestType == 'BUY_LAND')
 			then {
+			
+			% description:
+			% If the OK option is present then answer with that
+			if
+				bel(member(answer(AnswerID, 'OK'), Answers))
+			then
+				popup_answer(RequestID, AnswerID) +
+				delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+			
 				
 			% description:
 			% Decide if we want to sell a piece of land
@@ -77,15 +86,7 @@ module request {
 			then
 				popup_answer(RequestID, AnswerID) +
 				delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
-			
-			% description:
-			% If the OK option is present then answer with that
-			if
-				bel(member(answer(AnswerID, 'OK'), Answers))
-			then
-				popup_answer(RequestID, AnswerID) +
-				delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
-			
+					
 			% TODO: decide if we want to sell this piece of land
 			% check if our indicators are met > skipped
 			% check if we need land still > done
@@ -111,7 +112,15 @@ module request {
 			Type == 'INTERACTION', 
 			RequestType == 'SELL_LAND')
 		then {
-			
+		
+		% description:
+		% If the OK option is present then answer with that
+		if
+			bel(member(answer(AnswerID, 'OK'), Answers))
+		then
+			popup_answer(RequestID, AnswerID) +
+			delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+				
 		% description:
 		% Decide if we want to buy the offered piece of land based on if the marketprice is ok
 		% and if we actually need land.
@@ -131,14 +140,7 @@ module request {
 			popup_answer(RequestID, AnswerID) +
 			delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
 				
-		% description:
-		% If the OK option is present then answer with that
-		if
-			bel(member(answer(AnswerID, 'OK'), Answers))
-		then 
-			popup_answer(RequestID, AnswerID) +
-			delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
-		}
+	}
 
 	% description: if we get an interaction request to demolish, answer with Yes or OK. 
 	%				You can only have an OK option if there are no other options.
