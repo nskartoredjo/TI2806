@@ -1,21 +1,21 @@
 \section{Introduction}
 
-This document provides a sketch of the system that is going to be built during the context project Virtual Humans. The architecture of the system is explained in the form of high level components of the system. These components are split in to sub components and sub-systems. This document will be continuously updated during the project development.
+This document provides a detailed overview sketch of the system that has been built during the context project Virtual Humans. The architecture of the system is explained in the form of high level components of the system. These components are split in to sub components and sub-systems. This document will be continuously updated during the project development.
 
 \subsection{Design goals}
 During the development process we define certain goals the project should reach, next to solving the original problem. The following design goals will be maintained throughout the project:
 
 \subsubsection{Availability}
-The system will be built by the principle of Scrum, meaning that each week a working version is available for testing. By doing this we ensure that we are building what the clients wants; if (s)he sees features (s)he does not like we remove them, if they have other requirements we add them. 
+The system will be built by the principle of Scrum, meaning that each week a working version is available for testing and showcasing. By doing this we ensure that we are building what the clients wants; if the client sees features it does not like we will remove them and if the client has altered its requirements we will add the wanted functionality. All code written is available for review via github repositories.
 
 \subsubsection{Manageability}
-The bot is able to be turned off and on. Its property can be managed (including its money). The goals can be altered to a higher demand.
+The services stakeholder uses excel based indicators, which are imported into the Tygron Engine. Other stakeholder related settings can be altered through the Tygron Engine alone and are specific to a game scenario. The code for our connector extension and the GOAL agent are all well commented and documented through commits messages, pull requests and documents. The bot is able to be activated and deactived during a session at will.
 
 \subsubsection{Performance}
-It should not be easily noticed that the bot is not a human due to slow functioning of the bot.
+The virtual human is designed for cooperating in a Tygron Engine session. Such a session has to be set-up, by creating a correct game and getting every stakeholder connected. The game requires minimal tweaks during development. The connection does depend on the Tygron servers with which every stakeholder connects and wheron the session is run. The virtual human performs faster than a human would in most situations, but slower when a lot of large computations are necessary.
 
 \subsubsection{Reliability}
-The bot should work in any given scenario, although it might decide it is better to do nothing.
+As said before, a connection with the Tygron Engine is required. Either due to internet connection problems or server problems this might fail. Another rare reliability problem might occur when the Tygron Engine is updated. There is not an existing version which allows local running of the session without need of the server connection. Game scenarios are stored on the Tygron server as well.
 
 \subsubsection{Scalability}
 Our bot will be able to work together with other bots and in theory an infinite amount could be added. In a practical sense if an infinite amount would be added, an error would occur more likely with the tygron engine than with our bot.
