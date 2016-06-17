@@ -4,7 +4,7 @@ use serviceKnowledge as knowledge.
 exit = always.
 
 % buildDemolish:
-% - states: 2
+% - states: 1
 % - description: Demolish buildings as specified if possible.
 module demolish(BuildingID) {
 	% description: Demolish a specified building.

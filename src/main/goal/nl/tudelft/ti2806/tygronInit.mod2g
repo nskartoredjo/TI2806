@@ -3,10 +3,11 @@ use serviceBeliefs as beliefs.
 use serviceGoals as goals.
 
 % tygronInit:
-% - states: 11
+% - states: 9
 % - description: init module
 module tygronInit {
 	
+	% description: During initialisation haltcount/1 is set to 0.
 	if true then insert(haltCount(0)).
 		
 	% description: During initialisation functions/1 is set to an empty list.

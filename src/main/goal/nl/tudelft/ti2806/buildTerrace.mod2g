@@ -5,7 +5,7 @@ exit = always.
 order = linearall.
 
 % buildTerrace:
-% - states: 2
+% - states: 1
 % - description: Should build a terrace if possible. 
 module buildTerrace {
 	% description: 

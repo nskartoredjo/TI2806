@@ -14,7 +14,7 @@ exit = nogoals.
 order = linear.
 
 % main:
-% - states: 6
+% - states: 7
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	

@@ -32,7 +32,6 @@ module buildConvenienceStore {
 			NewCount is Count + 1	
 		)
 	then 
-	%TODO build action who builds in zoneID with size Todo.
 		build_specified_building(StakeholderID, ZoneID, FunctionID, Size, Size, 10) +
 		delete(counter(ZoneID, Count)) +
 		insert(counter(ZoneID, NewCount)).

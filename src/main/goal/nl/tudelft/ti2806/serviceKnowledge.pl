@@ -5,11 +5,11 @@
 :- dynamic building/3.
 :- dynamic buildings/1.
 
-% TODO
+% land(landID, StakeholderID, Area) are stored in a list of lands(Lands).
 :- dynamic lands/1.
 :- dynamic land/3.
 
-% TODO
+% list of all functions possible in the tygron game.
 :- dynamic functions/1.
 
 % indicator(IndicatorId, CurrentValue, TargetValue) are stored in a list in indicators(IndicatorsList).
@@ -19,10 +19,10 @@
 % indicatorLink(StakeholderId, indicatorWeights(IndicatorId, IndicatorName, Weight)) links a stakeholder to its indicators.
 :- dynamic indicatorLink/2.
 
-% TODO
+% zoneLink(ZoneID, InidcatorID, CurrentValue, TargetValue) links the indicator to the zone.
 :- dynamic zoneLink/4.
 
-% TODO
+% indicatorWeights(IndicatorID, IndicatorName, IndicatorWeight) give the weight of the indicator.
 :- dynamic indicatorWeights/3.
 
 % my_stakeholder_id(StakeholderId) contains the Stakeholder ID of the stakeholder occupied by the agent.
@@ -46,9 +46,10 @@
 
 %%% knowledge %%%
 
+%Haltcount, to make sure wwe don't send infinite requests
 :- dynamic haltCount/1.
 
-% TODO
+% counter to make sure we don't try to build in the same zone, when we don't have any land to build on
 :- dynamic counter/2.
 
 % description:

@@ -29,7 +29,6 @@ module buyLand(ZoneID) {
 			NewHalt is Halt + 1
 		)
 	then 
-	%TODO build action who builds in zoneID with size Todo.
 		buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, 0) +
 		delete(
 			counter(ZoneID, Count),

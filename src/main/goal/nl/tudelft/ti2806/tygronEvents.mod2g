@@ -6,7 +6,8 @@ use serviceBeliefs as beliefs.
 % - description: Percept Processing
 module tygronEvents {
 
-	%TODO
+	% description: when we get a new building percept, we want to delete the buildings that aren't there. 
+	% We also don't  need the buildings we sold.
 	forall
 		percept(buildings(NewBuildings)),
 		bel(
@@ -17,6 +18,8 @@ module tygronEvents {
 	do
 		delete(building(StakeholderID, BuildingID, FunctionID)).
 
+	% description: when we get a new building percept, we want to insert the buildings that are new. 
+	% We also need the buildings we bought and built.
 	forall
 		percept(buildings(NewBuildings)),
 		bel(
@@ -26,7 +29,8 @@ module tygronEvents {
 		)
 	do
 		insert(building(StakeholderID, BuildingID, FunctionID)).
-				
+	
+	% description: if we get a lands percept, we want to delete the land that is not ours anymore.		
 	forall
 		percept(lands(NewLand)),
 		bel(
@@ -37,6 +41,7 @@ module tygronEvents {
 	do
 		delete(land(LandID, StakeholderID, Area)).
 	
+	% description: if we get a lands percept, we want to insert the new land that is ours.
 	forall
 		percept(lands(NewLand)),
 		bel(
