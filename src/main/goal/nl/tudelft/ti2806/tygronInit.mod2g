@@ -12,6 +12,9 @@ module tygronInit {
 	% description: During initialisation action_logs/1 is set to an empty list.
 	if true then insert(action_logs([])).
 
+	% description: During initialisation buildings/1 is set to an empty list.
+	if true then insert(buildings([])).
+	
 	% description: During initialisation functions/1 is set to an empty list.
 	if true then insert(functions([])).
 		

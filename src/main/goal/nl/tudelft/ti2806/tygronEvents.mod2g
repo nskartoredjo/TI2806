@@ -22,6 +22,14 @@ module tygronEvents {
 		delete(action_logs(Y)) + 
 		insert(action_logs(X)).
 
+	% description: Whenever buildings are percepted old buildings will be deleted and new buildings will be inserted.
+	if
+		percept(buildings(X)),
+		bel(buildings(Y))
+	then
+		delete(buildings(X)) +
+		insert(buildings(Y)).
+		
 	% description: Whenever functions are percepted old functions will be deleted and new functions will be inserted.
 	if 
 		percept(functions(X)), 
