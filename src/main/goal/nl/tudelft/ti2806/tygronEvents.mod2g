@@ -5,22 +5,6 @@ use serviceBeliefs as beliefs.
 % - states: 9
 % - description: Percept Processing
 module tygronEvents {
-	
-	% description: Whenever actions are percepted old actions will be deleted and new actions will be inserted.
-	if 
-		percept(actions(NewActions)), 
-		bel(actions(OldActions)) 
-	then 
-		delete(actions(OldActions)) + 
-		insert(actions(NewActions)).
-	
-	% description: Whenever logs of actions are percepted old action_logs will be deleted and new action_logs will be inserted.
-	if 
-		percept(action_logs(NewActionLog)), 
-		bel(action_logs(OldActionLog)) 
-	then 
-		delete(action_logs(OldActionLog)) + 
-		insert(action_logs(NewActionLog)).
 
 	% description: Whenever buildings are percepted old buildings will be deleted and new buildings will be inserted.
 	if
@@ -53,14 +37,6 @@ module tygronEvents {
 		delete (indicator(IndicatorID, OldValue, TargetValue,OldZone_LinkList)) + 
 		insert(indicator(IndicatorID, CurrentValue, TargetValue, Zone_LinkList)).	
 	
-	% description: Whenever lands are percepted old lands will be deleted and new lands will be inserted.
-	if 
-		percept(lands(NewLands)), 
-		bel(lands(OldLands)) 
-	then 
-		delete(lands(OldLands)) + 
-		insert(lands(NewLands)).
-		
 	% description: Whenever requests are percepted each request is inserted.
 	forall
 		percept(requests(RequestList)),
@@ -73,14 +49,6 @@ module tygronEvents {
 	do
 		insert(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers)).
 
-	% description: Whenever settings are percepted old settings will be deleted and new settings will be inserted.
-	if 
-		percept(settings(NewSettings)), 
-		bel(settings(OldSettings)) 
-	then 
-		delete(settings(OldSettings)) + 
-		insert(settings(NewSettings)).
-	
 	% description:Whenever the list of stakeholders is updated all stakeholder/4 beliefs will be updated accordingly.
 	% forall:
 	% - stakeholders where the income has changed
