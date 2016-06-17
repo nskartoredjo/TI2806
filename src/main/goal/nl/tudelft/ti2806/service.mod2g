@@ -18,6 +18,19 @@ order = linear.
 % - description: The main module. Should run every module in a linear mather, until there ar no goals.
 module main{
 	
+	% description: Go to the permit module and run that code.
+	% if:
+	% - There is a permit requests.
+	% then:
+	% - go to the permit module.
+	if
+		bel(
+			request(_, Type, _,_,_,_,_,_,_,_),
+			Type == 'PERMIT'
+		)
+	then
+		permits.
+		
 	%description: check if there are any request and answer these.
 	% if: 
 	% - There are any request, which are not permits.
@@ -31,18 +44,6 @@ module main{
 	then
 		request.
 
-	% description: Go to the permit module and run that code.
-	% if:
-	% - There is a permit requests.
-	% then:
-	% - go to the permit module.
-	if
-		bel(
-			request(_, 'PERMIT', _,_,_,_,_,_,_,_)
-		)
-	then
-		permits.
-	
 	% description: Make a goal for demolishing.
 	% if:
 	% - The indicators are not met yet and there is a building from the stakeholder that is not a building needed for the indicator.
@@ -130,8 +131,5 @@ module main{
 		) 
 	then 
 		buildSportsCenter. 
-	
 
-	
-	% TODO: buyland	
 }

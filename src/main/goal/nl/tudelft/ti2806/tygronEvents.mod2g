@@ -21,7 +21,7 @@ module tygronEvents {
 	then 
 		delete(action_logs(Y)) + 
 		insert(action_logs(X)).
-			
+
 	% description: Whenever functions are percepted old functions will be deleted and new functions will be inserted.
 	if 
 		percept(functions(X)), 
@@ -57,9 +57,10 @@ module tygronEvents {
 	forall
 		percept(requests(RequestList)),
 		bel(
-		member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList),
-		my_stakeholder_id(StakeholderID),
-		member(StakeholderID, VisibleForStakeholders)
+			member(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers), RequestList),
+			my_stakeholder_id(StakeholderID),
+			member(StakeholderID, VisibleForStakeholders),
+			not(request_answered(PopupId))
 		)
 	do
 		insert(request(TypeName, Type, PopupId, PopupContentLinkId, VisibleForStakeholders, ActionLogId, Price, MultiPolygon, Area, Answers)).
