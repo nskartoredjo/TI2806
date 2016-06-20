@@ -2,8 +2,8 @@
 \usepackage{graphicx}
 \usepackage[a4paper]{geometry}
 \usepackage{epstopdf}
-\usepackage{endnotes}
-\usepackage{apacite}
+\usepackage[backend=bibtex, style=numeric]{biblatex}
+\addbibresource{bibli.bib} 
 
 \begin{document}
 	
@@ -40,10 +40,8 @@
 	\input{Outlook.tex}
 
 	
-
-
-	\bibliographystyle{apacite}
-	\bibliography{bibli}
+	\printbibliography
+	\newpage
 
 	\input{Appendices.tex}
 \end{document}
