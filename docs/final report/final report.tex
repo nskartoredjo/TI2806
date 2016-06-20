@@ -3,6 +3,8 @@
 \usepackage[a4paper]{geometry}
 \usepackage{epstopdf}
 \usepackage[backend=bibtex, style=numeric]{biblatex}
+\usepackage[titletoc, title]{appendix}
+
 \addbibresource{bibli.bib} 
 
 \begin{document}
@@ -38,10 +40,13 @@
 	\input{InteractionDesign.tex}
 	\input{Evaluation.tex}
 	\input{Outlook.tex}
-
+	\newpage
 	
 	\printbibliography
 	\newpage
 
-	\input{Appendices.tex}
+	\begin{appendices}
+	\input{AppendixA.tex}
+	\input{AppendixB.tex}
+	\end{appendices}
 \end{document}
