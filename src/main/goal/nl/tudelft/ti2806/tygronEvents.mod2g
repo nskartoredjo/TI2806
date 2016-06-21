@@ -13,7 +13,7 @@ module tygronEvents {
 		bel(
 			my_stakeholder_id(StakeholderID),
 			building(StakeholderID, BuildingID, FunctionID),
-			not(member(building(BuildingID, _, StakeholderID, _, _, FunctionID, _, _, _), NewBuildings))
+			not(member(building(BuildingID, _, StakeholderID, _, _, FunctionID, _, MultiPolygon, Area), NewBuildings))
 		)
 	do
 		delete(building(StakeholderID, BuildingID, FunctionID)).
@@ -24,8 +24,9 @@ module tygronEvents {
 		percept(buildings(NewBuildings)),
 		bel(
 			my_stakeholder_id(StakeholderID),
-			member(building(BuildingID, _, StakeholderID, _, _, FunctionID, _, _, _), NewBuildings),
-			not(building(StakeholderID, BuildingID, FunctionID))
+			member(building(BuildingID, _, StakeholderID, _, _, FunctionID, _, MultiPolygon, Area), NewBuildings),
+			not(building(StakeholderID, BuildingID, FunctionID)),
+			not(MultiPolygon == multipolygon('MULTIPOLYGON EMPTY'))
 		)
 	do
 		insert(building(StakeholderID, BuildingID, FunctionID)).
