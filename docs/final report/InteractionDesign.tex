@@ -6,15 +6,20 @@ The goal of our user study was to see how other players interact with our bot an
 \subsection{Procedure}
 We tested six persons using our code.  All six test persons were TI students which are also doing a context project, but they had another context.  
 First we had to explain the tygron game to our test persons, because they needed to have an understanding of the game and it has a lot of options. So we needed to take time for explaining this. 
-\\ \\
-Then we needed to explain them the tasks they had to do. They needed to play the game as the stakeholder municipality twice for 10 minutes. This could be twice against a bot, or twice against a human. Also it could be once against a human and once against a bot. When a human was playing it was just playing and not trying to simulate the bot. In this way we made sure we got the differences between bot an human, because our bot should look like a human not the other way around. They had to play the game and reach there goals in the games. This could be done by building, buying, selling and demolishing. By doing this they also had to interact with the other player. 
-\\ \\
+
+Then we needed to explain them the tasks they had to do. They needed to play the game as the stakeholder municipality twice for 10 minutes. This could be twice against a bot, or twice against a human. Also it could be once against a human and once against a bot. When a human was playing it was just playing and not trying to simulate the bot. In this way we made sure we got the differences between bot an human, because our bot should look like a human not the other way around. They had to play the game and reach their goals in the games. This could be done by building, buying, selling and demolishing. By doing this they also had to interact with the other player. 
+
 After they played the game, we asked them how it went and if they thought they played with a bot or a human. Also they need to explain why they thought that. 
-\\ \\
+
 These results were gathered together and written down. In this way we could find out if they could sense that they were playing against our bot.
+
 \subsection{Results}
 The complete results are given in appendix B.
-When we looked at the results, we saw that everybody was right about when they played against a human or a bot. There is only one person who doubted a little bit. But most of the times it was very clear when they played. The overall comment we got, was that the bot wasn't building on logical places, so We could adjust this to add more strategy in deciding where to build or buy. Another reaction we got was that when buying land and getting rejected, it tries to find another piece of land to buy instead of accepting to buy this land for a higher price. We intended to do this, but if the municipality keeps rejecting our request, then we have to buy it for a higher price. The last comment we got was that the bot is faster than a human. 
+When we looked at the results, we saw that everybody was right about when they played against a human or a bot. There is only one person who doubted a little bit. But most of the times it was very clear when they played. The overall comment we got, was that the bot wasn't building on logical places, so We could adjust this to add more strategy in deciding where to build or buy. 
+
+Another reaction we got was that when buying land and getting rejected, it tries to find another piece of land to buy instead of accepting to buy this land for a higher price. We intended to do this, but if the municipality keeps rejecting our request, then we have to buy it for a higher price. The last comment we got was that the bot is faster than a human. 
+
 \subsection{Conclusion}
-Our conclusion is that we need more strategy in order to build at more logical places. Also we need an improvement for our strategy in buying land. We should be able to detect when it keeps getting rejected. We need to give a higher price when this is happening. It is not really possible to slow down the bot. The only thing we can do is to make sure it is going to the event module each time it has executed an action. In this way we get the most recently percepts and we are faster in reaction to those changes. Also it should slow down building, because it has to go to the event module before it can build another building. So for the next time, we would extend our strategy. We won't focus on slowing down the bot, because this is not what we want. We don't want to build in a delay. We want the bot to think about what he needs to do instead of being as slow as a human.
-\newpage
+Our conclusion is that we need more strategy in order to build at more logical places. Also we need an improvement for our strategy in buying land. We should be able to detect when it keeps getting rejected. We need to give a higher price when this is happening. It is not really possible to slow down the bot. The only thing we can do is to make sure it is going to the event module each time it has executed an action. In this way we get the most recently percepts and we are faster in reaction to those changes. Also it should slow down building, because it has to go to the event module before it can build another building. 
+
+For the next time, we would extend our strategy. We won't focus on slowing down the bot, because this is not what we want. We don't want to build in a delay. We want the bot to think about what he needs to do instead of being as slow as a human.
