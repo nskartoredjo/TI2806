@@ -18,10 +18,10 @@ to contact the team, aproach [nskartoredjo](https://github.com/nskartoredjo).
 [![Build Status](https://travis-ci.org/nskartoredjo/TI2806.svg?branch=master)](https://travis-ci.org/nskartoredjo/TI2806)
 
 ## Final Report
-[Final report](https://github.com/nskartoredjo/TI2806/blob/Final_report/deliverables/final%20report.pdf)
+[Final report](https://github.com/nskartoredjo/TI2806/tree/master/deliverables/final%20report.pdf)
 
 ## Architecture Design
-[Architecture Design] (https://github.com/nskartoredjo/TI2806/blob/Final_report/deliverables/architecture%20design.pdf)
+[Architecture Design] (https://github.com/nskartoredjo/TI2806/tree/master/deliverables/architecture%20design.pdf)
 
 
 ## SCRUM Deliverables
