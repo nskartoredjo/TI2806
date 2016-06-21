@@ -23,6 +23,31 @@ module request {
 	then 
 		popup_answer(RequestID, AnswerID) +
 		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
+
+	if
+		bel(
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			(Multipolygon == 'NO_MULTIPOLYGON' ; Area == 'NO_SIZE'),
+			RequestType == 'BUY_LAND',
+			member(answer(AnswerID, 'OK'), Answers),
+			haltCount(Halt),
+			NewHalt is Halt - 1
+			)
+	then
+		popup_answer(RequestID, AnswerID) +
+		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers), 
+				haltCount(Halt)) +
+		insert(haltCount(NewHalt)).
+			
+	if
+		bel(
+			request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers),
+			(Multipolygon == 'NO_MULTIPOLYGON' ; Area == 'NO_SIZE'),
+			member(answer(AnswerID, 'OK'), Answers)
+			)
+	then
+		popup_answer(RequestID, AnswerID) +
+		delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
 	
 	% description: if we get an interaction request to buy land, answer with Yes, No or OK. 
 	%				You can only have an OK option if there are no other options.
@@ -146,7 +171,12 @@ module request {
 		then
 			popup_answer(RequestID, AnswerID) +
 			delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).
-				
+
+		if
+			bel(member(answer(AnswerID, 'Nee'), Answers); member(answer(AnswerID, 'No'), Answers))
+		then
+			popup_answer(RequestID, AnswerID) +
+			delete(request(Type, RequestType, RequestID, ContentLinkID, VisibleStakeholders, ActionlogIDs, Price, Multipolygon, Area, Answers)).				
 	}
 
 	% description: if we get an interaction request to demolish, answer with Yes or OK. 

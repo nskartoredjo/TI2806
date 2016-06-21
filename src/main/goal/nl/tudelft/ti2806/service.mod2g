@@ -10,7 +10,7 @@ use demolish as module.
 use request as module.
 use permits as module.
 
-exit = nogoals.
+exit = never.
 order = linear.
 
 % main:
@@ -55,14 +55,15 @@ module main{
 			my_stakeholder_id(StakeholderID),
 			building(StakeholderID, BuildingID, FunctionID), 
  			functions(Functions), 
- 			member([Name, FunctionID, _], Functions), 
+ 			member([Name, FunctionID, Category], Functions), 
  			not(Name =='terrace') , 
  			not(Name =='Terras') , 
  			not(Name == 'sportcentrum'), 
  			not(Name =='sports center'), 
  			not(Name =='buurtwinkel'), 
  			not(Name =='convenience store'),
- 			not(demolished(BuildingID))
+ 			not(demolished(BuildingID)),
+ 			not(Category == 'ROAD')
  		) 
 	then 
 			demolish(BuildingID).
@@ -95,9 +96,7 @@ module main{
 			terrasIndicator(TCurrent, _),
 			BCurrent =< SCurrent,  
 			BCurrent =< TCurrent , 
-			BCurrent =< 0.80,
-			haltBuildCount(Halt),
-			Halt < 10
+			BCurrent =< 0.70
 		) 
 	then 
 		buildConvenienceStore. 
@@ -115,9 +114,7 @@ module main{
 			terrasIndicator(TCurrent, _),
 			TCurrent =< SCurrent, 
 			TCurrent =< BCurrent, 
-			TCurrent =< 0.80,
-			haltBuildCount(Halt),
-			Halt < 10
+			TCurrent =< 0.70
 		) 
 	then 
 		buildTerrace. 
@@ -135,9 +132,7 @@ module main{
 			terrasIndicator(TCurrent, _),
 			SCurrent =< TCurrent, 
 			SCurrent =< BCurrent, 
-			SCurrrent =< 0.80,
-			haltBuildCount(Halt),
-			Halt < 10
+			SCurrrent =< 0.70
 		) 
 	then 
 		buildSportsCenter. 

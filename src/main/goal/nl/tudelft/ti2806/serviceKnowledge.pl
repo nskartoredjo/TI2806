@@ -90,21 +90,21 @@ terrasIndicator(CurrentValue, TargetValue) :-
 % For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
 buildStore :- 
 	buurtwinkelIndicator(Value, Target), 
-	Value >= 0.80.
+	Value >= 0.70.
 
 % description:
 % The buildSportsCenter goal will be completed when the value of the indicator is larger or equal to target of the indicator.
 % For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.
 buildSportsCenter :- 
 	sportcentrumIndicator(Value, Target), 
-	Value >= 0.80.
+	Value >= 0.70.
 
 % description:
 % The buildTerrace goal will be completed when the value of the indicator is larger or equal to target of the indicator.
 % For this we first need to get the right indicator from the right stakeholder, by using the beliefs of those.	
 buildTerrace :- 
 	terrasIndicator(Value, Target), 
-	Value >= 0.80.
+	Value >= 0.70.
 
 % description:
 % The threshold price per m^2 the service stakeholder is willing to pay for land
