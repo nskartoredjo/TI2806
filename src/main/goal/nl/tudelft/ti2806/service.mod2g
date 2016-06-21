@@ -95,7 +95,9 @@ module main{
 			terrasIndicator(TCurrent, _),
 			BCurrent =< SCurrent,  
 			BCurrent =< TCurrent , 
-			BCurrent =< 0.80
+			BCurrent =< 0.80,
+			haltBuildCount(Halt),
+			Halt < 10
 		) 
 	then 
 		buildConvenienceStore. 
@@ -113,7 +115,9 @@ module main{
 			terrasIndicator(TCurrent, _),
 			TCurrent =< SCurrent, 
 			TCurrent =< BCurrent, 
-			TCurrent =< 0.80
+			TCurrent =< 0.80,
+			haltBuildCount(Halt),
+			Halt < 10
 		) 
 	then 
 		buildTerrace. 
@@ -131,7 +135,9 @@ module main{
 			terrasIndicator(TCurrent, _),
 			SCurrent =< TCurrent, 
 			SCurrent =< BCurrent, 
-			SCurrrent =< 0.80
+			SCurrrent =< 0.80,
+			haltBuildCount(Halt),
+			Halt < 10
 		) 
 	then 
 		buildSportsCenter. 

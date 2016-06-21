@@ -29,12 +29,14 @@ module buildConvenienceStore {
 			maxTodo(ZoneList, Todo, ZoneID) , 
 			Size is sqrt(Todo),
 			counter(ZoneID, Count), 
-			NewCount is Count + 1	
+			NewCount is Count + 1,
+			haltBuildCount(Halt),
+			NewHalt is Halt + 1	
 		)
 	then 
 		build_specified_building(StakeholderID, ZoneID, FunctionID, Size, Size, 10) +
-		delete(counter(ZoneID, Count)) +
-		insert(counter(ZoneID, NewCount)).
+		delete(counter(ZoneID, Count), haltBuildCount(Halt)) +
+		insert(counter(ZoneID, NewCount), haltBuildCount(NewHalt)).
 }
 
 

@@ -22,11 +22,14 @@ module permits {
 			PopUpType = 'INTERACTION_WITH_DATE',
 			Type == 'PERMIT',
 			member(answer(AnswerId, Answer), Answers),
-			(Answer == 'Ja'; Answer == 'Yes')
+			(Answer == 'Ja'; Answer == 'Yes'),
+			haltBuildCount(Halt),
+			NewHalt is Halt - 1
 		)
 	then
 		popup_answer_with_date(PopUpId, AnswerId, 0) +
-		delete(request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers)).
+		delete(request(PopUpType, Type, PopUpId, BuildingId, StakeholderIdList, ActionLogIDList, Price, Multipolygon, Area, Answers), haltCount(Halt)) +
+		insert(haltBuildCount(NewHalt)).
 	
 	% description: answer ok to all interaction permits.
 	% if:

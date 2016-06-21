@@ -48,6 +48,7 @@
 
 %Haltcount, to make sure wwe don't send infinite requests
 :- dynamic haltCount/1.
+:- dynamic haltBuildCount/1.
 
 % counter to make sure we don't try to build in the same zone, when we don't have any land to build on
 :- dynamic counter/2.

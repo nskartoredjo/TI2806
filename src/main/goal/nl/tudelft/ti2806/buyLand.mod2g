@@ -15,16 +15,16 @@ module buyLand(ZoneID) {
 	% - resets the counter
 	if 
 		bel(
-			functions(Functions), member([Name,FunctionID,_], Functions), 
-			(Name =='buurtwinkel'; Name == 'convenience store'), 
 			my_stakeholder_id(StakeholderID),
 			indicatorLink(_, IndicatorWeights), 
 			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
 			(IndicatorName == 'Buurtwinkel Indicator'; IndicatorName == 'Buurtwinkel Indicator (2)'), 
 			indicator(IndicatorID, _, _, ZoneList) ,
 			maxTodo(ZoneList, Todo, ZoneID) , 
+			Todo > 0,
 			Size is sqrt(Todo), 
 			counter(ZoneID, Count),
+			Count > 1,
 			haltCount(Halt),
 			NewHalt is Halt + 1
 		)
@@ -39,4 +39,61 @@ module buyLand(ZoneID) {
 			haltCount(NewHalt)
 		).
 		
+		if 
+		bel(
+			my_stakeholder_id(StakeholderID),
+			indicatorLink(_, IndicatorWeights), 
+			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
+			(IndicatorName == 'Terras Indicator'; IndicatorName == 'Terras Indicator (2)'), 
+			indicator(IndicatorID, _, _, ZoneList) ,
+			maxTodo(ZoneList, Todo, ZoneID) , 
+			Todo > 0,
+			Size is sqrt(Todo), 
+			counter(ZoneID, Count),
+			Count > 1,
+			haltCount(Halt),
+			NewHalt is Halt + 1
+		)
+	then 
+		buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, 0) +
+		delete(
+			counter(ZoneID, Count),
+			haltCount(Halt)
+		) +
+		insert(
+			counter(ZoneID, 0), 
+			haltCount(NewHalt)
+		).
+		
+		if 
+		bel(
+			my_stakeholder_id(StakeholderID),
+			indicatorLink(_, IndicatorWeights), 
+			member(indicatorWeights(IndicatorID, IndicatorName, _), IndicatorWeights), 
+			(IndicatorName == 'Sportcentrum Indicator'; IndicatorName == 'Sportcentrum Indicator (2)'), 
+			indicator(IndicatorID, _, _, ZoneList) ,
+			maxTodo(ZoneList, Todo, ZoneID) , 
+			Todo > 0,
+			Size is sqrt(Todo), 
+			counter(ZoneID, Count),
+			Count > 1,
+			haltCount(Halt),
+			NewHalt is Halt + 1
+		)
+	then 
+		buy_specified_land(StakeholderID, ZoneID, 0, 400, Size, Size, 0) +
+		delete(
+			counter(ZoneID, Count),
+			haltCount(Halt)
+		) +
+		insert(
+			counter(ZoneID, 0), 
+			haltCount(NewHalt)
+		).
+		
+	if
+	bel(counter(ZoneID, Count))
+	then
+	delete(counter(ZoneID, Count)) +
+	insert(counter(ZoneID, 0)).
 }
