@@ -13,7 +13,7 @@ module demolish(BuildingID) {
 	% then:
 	% - Demolish the building with buildingID.
 	if 
-		bel(buildings(Builings), member(building(BuildingID,_,_,_), Buildings))
+		bel(building(StakeholderID, BuildingID, FunctionID))
 	then 
 		building_plan_demolish(BuildingID).
 }

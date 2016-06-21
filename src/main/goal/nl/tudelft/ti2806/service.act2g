@@ -16,7 +16,7 @@ define	building_plan_construction(BuildingId, Level, MultiPolygon) with
 % - BuildId: The building id
 define	building_plan_demolish(BuildId) with
 	pre{ true }
-	post{ true }
+	post{ demolished(BuildId) }
 
 % description:
 % - buy a piece of land for a specified price

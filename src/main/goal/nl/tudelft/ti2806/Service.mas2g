@@ -5,9 +5,8 @@
 % - The agent uses the contextvh-1.0.1.3 version of the environment.
 
 use "contextvh-1.0.1.3-jar-with-dependencies.jar" as environment with
-	project = "vhproject",
-	stakeholders = ["Voorzieningen"],
-	slot = 7.
+	project = "vhprojectctddemos",
+	stakeholders = ["Voorzieningen"].
  
 define serviceAgent as agent {
 	use service as main module.

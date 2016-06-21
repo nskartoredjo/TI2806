@@ -53,8 +53,7 @@ module main{
 		goal(buildTerrace; buildStore; buildSportsCenter), 
 		bel(
 			my_stakeholder_id(StakeholderID),
-			buildings(Buildings),
-			member(building(BuildingID, _, StakeholderID, _, _, FunctionID, _, _, _), Buildings), 
+			building(StakeholderID, BuildingID, FunctionID), 
  			functions(Functions), 
  			member([Name, FunctionID, _], Functions), 
  			not(Name =='terrace') , 
@@ -62,7 +61,8 @@ module main{
  			not(Name == 'sportcentrum'), 
  			not(Name =='sports center'), 
  			not(Name =='buurtwinkel'), 
- 			not(Name =='convenience store')
+ 			not(Name =='convenience store'),
+ 			not(demolished(BuildingID))
  		) 
 	then 
 			demolish(BuildingID).

@@ -5,6 +5,8 @@
 :- dynamic building/3.
 :- dynamic buildings/1.
 
+:- dynamic demolished/1.
+
 % land(landID, StakeholderID, Area) are stored in a list of lands(Lands).
 :- dynamic lands/1.
 :- dynamic land/3.
